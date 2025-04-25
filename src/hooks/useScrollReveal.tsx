@@ -6,7 +6,7 @@ interface ScrollRevealOptions {
   rootMargin?: string;
 }
 
-export function useScrollReveal<T extends HTMLElement>({ 
+export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({ 
   threshold = 0.1,
   rootMargin = "0px"
 }: ScrollRevealOptions = {}): RefObject<T> {
