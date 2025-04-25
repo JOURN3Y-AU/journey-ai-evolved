@@ -25,7 +25,8 @@ const Index = () => {
         <div className="container mx-auto px-4 z-10">
           <div ref={heroRef} className="max-w-3xl reveal transition-all duration-700 ease-out">
             <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-journey-purple to-journey-blue">
-              Transform Your Business with AI Solutions
+              The future is AI powered
+              Is your business?
             </h1>
             <p className="text-xl text-gray-700 mb-8 md:pr-12">
               Journey AI provides custom AI consulting and solutions to help businesses leverage the power of artificial intelligence for growth and efficiency.
