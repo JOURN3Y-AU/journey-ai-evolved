@@ -114,14 +114,14 @@ const Navbar = () => {
               className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Catalyst
+              Accelerate
             </Link>
             <Link 
               to="/products/synapse" 
               className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Synapse
+              Services
             </Link>
             <Link 
               to="/blog" 
