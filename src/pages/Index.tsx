@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import AINetwork from '@/components/animations/AINetwork';
 import useScrollReveal from '@/hooks/useScrollReveal';
-import { Target, Rocket, Crosshair } from 'lucide-react';
+import { Lightbulb, Rocket, Target } from 'lucide-react';
 
 const Index = () => {
   // Animation refs
@@ -59,7 +59,7 @@ const Index = () => {
             <div ref={featureRef1} className="reveal transition-all duration-500 ease-out">
               <div className="bg-white rounded-lg p-8 shadow-sm h-full border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-journey-purple/20 to-journey-blue/20 flex items-center justify-center">
-                  <Target className="w-8 h-8 text-journey-purple" />
+                  <Lightbulb className="w-8 h-8 text-journey-purple" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3 tracking-tight">Planning & Prioritisation</h3>
                 <p className="text-gray-600">
@@ -85,7 +85,7 @@ const Index = () => {
             <div ref={featureRef3} className="reveal transition-all duration-500 ease-out reveal-delay-400">
               <div className="bg-white rounded-lg p-8 shadow-sm h-full border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-journey-purple/20 to-journey-blue/20 flex items-center justify-center">
-                  <Crosshair className="w-8 h-8 text-journey-dark-purple" />
+                  <Target className="w-8 h-8 text-journey-dark-purple" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3 tracking-tight">Focus on relavance</h3>
                 <p className="text-gray-600">
@@ -101,9 +101,9 @@ const Index = () => {
       <section className="py-24">
         <div className="container mx-auto px-4">
           <div ref={productSectionRef} className="text-center mb-16 reveal transition-all duration-500 ease-out">
-            <h2 className="text-4xl font-bold mb-4 tracking-tight">Our AI Solutions</h2>
+            <h2 className="text-4xl font-bold mb-4 tracking-tight">Accelerate your AI JOURN3Y</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover our range of specialized AI products designed to meet your business needs.
+             OURN3Y has the people, products and services to get you moving towards confidently taking advantage of AI in your business
             </p>
           </div>
           
