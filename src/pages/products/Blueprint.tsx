@@ -17,7 +17,7 @@ const Blueprint = () => {
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold mb-6">Blueprint</h1>
             <p className="text-xl text-gray-700 mb-8">
-              Strategic AI roadmapping and business transformation planning that gives your organization a clear path to AI implementation.
+              Transform your AI ambition into action through JOURN3Y's accelerated process that delivers a prioiritised, practical AI plan
             </p>
             <Button className="bg-gradient-to-r from-journey-purple to-journey-blue text-white">
               <Link to="/contact">Book a Consultation</Link>
