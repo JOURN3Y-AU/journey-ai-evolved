@@ -1,3 +1,4 @@
+
 import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -119,6 +120,7 @@ const Index = () => {
                 <h3 className="text-2xl font-semibold mb-2 tracking-tight">Blueprint</h3>
                 <p className="text-gray-600 mb-4">
                   Transforms business strategy into AI-powered action
+                </p>
                 <Button asChild variant="outline" className="w-full justify-center border-journey-purple text-journey-purple hover:bg-journey-purple/10">
                   <Link to="/products/blueprint">Learn More</Link>
                 </Button>
