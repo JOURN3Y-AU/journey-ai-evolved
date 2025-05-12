@@ -13,7 +13,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="mt-4 text-gray-600">
-              Transforming businesses with intelligent AI solutions.
+              The future is AI powered. Is your business?
             </p>
           </div>
           
