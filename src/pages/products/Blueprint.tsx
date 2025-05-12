@@ -33,7 +33,7 @@ const Blueprint = () => {
             <div ref={section1Ref} className="reveal transition-all duration-500 ease-out">
               <h2 className="text-3xl font-bold mb-6">What is Blueprint?</h2>
               <p className="text-gray-700 mb-4">
-                Blueprint is our strategic AI planning service designed to help businesses map out their AI journey. We work with your leadership team to identify opportunities, challenges, and the ideal path to AI integration.
+                Blueprint is our strategic AI planning approach designed to help businesses map out their AI journey. We work with your leadership team to identify opportunities, challenges, and the ideal path to AI integration.
               </p>
               <p className="text-gray-700">
                 Through a series of workshops, assessments, and planning sessions, we create a comprehensive roadmap that aligns with your business goals and provides a clear implementation strategy.
