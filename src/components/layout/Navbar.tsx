@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="/logo.svg" 
+              src="/JOURN3Y-logo.svg" 
               alt="JOURN3Y Logo" 
               className="h-10 w-10"
             />
