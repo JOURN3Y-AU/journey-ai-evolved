@@ -131,9 +131,9 @@ successful delivery​
                   <div className="absolute left-0 mt-1 w-8 h-8 rounded-full bg-journey-purple flex items-center justify-center">
                     <span className="text-white font-bold">1</span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Discovery Workshop</h3>
+                  <h3 className="text-xl font-semibold mb-3">Draft Assessment</h3>
                   <p className="text-gray-600">
-                    We meet with your leadership team to understand your business goals, challenges, and current technology landscape.
+                    We prepare an initial view of your business, its processes and technology based on 2-3 meetings with your key subject matter experts and our own research and experience.
                   </p>
                 </div>
                 
@@ -141,9 +141,9 @@ successful delivery​
                   <div className="absolute left-0 mt-1 w-8 h-8 rounded-full bg-gradient-to-r from-journey-purple to-journey-blue flex items-center justify-center">
                     <span className="text-white font-bold">2</span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Opportunity Assessment</h3>
+                  <h3 className="text-xl font-semibold mb-3">Draft review</h3>
                   <p className="text-gray-600">
-                    We analyze your business processes to identify high-value opportunities for AI implementation and prioritize them based on impact and feasibility.
+                    Over 2-3 days, we refine our assement with your teams. Confirm what's right, what needs changing and dig into the key opportunities for AI. 
                   </p>
                 </div>
                 
@@ -151,9 +151,9 @@ successful delivery​
                   <div className="absolute left-0 mt-1 w-8 h-8 rounded-full bg-gradient-to-r from-journey-blue to-journey-dark-blue flex items-center justify-center">
                     <span className="text-white font-bold">3</span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Roadmap Development</h3>
+                  <h3 className="text-xl font-semibold mb-3">Business Architecture</h3>
                   <p className="text-gray-600">
-                    We create a detailed implementation roadmap with timeline, resource requirements, and success metrics.
+                    We sit with your leadership team, quickly confirm your current state and then build out your AI plan. By combining your teams strategy with our expertise we create an achievable roadmap prioritised for value
                   </p>
                 </div>
                 
