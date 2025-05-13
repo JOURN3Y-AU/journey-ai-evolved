@@ -1,12 +1,16 @@
 
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Zap, Database, ChevronRight } from 'lucide-react';
 import useScrollReveal from '@/hooks/useScrollReveal';
 
 const Accelerators = () => {
   const section1Ref = useScrollReveal();
   const section2Ref = useScrollReveal();
   const section3Ref = useScrollReveal();
+  const section4Ref = useScrollReveal();
+  const section5Ref = useScrollReveal();
 
   return (
     <>
@@ -52,130 +56,212 @@ const Accelerators = () => {
         </div>
       </section>
 
-      {/* Key Features */}
+      {/* Our Accelerator Products */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div ref={section2Ref} className="text-center mb-16 reveal transition-all duration-500 ease-out">
-            <h2 className="text-3xl font-bold mb-4">Accelerator Features</h2>
+            <h2 className="text-3xl font-bold mb-4">Our Accelerator Products</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Unlock the full potential of your data with our advanced analytics platform.
+              Partnering with industry leaders to deliver powerful AI-driven solutions.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-journey-blue/10 flex items-center justify-center mb-6">
-                <svg className="w-7 h-7 text-journey-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-3">Predictive Analytics</h3>
-              <p className="text-gray-600">
-                Forecast trends and anticipate market changes with our advanced predictive models.
-              </p>
-            </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Glean.com Card */}
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <CardHeader className="bg-journey-blue/10 pb-2">
+                <div className="w-14 h-14 rounded-full bg-journey-blue/20 flex items-center justify-center mb-4">
+                  <Zap className="h-7 w-7 text-journey-blue" />
+                </div>
+                <CardTitle className="text-2xl">Glean.com</CardTitle>
+                <CardDescription className="text-base">
+                  Enterprise search and knowledge management
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <p className="text-gray-700">
+                  Powerful AI-driven enterprise search that connects all your company's knowledge, making information instantly accessible across your organization.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="w-full mt-2 flex items-center justify-between group">
+                  Learn more about Glean 
+                  <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </CardFooter>
+            </Card>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-journey-dark-blue/10 flex items-center justify-center mb-6">
-                <svg className="w-7 h-7 text-journey-dark-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-3">Performance Optimization</h3>
-              <p className="text-gray-600">
-                Identify bottlenecks and receive AI-generated recommendations for improvement.
-              </p>
-            </div>
+            {/* Databricks Card */}
+            <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <CardHeader className="bg-journey-dark-blue/10 pb-2">
+                <div className="w-14 h-14 rounded-full bg-journey-dark-blue/20 flex items-center justify-center mb-4">
+                  <Database className="h-7 w-7 text-journey-dark-blue" />
+                </div>
+                <CardTitle className="text-2xl">Databricks</CardTitle>
+                <CardDescription className="text-base">
+                  Unified data analytics platform
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <p className="text-gray-700">
+                  A unified analytics platform designed to help data teams solve their most challenging problems, from ETL and BI to machine learning and AI.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="w-full mt-2 flex items-center justify-between group">
+                  Learn more about Databricks
+                  <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
+        </div>
+      </section>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-journey-blue/10 flex items-center justify-center mb-6">
-                <svg className="w-7 h-7 text-journey-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
-                </svg>
+      {/* Glean.com Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="relative">
+                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-journey-blue to-journey-dark-blue opacity-30 blur-sm"></div>
+                <img 
+                  src="https://images.unsplash.com/photo-1555421689-3f034debb7a6?auto=format&fit=crop&w=800&q=80" 
+                  alt="Glean.com Platform" 
+                  className="relative rounded-lg shadow-lg w-full h-auto"
+                />
               </div>
-              <h3 className="text-lg font-semibold mb-3">Natural Language Processing</h3>
-              <p className="text-gray-600">
-                Analyze customer feedback and communications for valuable insights.
-              </p>
             </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-journey-dark-blue/10 flex items-center justify-center mb-6">
-                <svg className="w-7 h-7 text-journey-dark-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-3">Secure Integration</h3>
-              <p className="text-gray-600">
-                Seamlessly connect with your existing data sources with enterprise-grade security.
+            <div ref={section3Ref} className="reveal transition-all duration-500 ease-out">
+              <h2 className="text-3xl font-bold mb-6">Glean.com</h2>
+              <p className="text-gray-700 mb-6">
+                Glean connects all your company's information and makes it instantly accessible to everyone. With powerful AI capabilities, it understands the context of your search and delivers precisely what you're looking for.
               </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-journey-blue/10 flex items-center justify-center mr-4">
+                    <Zap className="h-5 w-5 text-journey-blue" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">Unified Search</h3>
+                    <p className="text-gray-600">Search across all your company apps, documents, and communications from one place.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-journey-blue/10 flex items-center justify-center mr-4">
+                    <Zap className="h-5 w-5 text-journey-blue" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">Personalized Results</h3>
+                    <p className="text-gray-600">AI-powered personalization delivers results tailored to your role and work context.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-journey-blue/10 flex items-center justify-center mr-4">
+                    <Zap className="h-5 w-5 text-journey-blue" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">Knowledge Discovery</h3>
+                    <p className="text-gray-600">Uncover insights and connections within your organization's knowledge base.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <Button className="mt-8 bg-journey-blue text-white">
+                <Link to="/contact">Schedule Glean Demo</Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Dashboard Preview */}
+      {/* Databricks Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="order-first md:order-last">
+              <div className="relative">
+                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-journey-dark-blue to-journey-blue opacity-30 blur-sm"></div>
+                <img 
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+                  alt="Databricks Platform" 
+                  className="relative rounded-lg shadow-lg w-full h-auto"
+                />
+              </div>
+            </div>
+            <div ref={section4Ref} className="reveal transition-all duration-500 ease-out">
+              <h2 className="text-3xl font-bold mb-6">Databricks</h2>
+              <p className="text-gray-700 mb-6">
+                Databricks brings together data engineering, science, and analytics on an open, unified platform so data teams can collaborate and innovate faster. From data ingestion to machine learning deployment, Databricks simplifies the process.
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-journey-dark-blue/10 flex items-center justify-center mr-4">
+                    <Database className="h-5 w-5 text-journey-dark-blue" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">Lakehouse Architecture</h3>
+                    <p className="text-gray-600">Combines the best of data warehouses and data lakes for full-spectrum analytics.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-journey-dark-blue/10 flex items-center justify-center mr-4">
+                    <Database className="h-5 w-5 text-journey-dark-blue" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">MLflow Integration</h3>
+                    <p className="text-gray-600">End-to-end machine learning lifecycle management from experimentation to deployment.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-journey-dark-blue/10 flex items-center justify-center mr-4">
+                    <Database className="h-5 w-5 text-journey-dark-blue" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">Collaborative Workspace</h3>
+                    <p className="text-gray-600">Notebooks, dashboards, and tools for data teams to work together effectively.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <Button className="mt-8 bg-journey-dark-blue text-white">
+                <Link to="/contact">Schedule Databricks Demo</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Success Metrics */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div ref={section3Ref} className="text-center mb-16 reveal transition-all duration-500 ease-out">
-            <h2 className="text-3xl font-bold mb-4">The Accelerators Dashboard</h2>
+          <div ref={section5Ref} className="text-center mb-16 reveal transition-all duration-500 ease-out">
+            <h2 className="text-3xl font-bold mb-4">Accelerate Your Business Growth</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              An intuitive interface that makes complex data accessible and actionable.
+              Our customers see measurable results with our accelerator products.
             </p>
           </div>
 
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-lg shadow-xl">
-            <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-journey-blue to-journey-dark-blue opacity-30 blur-sm"></div>
-            <img 
-              src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=1200&q=80" 
-              alt="Accelerators Dashboard" 
-              className="relative w-full h-auto rounded-lg"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
-              <div className="p-8 text-white">
-                <h3 className="text-2xl font-bold mb-2">Real-time Analytics</h3>
-                <p className="text-white/80">
-                  Monitor key metrics and receive instant alerts when patterns change.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
-              <div className="w-14 h-14 rounded-full bg-journey-blue/10 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-7 h-7 text-journey-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Customizable Widgets</h3>
-              <p className="text-gray-600">
-                Build personalized dashboards for different departments and roles.
-              </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+              <p className="text-5xl font-bold text-journey-blue mb-2">85%</p>
+              <p className="text-gray-700">Increase in knowledge discovery efficiency</p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
-              <div className="w-14 h-14 rounded-full bg-journey-blue/10 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-7 h-7 text-journey-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Scheduled Reports</h3>
-              <p className="text-gray-600">
-                Automate regular reporting with AI-enhanced insights.
-              </p>
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+              <p className="text-5xl font-bold text-journey-blue mb-2">3.5x</p>
+              <p className="text-gray-700">Faster data analysis and decision making</p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
-              <div className="w-14 h-14 rounded-full bg-journey-blue/10 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-7 h-7 text-journey-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Mobile Access</h3>
-              <p className="text-gray-600">
-                Stay connected to your data with our responsive mobile interface.
-              </p>
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+              <p className="text-5xl font-bold text-journey-blue mb-2">60%</p>
+              <p className="text-gray-700">Reduction in time spent searching for information</p>
             </div>
           </div>
         </div>
