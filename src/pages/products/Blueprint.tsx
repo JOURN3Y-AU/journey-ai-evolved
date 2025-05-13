@@ -187,7 +187,7 @@ successful delivery​
               <div>
                 <h3 className="text-xl font-semibold mb-3">Blueprint Success Story</h3>
                 <p className="text-gray-600 mb-4">
-                  "Journey AI's Blueprint process helped us identify multiple high-impact AI opportunities we hadn't considered. Their structured approach and clear implementation roadmap gave our leadership team confidence to move forward with our AI initiatives."
+                  "JOURN3Y's AI Blueprint process helped us identify multiple high-impact AI opportunities we hadn't considered. Their structured approach and clear implementation roadmap gave our leadership team confidence to move forward with our AI initiatives."
                 </p>
                 <p className="font-medium">CEO at Logistics Company</p>
               </div>
