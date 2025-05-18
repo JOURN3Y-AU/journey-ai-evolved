@@ -31,25 +31,25 @@ export default function Team() {
           <p className="text-lg text-gray-500">Team information coming soon.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {teamMembers.map((member) => (
             <Card key={member.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="aspect-square overflow-hidden bg-gray-100">
+              <div className="aspect-square overflow-hidden bg-gray-100 w-full max-w-[200px] mx-auto">
                 <Avatar className="h-full w-full rounded-none">
                   <AvatarImage 
                     src={member.image_url} 
                     alt={member.name} 
                     className="object-cover h-full w-full"
                   />
-                  <AvatarFallback className="text-4xl h-full w-full rounded-none">
+                  <AvatarFallback className="text-2xl h-full w-full rounded-none">
                     {member.name.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold">{member.name}</h3>
-                <p className="text-journey-purple font-medium mb-2">{member.position}</p>
-                <p className="text-gray-600">{member.bio}</p>
+              <CardContent className="p-4">
+                <h3 className="text-lg font-semibold">{member.name}</h3>
+                <p className="text-sm text-journey-purple font-medium mb-1">{member.position}</p>
+                <p className="text-xs text-gray-600">{member.bio}</p>
               </CardContent>
             </Card>
           ))}
