@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+
+import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { supabase } from '@/integrations/supabase/client';
+import { useTeamMembers } from '@/hooks/useTeamMembers';
 
 interface TeamMember {
   id: string;
@@ -13,29 +15,7 @@ interface TeamMember {
 }
 
 export default function Team() {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchTeamMembers() {
-      try {
-        const { data, error } = await supabase
-          .from('team_members')
-          .select('*')
-          .order('order', { ascending: true }) as { data: TeamMember[], error: any };
-          
-        if (error) throw error;
-        
-        setTeamMembers(data || []);
-      } catch (error) {
-        console.error('Error fetching team members:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchTeamMembers();
-  }, []);
+  const { teamMembers, loading } = useTeamMembers();
 
   if (loading) {
     return (
