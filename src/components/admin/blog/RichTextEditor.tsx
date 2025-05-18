@@ -12,7 +12,7 @@ import {
   Heading2,
   Link as LinkIcon
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface MenuBarProps {
   editor: Editor | null;
@@ -145,6 +145,30 @@ interface RichTextEditorProps {
 }
 
 export default function RichTextEditor({ content, onChange, className }: RichTextEditorProps) {
+  useEffect(() => {
+    // Add global styles for lists when component mounts
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+      .ProseMirror ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+      }
+      .ProseMirror ol {
+        list-style-type: decimal;
+        padding-left: 1.5rem;
+      }
+      .ProseMirror ul li, .ProseMirror ol li {
+        margin: 0.5rem 0;
+      }
+    `;
+    document.head.appendChild(styleElement);
+
+    // Clean up when component unmounts
+    return () => {
+      document.head.removeChild(styleElement);
+    };
+  }, []);
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -185,19 +209,6 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
         editor={editor} 
         className="px-3 py-2 min-h-[400px]"
       />
-      <style jsx global>{`
-        .ProseMirror ul {
-          list-style-type: disc;
-          padding-left: 1.5rem;
-        }
-        .ProseMirror ol {
-          list-style-type: decimal;
-          padding-left: 1.5rem;
-        }
-        .ProseMirror ul li, .ProseMirror ol li {
-          margin: 0.5rem 0;
-        }
-      `}</style>
     </div>
   );
 }
