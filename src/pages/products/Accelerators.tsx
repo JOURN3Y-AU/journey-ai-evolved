@@ -20,7 +20,7 @@ const Accelerators = () => {
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold mb-6">Accelerators</h1>
             <p className="text-xl text-gray-700 mb-8">
-              AI-powered analytics and decision-making acceleration platform that transforms your data into actionable insights.
+              We partner with best-of-breed AI vendors to quickly deliver knowledge, Generative and Agentic AI
             </p>
             <Button className="bg-gradient-to-r from-journey-blue to-journey-dark-blue text-white">
               <Link to="/contact">Request a Demo</Link>
