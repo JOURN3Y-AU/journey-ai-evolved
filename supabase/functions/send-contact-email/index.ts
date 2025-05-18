@@ -48,10 +48,10 @@ const handler = async (req: Request): Promise<Response> => {
       synapse: "Synapse - Workflow Automation"
     };
 
-    // Send email to business owner
+    // Send email to business owners
     const emailResponse = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",
-      to: "info@journ3y.com.au", // Replace with your actual business email
+      to: ["adam.king@journ3y.com.au", "kevin.morrell@journ3y.com.au"], // Updated to include both email addresses
       subject: `[Journ3y] New ${serviceNames[service]} Inquiry from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
