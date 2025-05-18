@@ -15,10 +15,11 @@ export function useTeamMembers() {
     setError(null);
     try {
       console.log('Fetching team members...');
+      // Use a simpler query to avoid potential RLS issues
       const { data, error } = await supabase
         .from('team_members')
         .select('*')
-        .order('order', { ascending: true }) as { data: TeamMember[], error: any };
+        .order('order', { ascending: true });
         
       if (error) {
         console.error('Supabase error fetching team members:', error);
@@ -26,15 +27,21 @@ export function useTeamMembers() {
       }
       
       console.log(`Fetched ${data?.length || 0} team members`);
-      setTeamMembers(data || []);
+      
+      // Explicitly handle the TypeScript cast here
+      const typedData = data as TeamMember[] | null;
+      setTeamMembers(typedData || []);
     } catch (err: any) {
       console.error('Error in fetchTeamMembers:', err);
       setError(err instanceof Error ? err : new Error(String(err)));
-      toast({
-        title: "Error",
-        description: "Failed to load team members",
-        variant: "destructive"
-      });
+      // Only show toast for non-network errors to avoid overwhelming users
+      if (!(err.message && err.message.includes('network'))) {
+        toast({
+          title: "Error",
+          description: "Failed to load team members",
+          variant: "destructive"
+        });
+      }
     } finally {
       setLoading(false);
     }

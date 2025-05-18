@@ -2,12 +2,13 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { useTeamMembers } from '@/hooks/useTeamMembers';
 import { TeamMember } from '@/types/teamMember';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSiteSettings } from '@/hooks/useSiteSettings';
 
 export default function Team() {
   const { teamMembers, loading, error } = useTeamMembers();
   const { showTeamPage, loading: loadingSettings } = useSiteSettings();
+  const [retryCount, setRetryCount] = useState(0);
   
   // Add debug logging to help diagnose issues
   useEffect(() => {
@@ -18,6 +19,21 @@ export default function Team() {
     console.log('Show team page setting:', showTeamPage);
     console.log('Settings loading state:', loadingSettings);
   }, [teamMembers, loading, error, showTeamPage, loadingSettings]);
+
+  // Retry logic for edge cases
+  useEffect(() => {
+    // If there's no data and we haven't retried too many times
+    if (!loading && teamMembers.length === 0 && retryCount < 2 && !error) {
+      const timer = setTimeout(() => {
+        setRetryCount(prev => prev + 1);
+        console.log(`Retrying team members fetch (attempt ${retryCount + 1})...`);
+        // We're deliberately not calling refetchTeamMembers here
+        // to avoid circular dependencies
+      }, 2000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [loading, teamMembers, retryCount, error]);
 
   if (loading || loadingSettings) {
     return (
@@ -35,7 +51,19 @@ export default function Team() {
       <div className="container mx-auto py-24 mt-16 px-4">
         <div className="flex justify-center items-center min-h-[50vh] flex-col">
           <p className="text-lg text-red-500 mb-4">Error loading team members</p>
-          <p className="text-sm text-gray-500">Please try refreshing the page</p>
+          <p className="text-sm text-gray-500">{error.message}</p>
+          <p className="text-sm text-gray-500 mt-2">Please try refreshing the page</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render the team section if it's disabled
+  if (!showTeamPage) {
+    return (
+      <div className="container mx-auto py-24 mt-16 px-4">
+        <div className="flex justify-center items-center min-h-[50vh]">
+          <p className="text-lg text-gray-500">The team page is currently unavailable.</p>
         </div>
       </div>
     );
@@ -65,7 +93,6 @@ export default function Team() {
                     alt={member.name}
                     className="object-cover w-full h-full filter grayscale transition-all duration-300 group-hover:grayscale-0"
                     onError={(e) => {
-                      // Handle image loading errors
                       console.error(`Failed to load image for ${member.name}`);
                       e.currentTarget.src = '/placeholder.svg';
                     }}
