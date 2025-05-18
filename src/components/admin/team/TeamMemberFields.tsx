@@ -2,10 +2,10 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { TeamMember } from '@/hooks/useTeamMemberForm';
+import { TeamMemberFormData } from '@/hooks/useTeamMemberForm';
 
 interface TeamMemberFieldsProps {
-  formData: TeamMember;
+  formData: TeamMemberFormData;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 

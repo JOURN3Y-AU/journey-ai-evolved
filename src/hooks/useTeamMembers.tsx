@@ -2,15 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-
-interface TeamMember {
-  id: string;
-  name: string;
-  position: string;
-  bio: string;
-  image_url: string;
-  order: number;
-}
+import { TeamMember } from './useTeamMemberForm';
 
 export function useTeamMembers() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
