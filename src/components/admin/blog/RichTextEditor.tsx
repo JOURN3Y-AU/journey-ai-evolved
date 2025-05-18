@@ -148,7 +148,6 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
-        // Fix: Use empty objects instead of true for bulletList and orderedList
         bulletList: {},
         orderedList: {},
         heading: {
@@ -165,6 +164,11 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
     content,
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
+    },
+    editorProps: {
+      attributes: {
+        class: 'prose focus:outline-none min-w-full'
+      }
     }
   });
 
