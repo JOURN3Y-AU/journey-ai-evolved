@@ -16,27 +16,10 @@ export const uploadImage = async (file: File): Promise<string> => {
     
     console.log("ImageUploadService: Generated file path:", filePath);
 
-    // Check if the images bucket exists
-    const { data: buckets, error: bucketError } = await supabase.storage.listBuckets();
-    console.log("ImageUploadService: Available buckets:", buckets);
-    
-    if (bucketError) {
-      console.error("ImageUploadService: Error checking buckets:", bucketError);
-      throw bucketError;
-    }
-    
-    // If the images bucket doesn't exist, create it
-    const imagesBucketExists = buckets?.some(bucket => bucket.name === 'images');
-    if (!imagesBucketExists) {
-      console.log("ImageUploadService: Images bucket doesn't exist, creating it");
-      const { error: createBucketError } = await supabase.storage.createBucket('images', {
-        public: true
-      });
-      
-      if (createBucketError) {
-        console.error("ImageUploadService: Error creating bucket:", createBucketError);
-        throw createBucketError;
-      }
+    // Check if the user is authenticated
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (!sessionData.session) {
+      throw new Error("Authentication required for uploading images");
     }
 
     console.log("ImageUploadService: Uploading file to storage...");

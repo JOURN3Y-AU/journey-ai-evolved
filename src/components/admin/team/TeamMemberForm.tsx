@@ -46,6 +46,7 @@ export default function TeamMemberForm({ member, onSave, onCancel }: TeamMemberF
             type="button" 
             variant="outline" 
             onClick={onCancel}
+            disabled={isSubmitting}
           >
             Cancel
           </Button>
@@ -53,7 +54,7 @@ export default function TeamMemberForm({ member, onSave, onCancel }: TeamMemberF
             type="submit" 
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Saving...' : member ? 'Update' : 'Add Member'}
+            {isSubmitting ? 'Saving...' : member ? 'Update Member' : 'Add Member'}
           </Button>
         </CardFooter>
       </form>
