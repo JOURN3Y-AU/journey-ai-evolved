@@ -17,6 +17,13 @@ import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { supabase } from "@/integrations/supabase/client";
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Please enter your name' }),
@@ -24,7 +31,7 @@ const formSchema = z.object({
   company: z.string().optional(),
   phone: z.string().optional(),
   message: z.string().min(10, { message: 'Message must be at least 10 characters' }),
-  service: z.enum(['general', 'blueprint', 'catalyst', 'synapse']),
+  service: z.enum(['general', 'blueprint', 'glean', 'databricks', 'ai-resources']),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -182,15 +189,21 @@ const Contact = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>I'm Interested In</FormLabel>
-                            <select 
-                              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                              {...field}
+                            <Select
+                              value={field.value}
+                              onValueChange={field.onChange}
                             >
-                              <option value="general">General Inquiry</option>
-                              <option value="blueprint">Blueprint - AI Strategy</option>
-                              <option value="catalyst">Catalyst - AI Analytics</option>
-                              <option value="synapse">Synapse - Workflow Automation</option>
-                            </select>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select a service" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="general">General Inquiry</SelectItem>
+                                <SelectItem value="blueprint">Blueprint - AI Strategy</SelectItem>
+                                <SelectItem value="glean">Accelerators - Glean</SelectItem>
+                                <SelectItem value="databricks">Accelerators - Databricks</SelectItem>
+                                <SelectItem value="ai-resources">Services - AI Resources</SelectItem>
+                              </SelectContent>
+                            </Select>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -282,8 +295,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-
-      
     </>
   );
 };

@@ -16,7 +16,7 @@ interface ContactFormData {
   company?: string;
   phone?: string;
   message: string;
-  service: 'general' | 'blueprint' | 'catalyst' | 'synapse';
+  service: 'general' | 'blueprint' | 'glean' | 'databricks' | 'ai-resources';
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -44,13 +44,14 @@ const handler = async (req: Request): Promise<Response> => {
     const serviceNames = {
       general: "General Inquiry",
       blueprint: "Blueprint - AI Strategy",
-      catalyst: "Catalyst - AI Analytics",
-      synapse: "Synapse - Workflow Automation"
+      glean: "Accelerators - Glean",
+      databricks: "Accelerators - Databricks",
+      'ai-resources': "Services - AI Resources"
     };
 
     // Send email to business owners
     const emailResponse = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
+      from: "Journ3y <onboarding@resend.dev>",
       to: ["adam.king@journ3y.com.au", "kevin.morrell@journ3y.com.au"], // Updated to include both email addresses
       subject: `[Journ3y] New ${serviceNames[service]} Inquiry from ${name}`,
       html: `
