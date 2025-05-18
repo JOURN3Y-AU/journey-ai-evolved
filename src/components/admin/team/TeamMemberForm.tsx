@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
@@ -78,8 +77,9 @@ export default function TeamMemberForm({ member, onSave, onCancel }: TeamMemberF
       // Get the highest order value for new member
       let orderValue = formData.order || 0;
       if (!formData.order) {
-        const { data: existingMembers } = await supabase
-          .from('team_members')
+        // Use type assertion to work around the TypeScript limitation
+        const { data: existingMembers } = await (supabase
+          .from('team_members') as any)
           .select('order')
           .order('order', { ascending: false })
           .limit(1);
@@ -97,8 +97,9 @@ export default function TeamMemberForm({ member, onSave, onCancel }: TeamMemberF
 
       if (member?.id) {
         // Update existing member
-        const { error } = await supabase
-          .from('team_members')
+        // Use type assertion to work around the TypeScript limitation
+        const { error } = await (supabase
+          .from('team_members') as any)
           .update({
             name: updatedMember.name,
             position: updatedMember.position,
@@ -115,8 +116,9 @@ export default function TeamMemberForm({ member, onSave, onCancel }: TeamMemberF
         });
       } else {
         // Create new member
-        const { error } = await supabase
-          .from('team_members')
+        // Use type assertion to work around the TypeScript limitation
+        const { error } = await (supabase
+          .from('team_members') as any)
           .insert([{
             name: updatedMember.name,
             position: updatedMember.position,

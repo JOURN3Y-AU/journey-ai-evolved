@@ -20,13 +20,15 @@ export default function Team() {
   useEffect(() => {
     async function fetchTeamMembers() {
       try {
-        const { data, error } = await supabase
-          .from('team_members')
+        // Use type assertion to work around the TypeScript limitation
+        const { data, error } = await (supabase
+          .from('team_members') as any)
           .select('*')
           .order('order', { ascending: true });
           
         if (error) throw error;
-        setTeamMembers(data || []);
+        
+        setTeamMembers(data as TeamMember[] || []);
       } catch (error) {
         console.error('Error fetching team members:', error);
       } finally {

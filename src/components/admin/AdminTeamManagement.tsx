@@ -43,14 +43,16 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
   const fetchTeamMembers = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from('team_members')
+      // Use type assertion to work around the TypeScript limitation
+      const { data, error } = await (supabase
+        .from('team_members') as any)
         .select('*')
         .order('order', { ascending: true });
         
       if (error) throw error;
       
-      setTeamMembers(data || []);
+      // Assert the correct type
+      setTeamMembers(data as TeamMember[] || []);
     } catch (error) {
       console.error('Error fetching team members:', error);
       toast({
@@ -65,16 +67,18 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
 
   const fetchSiteSettings = async () => {
     try {
-      const { data, error } = await supabase
-        .from('site_settings')
+      // Use type assertion to work around the TypeScript limitation
+      const { data, error } = await (supabase
+        .from('site_settings') as any)
         .select('*')
         .eq('key', 'show_team_page')
         .single();
         
       if (error && error.code !== 'PGRST116') {
         console.error('Error fetching site settings:', error);
-      } else {
-        setShowTeamPage(data?.value === 'true');
+      } else if (data) {
+        // Access the value property safely with type assertion
+        setShowTeamPage((data as any).value === 'true');
       }
     } catch (error) {
       console.error('Error in fetchSiteSettings:', error);
@@ -93,8 +97,9 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
     if (!confirm('Are you sure you want to delete this team member?')) return;
     
     try {
-      const { error } = await supabase
-        .from('team_members')
+      // Use type assertion to work around the TypeScript limitation
+      const { error } = await (supabase
+        .from('team_members') as any)
         .delete()
         .eq('id', id);
       
@@ -150,8 +155,9 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
       
       // Update each member with their new order
       for (const update of updates) {
-        const { error } = await supabase
-          .from('team_members')
+        // Use type assertion to work around the TypeScript limitation
+        const { error } = await (supabase
+          .from('team_members') as any)
           .update({ order: update.order })
           .eq('id', update.id);
           
@@ -173,8 +179,9 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
     setIsSaving(true);
     try {
       // Check if the setting exists
-      const { data, error } = await supabase
-        .from('site_settings')
+      // Use type assertion to work around the TypeScript limitation
+      const { data, error } = await (supabase
+        .from('site_settings') as any)
         .select('*')
         .eq('key', 'show_team_page');
         
@@ -182,14 +189,16 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
       
       if (data && data.length > 0) {
         // Update existing setting
-        await supabase
-          .from('site_settings')
+        // Use type assertion to work around the TypeScript limitation
+        await (supabase
+          .from('site_settings') as any)
           .update({ value: value ? 'true' : 'false' })
           .eq('key', 'show_team_page');
       } else {
         // Insert new setting
-        await supabase
-          .from('site_settings')
+        // Use type assertion to work around the TypeScript limitation
+        await (supabase
+          .from('site_settings') as any)
           .insert([
             { key: 'show_team_page', value: value ? 'true' : 'false' }
           ]);

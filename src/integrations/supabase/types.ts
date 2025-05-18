@@ -77,6 +77,57 @@ export type Database = {
           },
         ]
       }
+      site_settings: {
+        Row: {
+          created_at: string | null
+          key: string
+          updated_at: string | null
+          value: string
+        }
+        Insert: {
+          created_at?: string | null
+          key: string
+          updated_at?: string | null
+          value: string
+        }
+        Update: {
+          created_at?: string | null
+          key?: string
+          updated_at?: string | null
+          value?: string
+        }
+        Relationships: []
+      }
+      team_members: {
+        Row: {
+          bio: string
+          created_at: string | null
+          id: string
+          image_url: string
+          name: string
+          order: number
+          position: string
+        }
+        Insert: {
+          bio: string
+          created_at?: string | null
+          id?: string
+          image_url: string
+          name: string
+          order: number
+          position: string
+        }
+        Update: {
+          bio?: string
+          created_at?: string | null
+          id?: string
+          image_url?: string
+          name?: string
+          order?: number
+          position?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
