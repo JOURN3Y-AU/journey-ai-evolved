@@ -5,7 +5,7 @@ import { uploadImage } from '@/components/admin/ImageUploadService';
 import { supabase } from '@/integrations/supabase/client';
 
 export interface TeamMember {
-  id?: string;
+  id: string;  // Changed from optional to required
   name: string;
   position: string;
   bio: string;
@@ -19,7 +19,7 @@ interface UseTeamMemberFormProps {
 }
 
 export function useTeamMemberForm({ member, onSave }: UseTeamMemberFormProps) {
-  const [formData, setFormData] = useState<TeamMember>({
+  const [formData, setFormData] = useState<Omit<TeamMember, 'id'> & { id?: string }>({
     name: '',
     position: '',
     bio: '',

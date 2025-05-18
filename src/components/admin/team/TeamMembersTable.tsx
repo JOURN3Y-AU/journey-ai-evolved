@@ -1,19 +1,9 @@
-
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Edit, Trash, MoveUp, MoveDown } from 'lucide-react';
-import { Switch } from '@/components/ui/switch';
-
-interface TeamMember {
-  id: string;
-  name: string;
-  position: string;
-  bio: string;
-  image_url: string;
-  order: number;
-}
+import { TeamMember } from '@/hooks/useTeamMemberForm';
 
 interface TeamMembersTableProps {
   members: TeamMember[];
