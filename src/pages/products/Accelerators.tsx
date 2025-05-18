@@ -49,7 +49,7 @@ const Accelerators = () => {
                 Many of our clients want to start their AI journey fast. Rather than developing their own solutions, our Accelerator platforms allow our clients to start reaping the benefits of AI without the long startup
               </p>
               <p className="text-gray-700">
-                With a focus on value, adoption, security and governance, Glean and Databricks have a proven track record of enabling a genuine AI shift in organisations
+                With a focus on value, adoption, security and governance, Glean and Databricks have a proven track record of enabling a genuine AI shift in our client's organisations
               </p>
             </div>
           </div>
