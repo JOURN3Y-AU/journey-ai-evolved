@@ -71,7 +71,7 @@ const Services = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">Implementation Services</h3>
               <p className="text-gray-600">
-                Expert teams that bring your AI vision to life with technical expertise and project management.
+                Expert teams that bring your AI vision to life with technical expertise and project management. We help you navigate from Blueprint to execution, ensuring your technology investments deliver measurable returns through practical roadmaps and scalable architecture.
               </p>
             </div>
 
@@ -84,7 +84,7 @@ const Services = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">AI Training & Education</h3>
               <p className="text-gray-600">
-                Customized training programs to build AI literacy and skills across your organization.
+                Customized training programs to build AI literacy and skills across your organization. We provide executive-level AI fluency workshops and practical training that demystifies AI concepts, creating a common language to align business and technical teams.
               </p>
             </div>
 
@@ -96,12 +96,14 @@ const Services = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">Managed AI Services</h3>
               <p className="text-gray-600">
-                Ongoing support and optimization to ensure your AI solutions continue to deliver value.
+                Ongoing support and optimization to ensure your AI solutions continue to deliver value. Our fractional expertise model provides enterprise-grade talent without the overhead, while our managed services ensure your data infrastructure runs flawlessly.
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      <!-- commenting out use cases for now
 
       {/* Use Cases */}
       <section className="py-20">
@@ -121,10 +123,10 @@ const Services = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold">Healthcare Provider</h3>
+                <h3 className="text-xl font-semibold">Retirement Provider</h3>
               </div>
               <p className="text-gray-600 mb-4">
-                A leading healthcare provider implemented AI-powered patient outcome prediction with our implementation services, reducing readmission rates by 32%.
+                A leading retirement provider .
               </p>
               <ul className="text-gray-600 space-y-2">
                 <li className="flex items-start">
@@ -184,6 +186,7 @@ const Services = () => {
           </div>
         </div>
       </section>
+        -->
 
       {/* CTA */}
       <section className="py-20 bg-gradient-to-r from-journey-dark-purple/90 to-journey-purple/90 text-white">
