@@ -35,16 +35,13 @@ export default function Team() {
           {teamMembers.map((member) => (
             <Card key={member.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="aspect-square overflow-hidden bg-gray-100 w-full max-w-[200px] mx-auto pt-2">
-                <Avatar className="h-[90%] w-[90%] rounded-none mx-auto">
-                  <AvatarImage 
+                <div className="h-[90%] w-[90%] mx-auto overflow-hidden">
+                  <img 
                     src={member.image_url} 
-                    alt={member.name} 
-                    className="object-cover h-full w-full"
+                    alt={member.name}
+                    className="object-cover w-full h-full"
                   />
-                  <AvatarFallback className="text-2xl h-full w-full rounded-none">
-                    {member.name.split(' ').map(n => n[0]).join('')}
-                  </AvatarFallback>
-                </Avatar>
+                </div>
               </div>
               <CardContent className="p-4 pt-3">
                 <h3 className="text-base font-semibold">{member.name}</h3>
