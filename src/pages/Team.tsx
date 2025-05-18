@@ -1,18 +1,8 @@
 
-import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { supabase } from '@/integrations/supabase/client';
 import { useTeamMembers } from '@/hooks/useTeamMembers';
-
-interface TeamMember {
-  id: string;
-  name: string;
-  position: string;
-  bio: string;
-  image_url: string;
-  order: number;
-}
+import { TeamMember } from '@/hooks/useTeamMemberForm';
 
 export default function Team() {
   const { teamMembers, loading } = useTeamMembers();

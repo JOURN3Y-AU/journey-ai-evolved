@@ -6,15 +6,7 @@ import { Plus } from 'lucide-react';
 import TeamMembersTable from './TeamMembersTable';
 import TeamMemberForm from './TeamMemberForm';
 import { supabase } from '@/integrations/supabase/client';
-
-interface TeamMember {
-  id: string;
-  name: string;
-  position: string;
-  bio: string;
-  image_url: string;
-  order: number;
-}
+import { TeamMember } from '@/hooks/useTeamMemberForm';
 
 interface TeamMembersListProps {
   initialMembers: TeamMember[];
@@ -79,7 +71,7 @@ export default function TeamMembersList({ initialMembers, onRefresh }: TeamMembe
     const newMembers = [...teamMembers];
     
     // Swap the order values
-    const temp = newMembers[index].order;
+    const temp = newMembers[index].order!;
     newMembers[index].order = newMembers[newIndex].order;
     newMembers[newIndex].order = temp;
     
