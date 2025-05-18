@@ -1,9 +1,9 @@
 
 import { createClient } from '@supabase/supabase-js';
-import { Database } from './types';
+import type { Database } from './types';
 
 // Singleton pattern to avoid multiple instances
-let supabaseInstance: ReturnType<typeof createClient> | null = null;
+let supabaseInstance: ReturnType<typeof createClient<Database>> | null = null;
 
 export const supabase = (() => {
   if (supabaseInstance) return supabaseInstance;
