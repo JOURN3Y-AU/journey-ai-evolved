@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, Calendar, Tag, Loader2 } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 interface BlogPost {
   id: string;
@@ -20,6 +21,7 @@ const BlogPost = () => {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     async function fetchBlogPost() {
@@ -31,6 +33,7 @@ const BlogPost = () => {
 
       try {
         setLoading(true);
+        
         const { data, error } = await supabase
           .from('blog_posts')
           .select(`
@@ -40,12 +43,21 @@ const BlogPost = () => {
             content,
             published_at,
             image_url,
-            blog_categories!inner (name)
+            category_id,
+            blog_categories:category_id(name)
           `)
           .eq('slug', slug)
           .single();
 
-        if (error) throw error;
+        if (error) {
+          console.error('Error fetching blog post:', error);
+          toast({
+            title: "Error",
+            description: "Failed to load blog post",
+            variant: "destructive",
+          });
+          throw error;
+        }
 
         if (data) {
           setPost({
@@ -71,7 +83,7 @@ const BlogPost = () => {
     }
 
     fetchBlogPost();
-  }, [slug]);
+  }, [slug, toast]);
 
   if (loading) {
     return (

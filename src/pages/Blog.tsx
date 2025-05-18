@@ -79,8 +79,15 @@ const Blog = () => {
         
         if (activeCategory !== 'All') {
           // Join with blog_categories to filter by category name
-          countQuery = countQuery.eq('blog_categories.name', activeCategory);
-          countQuery = countQuery.join('blog_categories', { 'blog_categories.id': 'blog_posts.category_id' });
+          const { data: categoryData } = await supabase
+            .from('blog_categories')
+            .select('id')
+            .eq('name', activeCategory)
+            .single();
+            
+          if (categoryData) {
+            countQuery = countQuery.eq('category_id', categoryData.id);
+          }
         }
         
         const { count, error: countError } = await countQuery;
@@ -98,7 +105,8 @@ const Blog = () => {
             excerpt,
             published_at,
             image_url,
-            blog_categories!inner (name)
+            category_id,
+            blog_categories:category_id(name)
           `)
           .order('published_at', { ascending: false })
           .range((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE - 1);
@@ -108,7 +116,15 @@ const Blog = () => {
         }
         
         if (activeCategory !== 'All') {
-          query = query.eq('blog_categories.name', activeCategory);
+          const { data: categoryData } = await supabase
+            .from('blog_categories')
+            .select('id')
+            .eq('name', activeCategory)
+            .single();
+            
+          if (categoryData) {
+            query = query.eq('category_id', categoryData.id);
+          }
         }
         
         const { data, error } = await query;

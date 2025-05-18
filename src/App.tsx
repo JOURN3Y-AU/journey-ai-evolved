@@ -1,11 +1,12 @@
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { Toaster } from '@/components/ui/toaster';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 import Index from '@/pages/Index';
-import Blueprint from '@/pages/Blueprint';
-import Accelerators from '@/pages/Accelerators';
-import Services from '@/pages/Services';
+import Blueprint from '@/pages/products/Blueprint';
+import Accelerators from '@/pages/products/Accelerators';
+import Services from '@/pages/products/Services';
 import Blog from '@/pages/Blog';
 import Resources from '@/pages/Resources';
 import Contact from '@/pages/Contact';
