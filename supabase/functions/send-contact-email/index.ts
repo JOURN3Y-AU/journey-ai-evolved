@@ -49,29 +49,48 @@ const handler = async (req: Request): Promise<Response> => {
       'ai-resources': "Services - AI Resources"
     };
 
-    // Send email to business owners
-    const emailResponse = await resend.emails.send({
-      from: "Journ3y <onboarding@resend.dev>",
-      to: ["adam.king@journ3y.com.au", "kevin.morrell@journ3y.com.au"], // Updated to include both email addresses
-      subject: `[Journ3y] New ${serviceNames[service]} Inquiry from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
-        <hr />
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
-        ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
-        <p><strong>Service Requested:</strong> ${serviceNames[service]}</p>
-        <h3>Message:</h3>
-        <p>${message.replace(/\n/g, "<br />")}</p>
-      `,
-    });
+    // Prepare email content
+    const emailHtml = `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+      <hr />
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
+      ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
+      <p><strong>Service Requested:</strong> ${serviceNames[service]}</p>
+      <h3>Message:</h3>
+      <p>${message.replace(/\n/g, "<br />")}</p>
+    `;
+    
+    // Store notification email result
+    let notificationSent = false;
+    let notificationError = null;
+    
+    // Try to send notification email to business owners
+    try {
+      // IMPORTANT: For this to work in production, you need to:
+      // 1. Verify your domain at resend.com/domains
+      // 2. Change the "from" email to use your verified domain
+      const notificationResponse = await resend.emails.send({
+        from: "Journ3y <onboarding@resend.dev>", // Change this to your verified domain
+        to: ["adam.king@journ3y.com.au", "kevin.morrell@journ3y.com.au"],
+        subject: `[Journ3y] New ${serviceNames[service]} Inquiry from ${name}`,
+        html: emailHtml,
+      });
+      
+      console.log("Notification email response:", notificationResponse);
+      notificationSent = !notificationResponse.error;
+      notificationError = notificationResponse.error;
+    } catch (error) {
+      console.error("Error sending notification email:", error);
+      notificationError = error;
+    }
 
-    // Send confirmation email to user
-    await resend.emails.send({
+    // Send confirmation email to user (this likely works as it's going to the submitter)
+    const userConfirmation = await resend.emails.send({
       from: "Journ3y <onboarding@resend.dev>",
-      to: email,
+      to: email, // User's email from the form
       subject: "We've received your inquiry - Journ3y",
       html: `
         <h2>Thank you for contacting us!</h2>
@@ -85,10 +104,15 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    console.log("User confirmation email response:", userConfirmation);
 
     return new Response(
-      JSON.stringify({ success: true, data: emailResponse }),
+      JSON.stringify({ 
+        success: true, 
+        notificationSent,
+        notificationError: notificationError ? notificationError.message : null,
+        userConfirmationSent: !userConfirmation.error,
+      }),
       {
         status: 200,
         headers: { "Content-Type": "application/json", ...corsHeaders },
