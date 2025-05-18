@@ -148,9 +148,9 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
-        // Ensure bullet list and ordered list are enabled
-        bulletList: true,
-        orderedList: true,
+        // Fix: Use empty objects instead of true for bulletList and orderedList
+        bulletList: {},
+        orderedList: {},
         heading: {
           levels: [1, 2]
         }
