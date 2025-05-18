@@ -279,19 +279,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
-              {/* Placeholder for an actual map */}
-              <div className="w-full h-96 bg-gray-300 flex items-center justify-center text-gray-600">
-                <p className="text-center">Interactive Map Would Be Embedded Here</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
     </>
   );
 };
