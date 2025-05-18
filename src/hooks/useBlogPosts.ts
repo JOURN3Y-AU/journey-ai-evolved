@@ -11,6 +11,7 @@ interface BlogPost {
   published_at: string;
   image_url: string;
   category: string;
+  featured_on_homepage?: boolean;
 }
 
 const POSTS_PER_PAGE = 6;
@@ -119,7 +120,8 @@ export default function useBlogPosts() {
               day: 'numeric'
             }),
             image_url: post.image_url,
-            category: post.blog_categories?.name || ''
+            category: post.blog_categories?.name || '',
+            featured_on_homepage: post.featured_on_homepage
           }));
           
           setBlogPosts(formattedPosts);
