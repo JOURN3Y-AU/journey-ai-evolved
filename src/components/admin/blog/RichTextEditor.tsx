@@ -173,7 +173,7 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
     },
     editorProps: {
       attributes: {
-        class: 'prose prose-ul:list-disc prose-ol:list-decimal focus:outline-none min-w-full'
+        class: 'prose prose-sm prose-ul:list-disc prose-ol:list-decimal focus:outline-none min-w-full'
       }
     }
   });
@@ -183,8 +183,21 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
       <MenuBar editor={editor} />
       <EditorContent 
         editor={editor} 
-        className="px-3 py-2 min-h-[400px] prose prose-ul:list-disc prose-ol:list-decimal max-w-none"
+        className="px-3 py-2 min-h-[400px]"
       />
+      <style jsx global>{`
+        .ProseMirror ul {
+          list-style-type: disc;
+          padding-left: 1.5rem;
+        }
+        .ProseMirror ol {
+          list-style-type: decimal;
+          padding-left: 1.5rem;
+        }
+        .ProseMirror ul li, .ProseMirror ol li {
+          margin: 0.5rem 0;
+        }
+      `}</style>
     </div>
   );
 }
