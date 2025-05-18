@@ -16,7 +16,7 @@ const Services = () => {
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold mb-6">Services</h1>
             <p className="text-xl text-gray-700 mb-8">
-              PProfessional AI services that provide the expertise and implementation support to turn your AI vision into measurable business outcomes. Our team brings executive-level experience from leading organizations to bridge the gap between strategic ambition and practical execution.
+              Professional AI services that provide the expertise and implementation support to turn your AI vision into measurable business outcomes. Our team brings executive-level experience from leading organizations to bridge the gap between strategic ambition and practical execution.
             </p>
             <Button className="bg-gradient-to-r from-journey-dark-purple to-journey-purple text-white">
               <Link to="/contact">Explore Services</Link>
