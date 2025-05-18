@@ -12,6 +12,7 @@ import Resources from '@/pages/Resources';
 import Contact from '@/pages/Contact';
 import NotFound from '@/pages/NotFound';
 import BlogPost from '@/pages/BlogPost';
+import Admin from '@/pages/Admin';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin/*" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
