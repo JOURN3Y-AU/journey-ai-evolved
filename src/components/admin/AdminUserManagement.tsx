@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -132,10 +133,10 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
   };
 
   return (
-    <div className="container mx-auto py-10 px-4">
-      <div className="flex justify-between items-center mb-8">
+    <div className="container mx-auto py-10 px-4 mt-16">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <h1 className="text-3xl font-bold">Admin User Management</h1>
-        <div className="flex space-x-2">
+        <div className="flex flex-wrap gap-2">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
