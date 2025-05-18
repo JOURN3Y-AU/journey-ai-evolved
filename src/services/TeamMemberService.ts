@@ -2,80 +2,61 @@
 import { supabase } from '@/integrations/supabase/client';
 import { TeamMember, TeamMemberFormData } from '@/types/teamMember';
 
+// Check authentication status
+export async function checkAuthStatus() {
+  const { data, error } = await supabase.auth.getSession();
+  if (error || !data.session) {
+    throw new Error('Authentication required. Please log in again.');
+  }
+  return data.session;
+}
+
+// Get highest order value
 export async function getHighestOrderValue(): Promise<number> {
-  console.log("Fetching existing team members to determine order...");
-  const { data: existingMembers, error: fetchError } = await supabase
+  const { data, error } = await supabase
     .from('team_members')
     .select('order')
     .order('order', { ascending: false })
-    .limit(1) as any;
+    .limit(1) as { data: { order: number }[], error: any };
   
-  if (fetchError) {
-    console.error("Error fetching team members for order:", fetchError);
-    throw fetchError;
+  if (error) {
+    console.error('Error fetching highest order value:', error);
+    return 1; // Default to 1 if there's an error
   }
   
-  const orderValue = existingMembers && existingMembers.length > 0 
-    ? (existingMembers[0].order + 1) 
-    : 1;
-  
-  console.log("New team member will have order:", orderValue);
-  return orderValue;
+  return data && data.length > 0 ? data[0].order + 1 : 1;
 }
 
-export async function updateTeamMember(id: string, memberData: Partial<TeamMember>) {
-  console.log("Updating existing team member:", id);
+// Update team member
+export async function updateTeamMember(id: string, member: TeamMemberFormData): Promise<TeamMember> {
   const { data, error } = await supabase
     .from('team_members')
-    .update({
-      name: memberData.name,
-      position: memberData.position,
-      bio: memberData.bio,
-      image_url: memberData.image_url,
-    })
+    .update(member)
     .eq('id', id)
-    .select();
-    
+    .select() as { data: TeamMember[], error: any };
+  
   if (error) {
-    console.error("Error updating team member:", error);
+    console.error('Error updating team member:', error);
     throw error;
   }
   
-  console.log("Team member updated successfully:", data);
-  return data;
+  return data[0];
 }
 
-export async function createTeamMember(memberData: TeamMemberFormData, orderValue: number) {
-  console.log("Creating new team member with data:", {
-    name: memberData.name,
-    position: memberData.position,
-    image_url: memberData.image_url,
-    order: orderValue
-  });
-  
+// Create team member
+export async function createTeamMember(member: TeamMemberFormData, order: number): Promise<TeamMember> {
   const { data, error } = await supabase
     .from('team_members')
-    .insert([{
-      name: memberData.name,
-      position: memberData.position,
-      bio: memberData.bio,
-      image_url: memberData.image_url,
-      order: orderValue
-    }])
-    .select();
-    
+    .insert({
+      ...member,
+      order: order
+    })
+    .select() as { data: TeamMember[], error: any };
+  
   if (error) {
-    console.error("Error inserting team member:", error);
+    console.error('Error creating team member:', error);
     throw error;
   }
   
-  console.log("Team member created successfully:", data);
-  return data;
-}
-
-export async function checkAuthStatus() {
-  const { data: sessionData } = await supabase.auth.getSession();
-  const isAuthenticated = !!sessionData.session;
-  console.log("Current auth status:", isAuthenticated ? "Authenticated" : "Not authenticated");
-  return isAuthenticated;
+  return data[0];
 }
