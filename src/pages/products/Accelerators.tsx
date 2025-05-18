@@ -144,7 +144,7 @@ const Accelerators = () => {
                     <Zap className="h-5 w-5 text-journey-blue" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-1">Unified Search</h3>
+                    <h3 className="text-lg font-semibold mb-1">FInd and understand information</h3>
                     <p className="text-gray-600">Search across all your company apps, documents, and communications from one place.</p>
                   </div>
                 </div>
@@ -154,8 +154,8 @@ const Accelerators = () => {
                     <Zap className="h-5 w-5 text-journey-blue" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-1">Personalized Results</h3>
-                    <p className="text-gray-600">AI-powered personalization delivers results tailored to your role and work context.</p>
+                    <h3 className="text-lg font-semibold mb-1">Create and Summarise Content</h3>
+                    <p className="text-gray-600">AI-powered content creation and summarisation, personalised, secure and brand safe</p>
                   </div>
                 </div>
                 
@@ -164,8 +164,8 @@ const Accelerators = () => {
                     <Zap className="h-5 w-5 text-journey-blue" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-1">Knowledge Discovery</h3>
-                    <p className="text-gray-600">Uncover insights and connections within your organization's knowledge base.</p>
+                    <h3 className="text-lg font-semibold mb-1">Automate your work</h3>
+                    <p className="text-gray-600">Agent-based tools to automate communication and remove repetitive tasks and processes.</p>
                   </div>
                 </div>
               </div>
