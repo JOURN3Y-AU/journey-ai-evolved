@@ -37,7 +37,7 @@ export default function useBlogPosts() {
         if (error) throw error;
         
         if (data) {
-          const categoryNames = data.map(cat => cat.name);
+          const categoryNames = data.map(cat => cat.name as string);
           setCategories(['All', ...categoryNames]);
         }
       } catch (error) {
@@ -110,18 +110,18 @@ export default function useBlogPosts() {
         
         if (data) {
           const formattedPosts = data.map(post => ({
-            id: post.id,
-            slug: post.slug,
-            title: post.title,
-            excerpt: post.excerpt,
-            published_at: new Date(post.published_at).toLocaleDateString('en-US', {
+            id: post.id as string,
+            slug: post.slug as string,
+            title: post.title as string,
+            excerpt: post.excerpt as string,
+            published_at: new Date(post.published_at as string).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
               day: 'numeric'
             }),
-            image_url: post.image_url,
-            category: post.blog_categories?.name || '',
-            featured_on_homepage: post.featured_on_homepage
+            image_url: post.image_url as string,
+            category: (post.blog_categories as any)?.name as string || '',
+            featured_on_homepage: post.featured_on_homepage as boolean
           }));
           
           setBlogPosts(formattedPosts);
