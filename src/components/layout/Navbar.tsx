@@ -125,7 +125,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 px-2 space-y-3 animate-fade-in">
+          <div className="md:hidden py-4 px-2 space-y-3 animate-fade-in bg-white shadow-lg rounded-md">
             <Link 
               to="/" 
               className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
