@@ -70,7 +70,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Try to send notification email to business owners
     try {
       const notificationResponse = await resend.emails.send({
-        from: "Journ3y <hello@journ3y.com.au>",
+        from: "Journ3y <contact@journ3y.com.au>",
         to: ["adam.king@journ3y.com.au", "kevin.morrell@journ3y.com.au"],
         subject: `[Journ3y] New ${serviceNames[service]} Inquiry from ${name}`,
         html: emailHtml,
@@ -86,7 +86,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation email to user (this likely works as it's going to the submitter)
     const userConfirmation = await resend.emails.send({
-      from: "Journ3y <hello@journ3y.com.au>",
+      from: "Journ3y <contact@journ3y.com.au>",
       to: email, // User's email from the form
       subject: "We've received your inquiry - Journ3y",
       html: `
