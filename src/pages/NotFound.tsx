@@ -1,10 +1,11 @@
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const NotFound = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Log the attempted access to non-existent route
@@ -13,24 +14,21 @@ const NotFound = () => {
       location.pathname
     );
     
-    // Redirect to home page after a short delay
-    const redirectTimer = setTimeout(() => {
-      navigate("/");
-    }, 3000); // 3 second delay before redirect
-    
-    // Clean up the timer if component unmounts
-    return () => clearTimeout(redirectTimer);
-  }, [location.pathname, navigate]);
+    // No automatic redirect anymore
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <p className="text-md text-gray-500 mb-6">Redirecting to home page...</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+      <div className="text-center p-8 bg-white rounded-lg shadow-md max-w-md">
+        <h1 className="text-5xl font-bold mb-4 text-journey-purple">404</h1>
+        <p className="text-xl text-gray-700 mb-6">Oops! Page not found</p>
+        <p className="text-md text-gray-500 mb-8">
+          The page you are looking for might have been removed, had its name changed, 
+          or is temporarily unavailable.
+        </p>
+        <Button asChild variant="default" className="bg-gradient-to-r from-journey-purple to-journey-blue text-white">
+          <Link to="/">Return to Home</Link>
+        </Button>
       </div>
     </div>
   );

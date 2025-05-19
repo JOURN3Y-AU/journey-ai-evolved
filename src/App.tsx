@@ -30,6 +30,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/team" element={<Team />} />
         <Route path="/admin/*" element={<Admin />} />
+        {/* Important: This catches all other routes and prevents redirects */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
