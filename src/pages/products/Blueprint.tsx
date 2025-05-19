@@ -43,7 +43,7 @@ const Blueprint = () => {
               <div className="relative">
                 <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-journey-purple to-journey-blue opacity-30 blur-sm"></div>
                 <img 
-                  src="/JOURN3Y-logo.png" 
+                  src="/Flux_Dev_I_need_a_modern_office_view_a_work_desk_in_focus_On_t_3.jpg" 
                   alt="Strategic Planning" 
                   className="relative rounded-lg shadow-lg w-full h-auto"
                 />
