@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -254,11 +253,9 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-medium mb-1">Email Us</h3>
-                      <p className="text-gray-600">info@journ3y.com.au</p>
+                      <p className="text-gray-600">hello@journ3y.com.au</p>
                     </div>
                   </div>
-                  
-                
                   
                   <div className="flex items-start">
                     <div className="w-12 h-12 rounded-full bg-journey-dark-purple/10 flex items-center justify-center mr-4">
