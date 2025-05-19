@@ -134,8 +134,13 @@ const BlogPost = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
           <div className="prose prose-lg max-w-none">
-            {/* Render HTML content safely */}
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            {/* Render HTML content with proper styling */}
+            <div 
+              dangerouslySetInnerHTML={{ __html: post.content }} 
+              className="prose prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl 
+                prose-p:my-4 prose-a:text-journey-purple hover:prose-a:underline
+                prose-ul:list-disc prose-ol:list-decimal prose-ul:ml-6 prose-ol:ml-6 prose-li:ml-2 prose-li:my-2"
+            />
           </div>
 
           {/* Related Tags */}

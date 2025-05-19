@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -82,6 +81,34 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			typography: {
+				DEFAULT: {
+					css: {
+						maxWidth: '100%',
+						'h1, h2, h3, h4, h5, h6': {
+							fontWeight: '700',
+						},
+						ul: {
+							listStyleType: 'disc',
+							paddingLeft: '1.5rem',
+						},
+						ol: {
+							listStyleType: 'decimal',
+							paddingLeft: '1.5rem',
+						},
+						'ul li, ol li': {
+							margin: '0.5rem 0',
+						},
+						a: {
+							color: 'var(--journey-purple)',
+							textDecoration: 'none',
+							'&:hover': {
+								textDecoration: 'underline',
+							},
+						},
+					},
+				},
+			},
 			keyframes: {
 				'accordion-down': {
 					from: { height: '0', opacity: '0' },
@@ -124,5 +151,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
 } satisfies Config;

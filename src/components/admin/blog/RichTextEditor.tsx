@@ -160,6 +160,19 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
       .ProseMirror ul li, .ProseMirror ol li {
         margin: 0.5rem 0;
       }
+      .ProseMirror p {
+        margin: 1rem 0;
+      }
+      .ProseMirror h1, .ProseMirror h2 {
+        font-weight: bold;
+        margin: 1.5rem 0 1rem;
+      }
+      .ProseMirror h1 {
+        font-size: 1.5rem;
+      }
+      .ProseMirror h2 {
+        font-size: 1.25rem;
+      }
     `;
     document.head.appendChild(styleElement);
 
@@ -197,7 +210,7 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
     },
     editorProps: {
       attributes: {
-        class: 'prose prose-sm prose-ul:list-disc prose-ol:list-decimal focus:outline-none min-w-full'
+        class: 'prose prose-sm focus:outline-none min-w-full'
       }
     }
   });
