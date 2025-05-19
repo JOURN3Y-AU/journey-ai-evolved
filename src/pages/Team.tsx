@@ -85,9 +85,9 @@ export default function Team() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {teamMembers.map((member) => (
-            <Card key={member.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="aspect-square overflow-hidden bg-gray-100 w-full max-w-[200px] mx-auto pt-6">
-                <div className="h-[90%] w-[90%] mx-auto overflow-hidden group relative">
+            <Card key={member.id} className="overflow-hidden hover:shadow-lg transition-shadow p-6">
+              <div className="aspect-square overflow-hidden bg-gray-100 w-full max-w-[200px] mx-auto rounded-md">
+                <div className="h-full w-full p-[5%] overflow-hidden group relative">
                   <img 
                     src={member.image_url} 
                     alt={member.name}
