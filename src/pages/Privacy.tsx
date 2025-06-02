@@ -129,8 +129,8 @@ const Privacy = () => {
                 If you have questions about this Privacy Policy, wish to exercise your privacy rights, or want to make a complaint, please contact us:
               </p>
               <div className="bg-gray-50 p-6 rounded-lg mt-6">
-                <p><strong>Journey AI Pty Ltd</strong></p>
-                <p>Email: privacy@journ3y.com.au</p>
+                <p><strong>Journ3y Pty Ltd</strong></p>
+                <p>Email: info@journ3y.com.au</p>
                 <p>Address: Sydney, NSW 2000, Australia</p>
               </div>
               
