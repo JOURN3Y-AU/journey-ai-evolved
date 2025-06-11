@@ -263,7 +263,7 @@ const LinkedInGlean = () => {
                     disabled={isSubmitting}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-lg font-semibold"
                   >
-                    {isSubmitting ? 'Submitting...' : 'Get Glean Implementation Quote'}
+                    {isSubmitting ? 'Submitting...' : 'Schedule Your Free Consultation'}
                   </Button>
                 </form>
 
@@ -377,7 +377,7 @@ const LinkedInGlean = () => {
               variant="outline"
               className="bg-white text-blue-600 border-white hover:bg-gray-100 py-6 px-8 text-lg"
             >
-              Get Your Glean Quote Now
+              Schedule Your Free Consultation
             </Button>
           </div>
         </section>
@@ -432,3 +432,5 @@ const LinkedInGlean = () => {
 };
 
 export default LinkedInGlean;
+
+}
