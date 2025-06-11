@@ -432,5 +432,3 @@ const LinkedInGlean = () => {
 };
 
 export default LinkedInGlean;
-
-}
