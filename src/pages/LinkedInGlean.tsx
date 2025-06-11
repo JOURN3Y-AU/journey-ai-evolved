@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -270,33 +269,45 @@ const LinkedInGlean = () => {
 
         {/* Glean Features Section */}
         <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-3xl font-bold text-center mb-4">Why Choose Glean for Enterprise Search?</h2>
             <p className="text-center text-gray-600 mb-12">Glean's AI-powered platform transforms how your team finds and uses knowledge</p>
             
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-8 h-8 text-blue-600" />
-                </div>
-                <h3 className="font-semibold mb-2">Universal Search</h3>
-                <p className="text-gray-600">Search across 100+ apps including Slack, Confluence, Google Drive, Notion, and more</p>
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
+              {/* Left side - Image */}
+              <div className="order-2 lg:order-1">
+                <img 
+                  src="https://cdn.prod.website-files.com/6127a84dfe068e153ef20572/6718cd1f5b19546b977e26ae_Frame%203.webp"
+                  alt="Glean AI-powered search interface"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
               </div>
               
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-8 h-8 text-blue-600" />
+              {/* Right side - Features */}
+              <div className="order-1 lg:order-2 space-y-6">
+                <div className="flex items-start space-x-3">
+                  <Search className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-2">Universal Search</h3>
+                    <p className="text-gray-600">Search across 100+ apps including Slack, Confluence, Google Drive, Notion, and more</p>
+                  </div>
                 </div>
-                <h3 className="font-semibold mb-2">AI-Powered Results</h3>
-                <p className="text-gray-600">Get personalized, contextual results powered by machine learning and natural language processing</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-8 h-8 text-blue-600" />
+                
+                <div className="flex items-start space-x-3">
+                  <Zap className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-2">AI-Powered Results</h3>
+                    <p className="text-gray-600">Get personalized, contextual results powered by machine learning and natural language processing</p>
+                  </div>
                 </div>
-                <h3 className="font-semibold mb-2">Enterprise Security</h3>
-                <p className="text-gray-600">Maintain data privacy and security with permissions-aware search and SOC 2 compliance</p>
+                
+                <div className="flex items-start space-x-3">
+                  <Shield className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-2">Enterprise Security</h3>
+                    <p className="text-gray-600">Maintain data privacy and security with permissions-aware search and SOC 2 compliance</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
