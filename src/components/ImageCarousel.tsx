@@ -1,4 +1,3 @@
-
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { useEffect } from 'react';
 import type { CarouselApi } from '@/components/ui/carousel';
@@ -58,7 +57,7 @@ const ImageCarousel = ({ images, alt, className = "" }: ImageCarouselProps) => {
                 <img 
                   src={image}
                   alt={`${alt} - Image ${index + 1}`}
-                  className="rounded-lg shadow-xl w-full h-full object-cover"
+                  className="rounded-lg shadow-lg w-full h-full object-cover"
                   onError={(e) => console.log('Image failed to load:', image)}
                   onLoad={() => console.log('Image loaded successfully:', image)}
                 />
@@ -66,18 +65,8 @@ const ImageCarousel = ({ images, alt, className = "" }: ImageCarouselProps) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious 
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-10" 
-          onClick={() => {
-            console.log('Previous button clicked - current slide before action:', document.querySelector('[data-embla-index]')?.getAttribute('data-embla-index'));
-          }}
-        />
-        <CarouselNext 
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
-          onClick={() => {
-            console.log('Next button clicked - current slide before action:', document.querySelector('[data-embla-index]')?.getAttribute('data-embla-index'));
-          }}
-        />
+        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
+        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
       </Carousel>
     </div>
   );

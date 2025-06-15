@@ -77,10 +77,10 @@ const Glean = () => {
   };
 
   const gleamImages = [
-    '/glean_1.webp',
-    '/glean_2.webp',
-    '/glean_3.webp',
-    '/glean_4.webp'
+    '/Glean_1.png',
+    '/Glean_2.png',
+    '/Glean_3.png',
+    '/Glean_4.png'
   ];
 
   return (
