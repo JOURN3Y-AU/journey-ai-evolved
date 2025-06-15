@@ -258,14 +258,39 @@ const Glean = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
             {[
-              'Slack', 'Microsoft 365', 'Google Workspace', 'Confluence',
-              'Jira', 'Notion', 'Salesforce', 'GitHub',
-              'Figma', 'Dropbox', 'Box', 'SharePoint'
+              { name: 'Slack', logo: 'https://cdn.brandfetch.io/idAnDTFapY/theme/dark/logo.svg?k=bfHSJFAPEG' },
+              { name: 'Microsoft 365', logo: 'https://cdn.brandfetch.io/idJ8dGXcJx/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
+              { name: 'Google Workspace', logo: 'https://cdn.brandfetch.io/idmCNLMhBA/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
+              { name: 'Confluence', logo: 'https://cdn.brandfetch.io/idw382nG0m/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
+              { name: 'Jira', logo: 'https://cdn.brandfetch.io/idSUrLf4R8/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
+              { name: 'Notion', logo: 'https://cdn.brandfetch.io/idZAyF9rlg/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
+              { name: 'Salesforce', logo: 'https://cdn.brandfetch.io/id4J58sqa_/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
+              { name: 'GitHub', logo: 'https://cdn.brandfetch.io/idAIcpZI/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
+              { name: 'Figma', logo: 'https://cdn.brandfetch.io/idarKdUbAh/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
+              { name: 'Dropbox', logo: 'https://cdn.brandfetch.io/id20mQyGeY/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
+              { name: 'Box', logo: 'https://cdn.brandfetch.io/idGrOQFsw4/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
+              { name: 'SharePoint', logo: 'https://cdn.brandfetch.io/idroGCEXJZ/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' }
             ].map((app, index) => (
-              <div key={index} className="bg-white p-4 rounded-lg shadow-sm text-center border hover:shadow-md transition-shadow">
-                <p className="font-medium text-gray-800">{app}</p>
+              <div key={index} className="flex flex-col items-center justify-center p-4">
+                <div className="w-16 h-16 mb-3 flex items-center justify-center bg-white rounded-lg shadow-sm">
+                  <img 
+                    src={app.logo} 
+                    alt={`${app.name} logo`}
+                    className="max-w-12 max-h-12 object-contain"
+                    onError={(e) => {
+                      // Fallback to a simple text display if logo fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.innerHTML = `<div class="text-xs font-medium text-gray-600 text-center">${app.name}</div>`;
+                      }
+                    }}
+                  />
+                </div>
+                <p className="text-xs font-medium text-gray-700 text-center">{app.name}</p>
               </div>
             ))}
           </div>
