@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -9,6 +8,7 @@ import { CheckCircle, Search, Zap, Shield, SquarePen, Users, TrendingUp, Databas
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { supabase } from '@/integrations/supabase/client';
 import useScrollReveal from '@/hooks/useScrollReveal';
+import ImageCarousel from '@/components/ImageCarousel';
 
 const Glean = () => {
   const [formData, setFormData] = useState({
@@ -75,6 +75,13 @@ const Glean = () => {
       setIsSubmitting(false);
     }
   };
+
+  const gleamImages = [
+    '/glean_1.webp',
+    '/glean_2.webp',
+    '/glean_3.webp',
+    '/glean_4.webp'
+  ];
 
   return (
     <>
@@ -232,10 +239,9 @@ const Glean = () => {
             </div>
 
             <div className="order-first lg:order-last">
-              <img 
-                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80"
-                alt="Glean Platform Dashboard"
-                className="rounded-lg shadow-lg w-full h-auto"
+              <ImageCarousel 
+                images={gleamImages}
+                alt="Glean Platform Interface"
               />
             </div>
           </div>
