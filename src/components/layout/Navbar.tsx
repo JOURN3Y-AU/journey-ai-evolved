@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Sparkles } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 
 const Navbar = () => {
@@ -67,8 +68,9 @@ const Navbar = () => {
             <Link to="/products/blueprint" className="text-gray-700 hover:text-journey-purple transition-colors">
               Blueprint
             </Link>
-            <Link to="/products/glean" className="text-gray-700 hover:text-journey-purple transition-colors">
+            <Link to="/products/glean" className="text-gray-700 hover:text-journey-purple transition-colors flex items-center gap-1">
               Glean
+              <Sparkles className="w-4 h-4 text-journey-purple animate-pulse" />
             </Link>
             <Link to="/products/services" className="text-gray-700 hover:text-journey-purple transition-colors">
               Services
@@ -142,10 +144,11 @@ const Navbar = () => {
             </Link>
             <Link 
               to="/products/glean" 
-              className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
+              className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md flex items-center gap-1"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Glean
+              <Sparkles className="w-4 h-4 text-journey-purple animate-pulse" />
             </Link>
             <Link 
               to="/products/services" 
