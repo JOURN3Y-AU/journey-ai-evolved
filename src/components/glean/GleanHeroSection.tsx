@@ -1,9 +1,22 @@
 
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Shield } from 'lucide-react';
 
 const GleanHeroSection = () => {
+  const scrollToDemo = () => {
+    const demoSection = document.getElementById('demo');
+    if (demoSection) {
+      demoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToFeatures = () => {
+    const featuresSection = document.getElementById('features');
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="pt-32 pb-20 bg-gradient-to-r from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4">
@@ -24,11 +37,11 @@ const GleanHeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                <Link to="#demo">Schedule Demo</Link>
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white" onClick={scrollToDemo}>
+                Schedule Demo
               </Button>
-              <Button variant="outline" size="lg">
-                <Link to="#features">Learn More</Link>
+              <Button variant="outline" size="lg" onClick={scrollToFeatures}>
+                Learn More
               </Button>
             </div>
 

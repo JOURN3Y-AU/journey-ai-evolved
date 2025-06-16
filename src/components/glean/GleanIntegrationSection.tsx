@@ -1,5 +1,4 @@
 
-import { Button } from '@/components/ui/button';
 import useScrollReveal from '@/hooks/useScrollReveal';
 
 const GleanIntegrationSection = () => {
@@ -25,7 +24,7 @@ const GleanIntegrationSection = () => {
   ];
 
   return (
-    <section className="py-20">
+    <section id="features" className="py-20">
       <div className="container mx-auto px-4">
         <div ref={section3Ref} className="text-center mb-16 reveal transition-all duration-500 ease-out">
           <h2 className="text-3xl font-bold mb-4">Connect Your Entire Tech Stack</h2>
@@ -50,10 +49,7 @@ const GleanIntegrationSection = () => {
         </div>
 
         <div className="text-center">
-          <p className="text-gray-600 mb-4">And 80+ more integrations available</p>
-          <Button variant="outline">
-            View All Integrations
-          </Button>
+          <p className="text-gray-600">And 80+ more integrations available</p>
         </div>
       </div>
     </section>
