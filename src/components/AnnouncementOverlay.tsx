@@ -68,7 +68,7 @@ const AnnouncementOverlay = ({ isOpen, onClose }: AnnouncementOverlayProps) => {
               <img 
                 src="/Glean-logo.png" 
                 alt="Glean" 
-                className="h-12 object-contain"
+                className="h-24 object-contain"
               />
             </div>
             <p className="text-xl text-gray-600">
