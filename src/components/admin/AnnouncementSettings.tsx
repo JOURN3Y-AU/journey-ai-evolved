@@ -27,17 +27,55 @@ export default function AnnouncementSettings({
   const handleEnabledToggle = async (value: boolean) => {
     setIsSaving(true);
     try {
-      await upsertSetting('announcement_enabled', value ? 'true' : 'false');
+      console.log('Attempting to toggle announcement enabled to:', value);
+      
+      // First try to check if the setting exists
+      const { data: existingData, error: selectError } = await supabase
+        .from('site_settings')
+        .select('*')
+        .eq('key', 'announcement_enabled')
+        .maybeSingle();
+
+      if (selectError) {
+        console.error('Error checking existing setting:', selectError);
+        throw selectError;
+      }
+
+      if (existingData) {
+        // Update existing record
+        console.log('Updating existing announcement_enabled setting');
+        const { error: updateError } = await supabase
+          .from('site_settings')
+          .update({ value: value ? 'true' : 'false' })
+          .eq('key', 'announcement_enabled');
+          
+        if (updateError) {
+          console.error('Error updating announcement_enabled:', updateError);
+          throw updateError;
+        }
+      } else {
+        // Insert new record
+        console.log('Inserting new announcement_enabled setting');
+        const { error: insertError } = await supabase
+          .from('site_settings')
+          .insert([{ key: 'announcement_enabled', value: value ? 'true' : 'false' }]);
+          
+        if (insertError) {
+          console.error('Error inserting announcement_enabled:', insertError);
+          throw insertError;
+        }
+      }
+
       setEnabled(value);
       toast({
         title: "Success",
         description: `Announcement ${value ? 'enabled' : 'disabled'}`,
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating announcement enabled setting:', error);
       toast({
         title: "Error",
-        description: "Failed to update announcement setting",
+        description: `Failed to update announcement setting: ${error.message}`,
         variant: "destructive"
       });
     } finally {
@@ -48,40 +86,58 @@ export default function AnnouncementSettings({
   const handleEndDateChange = async () => {
     setIsSaving(true);
     try {
-      await upsertSetting('announcement_end_date', endDate);
+      console.log('Attempting to update announcement end date to:', endDate);
+      
+      // First try to check if the setting exists
+      const { data: existingData, error: selectError } = await supabase
+        .from('site_settings')
+        .select('*')
+        .eq('key', 'announcement_end_date')
+        .maybeSingle();
+
+      if (selectError) {
+        console.error('Error checking existing end date setting:', selectError);
+        throw selectError;
+      }
+
+      if (existingData) {
+        // Update existing record
+        console.log('Updating existing announcement_end_date setting');
+        const { error: updateError } = await supabase
+          .from('site_settings')
+          .update({ value: endDate })
+          .eq('key', 'announcement_end_date');
+          
+        if (updateError) {
+          console.error('Error updating announcement_end_date:', updateError);
+          throw updateError;
+        }
+      } else {
+        // Insert new record
+        console.log('Inserting new announcement_end_date setting');
+        const { error: insertError } = await supabase
+          .from('site_settings')
+          .insert([{ key: 'announcement_end_date', value: endDate }]);
+          
+        if (insertError) {
+          console.error('Error inserting announcement_end_date:', insertError);
+          throw insertError;
+        }
+      }
+
       toast({
         title: "Success",
         description: "Announcement end date updated",
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating announcement end date:', error);
       toast({
         title: "Error",
-        description: "Failed to update end date",
+        description: `Failed to update end date: ${error.message}`,
         variant: "destructive"
       });
     } finally {
       setIsSaving(false);
-    }
-  };
-
-  const upsertSetting = async (key: string, value: string) => {
-    const { data, error } = await supabase
-      .from('site_settings')
-      .select('*')
-      .eq('key', key);
-      
-    if (error) throw error;
-    
-    if (data && data.length > 0) {
-      await supabase
-        .from('site_settings')
-        .update({ value })
-        .eq('key', key);
-    } else {
-      await supabase
-        .from('site_settings')
-        .insert([{ key, value }]);
     }
   };
 

@@ -11,63 +11,6 @@ export function useAnnouncement() {
   const [announcementEndDate, setAnnouncementEndDate] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const checkIfShouldShow = () => {
-    console.log('Checking if announcement should show:', {
-      announcementEnabled,
-      announcementEndDate
-    });
-
-    if (!announcementEnabled) {
-      console.log('Announcement disabled in settings');
-      return false;
-    }
-    
-    // Check if announcement has an end date and if it's passed
-    if (announcementEndDate) {
-      const endDate = new Date(announcementEndDate);
-      const now = new Date();
-      console.log('Checking end date:', { endDate, now, expired: now > endDate });
-      if (now > endDate) {
-        console.log('Announcement expired');
-        return false;
-      }
-    }
-
-    // Check localStorage for dismissal
-    const dismissed = localStorage.getItem(ANNOUNCEMENT_STORAGE_KEY);
-    console.log('Checking localStorage dismissal:', dismissed);
-    
-    if (dismissed) {
-      try {
-        const dismissedData = JSON.parse(dismissed);
-        console.log('Parsed dismissal data:', dismissedData);
-        
-        // Check if it's the same version and within 30 days
-        if (dismissedData.version === ANNOUNCEMENT_VERSION) {
-          const dismissedDate = new Date(dismissedData.timestamp);
-          const thirtyDaysAgo = new Date();
-          thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-          
-          console.log('Checking 30-day window:', {
-            dismissedDate,
-            thirtyDaysAgo,
-            stillValid: dismissedDate > thirtyDaysAgo
-          });
-          
-          if (dismissedDate > thirtyDaysAgo) {
-            console.log('Announcement still dismissed within 30 days');
-            return false;
-          }
-        }
-      } catch (error) {
-        console.error('Error parsing announcement dismissal data:', error);
-      }
-    }
-
-    console.log('Announcement should show');
-    return true;
-  };
-
   const fetchAnnouncementSettings = async () => {
     console.log('Fetching announcement settings...');
     setLoading(true);
@@ -79,14 +22,13 @@ export function useAnnouncement() {
 
       if (error) {
         console.error('Error fetching announcement settings:', error);
-        setLoading(false);
-        return;
+        // Don't return early, continue with defaults
       }
 
       let enabled = false;
       let endDate = null;
 
-      if (data) {
+      if (data && data.length > 0) {
         console.log('Fetched announcement settings:', data);
         const enabledSetting = data.find(item => item.key === 'announcement_enabled');
         const endDateSetting = data.find(item => item.key === 'announcement_end_date');
@@ -95,48 +37,72 @@ export function useAnnouncement() {
         endDate = endDateSetting?.value || null;
         
         console.log('Parsed settings:', { enabled, endDate });
+      } else {
+        console.log('No announcement settings found, using defaults');
       }
 
       setAnnouncementEnabled(enabled);
       setAnnouncementEndDate(endDate);
       
-      // Check if we should show after settings are loaded
-      const shouldShow = enabled && (endDate ? new Date() <= new Date(endDate) : true);
-      if (shouldShow) {
-        const dismissed = localStorage.getItem(ANNOUNCEMENT_STORAGE_KEY);
-        if (!dismissed) {
-          console.log('No dismissal found, showing announcement');
-          setShowAnnouncement(true);
-        } else {
-          try {
-            const dismissedData = JSON.parse(dismissed);
-            if (dismissedData.version !== ANNOUNCEMENT_VERSION) {
-              console.log('Different version, showing announcement');
-              setShowAnnouncement(true);
-            } else {
-              const dismissedDate = new Date(dismissedData.timestamp);
-              const thirtyDaysAgo = new Date();
-              thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-              
-              if (dismissedDate <= thirtyDaysAgo) {
-                console.log('30 days passed, showing announcement');
-                setShowAnnouncement(true);
-              } else {
-                console.log('Still within 30 days, not showing');
-                setShowAnnouncement(false);
-              }
-            }
-          } catch (error) {
-            console.error('Error parsing dismissal data:', error);
-            setShowAnnouncement(true);
-          }
-        }
-      } else {
-        console.log('Settings indicate announcement should not show');
+      // Only show announcement if it's enabled
+      if (!enabled) {
+        console.log('Announcement disabled in settings');
         setShowAnnouncement(false);
+        setLoading(false);
+        return;
       }
+      
+      // Check if announcement has an end date and if it's passed
+      if (endDate) {
+        const endDateObj = new Date(endDate);
+        const now = new Date();
+        console.log('Checking end date:', { endDate: endDateObj, now, expired: now > endDateObj });
+        if (now > endDateObj) {
+          console.log('Announcement expired');
+          setShowAnnouncement(false);
+          setLoading(false);
+          return;
+        }
+      }
+
+      // Check localStorage for dismissal
+      const dismissed = localStorage.getItem(ANNOUNCEMENT_STORAGE_KEY);
+      console.log('Checking localStorage dismissal:', dismissed);
+      
+      if (dismissed) {
+        try {
+          const dismissedData = JSON.parse(dismissed);
+          console.log('Parsed dismissal data:', dismissedData);
+          
+          // Check if it's the same version and within 30 days
+          if (dismissedData.version === ANNOUNCEMENT_VERSION) {
+            const dismissedDate = new Date(dismissedData.timestamp);
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            
+            console.log('Checking 30-day window:', {
+              dismissedDate,
+              thirtyDaysAgo,
+              stillValid: dismissedDate > thirtyDaysAgo
+            });
+            
+            if (dismissedDate > thirtyDaysAgo) {
+              console.log('Announcement still dismissed within 30 days');
+              setShowAnnouncement(false);
+              setLoading(false);
+              return;
+            }
+          }
+        } catch (error) {
+          console.error('Error parsing announcement dismissal data:', error);
+        }
+      }
+
+      console.log('Announcement should show');
+      setShowAnnouncement(true);
+      
     } catch (error) {
-      console.error('Error fetching announcement settings:', error);
+      console.error('Error in fetchAnnouncementSettings:', error);
     } finally {
       setLoading(false);
     }
