@@ -72,7 +72,7 @@ const AnnouncementOverlay = ({ isOpen, onClose }: AnnouncementOverlayProps) => {
               />
               <div className="text-2xl text-gray-400">×</div>
               <img 
-                src="/JOURN3Y-logo.svg" 
+                src="/JOURN3Y-logo.png" 
                 alt="JOURN3Y" 
                 className="h-12 object-contain"
               />
