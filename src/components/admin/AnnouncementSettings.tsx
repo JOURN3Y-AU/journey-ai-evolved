@@ -12,12 +12,14 @@ interface AnnouncementSettingsProps {
   initialEnabled: boolean;
   initialEndDate: string | null;
   onReset: () => void;
+  onSettingsUpdated?: () => void; // Add callback for when settings are updated
 }
 
 export default function AnnouncementSettings({ 
   initialEnabled, 
   initialEndDate, 
-  onReset 
+  onReset,
+  onSettingsUpdated
 }: AnnouncementSettingsProps) {
   const [enabled, setEnabled] = useState(initialEnabled);
   const [endDate, setEndDate] = useState(initialEndDate || '');
@@ -67,6 +69,13 @@ export default function AnnouncementSettings({
       }
 
       setEnabled(value);
+      console.log('Successfully updated announcement_enabled to:', value);
+      
+      // Trigger refetch of announcement settings in the parent component
+      if (onSettingsUpdated) {
+        onSettingsUpdated();
+      }
+      
       toast({
         title: "Success",
         description: `Announcement ${value ? 'enabled' : 'disabled'}`,
@@ -123,6 +132,11 @@ export default function AnnouncementSettings({
           console.error('Error inserting announcement_end_date:', insertError);
           throw insertError;
         }
+      }
+
+      // Trigger refetch of announcement settings in the parent component
+      if (onSettingsUpdated) {
+        onSettingsUpdated();
       }
 
       toast({

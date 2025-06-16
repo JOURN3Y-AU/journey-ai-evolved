@@ -18,7 +18,7 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
   const navigate = useNavigate();
   const { teamMembers, loading: loadingTeamMembers, refetchTeamMembers } = useTeamMembers();
   const { showTeamPage, loading: loadingSettings } = useSiteSettings();
-  const { resetAnnouncement } = useAnnouncement();
+  const { resetAnnouncement, refetchSettings } = useAnnouncement();
   
   const [announcementEnabled, setAnnouncementEnabled] = useState(false);
   const [announcementEndDate, setAnnouncementEndDate] = useState<string | null>(null);
@@ -43,6 +43,7 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
         endDate = endDateSetting?.value || null;
       }
 
+      console.log('AdminTeamManagement - fetched announcement settings:', { enabled, endDate });
       setAnnouncementEnabled(enabled);
       setAnnouncementEndDate(endDate);
     } catch (error) {
@@ -50,6 +51,13 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
     } finally {
       setLoadingAnnouncement(false);
     }
+  };
+
+  const handleSettingsUpdated = () => {
+    console.log('Settings updated, refetching...');
+    // Refetch both local settings and the announcement hook
+    fetchAnnouncementSettings();
+    refetchSettings();
   };
 
   useEffect(() => {
@@ -87,6 +95,7 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
               resetAnnouncement();
               alert('Announcement reset! Refresh the page to see it.');
             }}
+            onSettingsUpdated={handleSettingsUpdated}
           />
           <TeamPageSettings initialShowTeamPage={showTeamPage} />
           <TeamMembersList 
