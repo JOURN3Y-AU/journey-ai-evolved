@@ -67,8 +67,8 @@ const Navbar = () => {
             <Link to="/products/blueprint" className="text-gray-700 hover:text-journey-purple transition-colors">
               Blueprint
             </Link>
-            <Link to="/products/accelerators" className="text-gray-700 hover:text-journey-purple transition-colors">
-              Accelerators
+            <Link to="/products/glean" className="text-gray-700 hover:text-journey-purple transition-colors">
+              Glean
             </Link>
             <Link to="/products/services" className="text-gray-700 hover:text-journey-purple transition-colors">
               Services
@@ -141,11 +141,11 @@ const Navbar = () => {
               Blueprint
             </Link>
             <Link 
-              to="/products/accelerators" 
+              to="/products/glean" 
               className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Accelerators
+              Glean
             </Link>
             <Link 
               to="/products/services" 

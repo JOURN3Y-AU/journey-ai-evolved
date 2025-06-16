@@ -5,7 +5,6 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Index from '@/pages/Index';
 import Blueprint from '@/pages/products/Blueprint';
-import Accelerators from '@/pages/products/Accelerators';
 import Glean from '@/pages/products/Glean';
 import Services from '@/pages/products/Services';
 import Blog from '@/pages/Blog';
@@ -25,7 +24,6 @@ function App() {
       <Routes>
         <Route path="/" element={<><Navbar /><Index /><Footer /></>} />
         <Route path="/products/blueprint" element={<><Navbar /><Blueprint /><Footer /></>} />
-        <Route path="/products/accelerators" element={<><Navbar /><Accelerators /><Footer /></>} />
         <Route path="/products/glean" element={<><Navbar /><Glean /><Footer /></>} />
         <Route path="/products/services" element={<><Navbar /><Services /><Footer /></>} />
         <Route path="/blog" element={<><Navbar /><Blog /><Footer /></>} />
