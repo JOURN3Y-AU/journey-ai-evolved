@@ -70,7 +70,7 @@ const Navbar = () => {
             </Link>
             <Link to="/products/glean" className="text-gray-700 hover:text-journey-purple transition-colors relative">
               Glean
-              <Sparkles className="w-2 h-2 text-journey-purple animate-pulse absolute -top-1 -right-3" />
+              <Sparkles className="w-3 h-3 text-journey-purple animate-pulse absolute -top-0.5 -right-4" />
             </Link>
             <Link to="/products/services" className="text-gray-700 hover:text-journey-purple transition-colors">
               Services
@@ -148,7 +148,7 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Glean
-              <Sparkles className="w-2 h-2 text-journey-purple animate-pulse absolute top-2 left-16" />
+              <Sparkles className="w-3 h-3 text-journey-purple animate-pulse absolute top-1.5 left-14" />
             </Link>
             <Link 
               to="/products/services" 
