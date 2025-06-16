@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -261,30 +260,22 @@ const Glean = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
             {[
-              { name: 'Slack', logo: 'https://images.ctfassets.net/fzn2n1nzq965/3fYhXqrScKEuOYKqUocgkC/6d9e49c4c40de0c0a30307b0e3e08c66/slack.png' },
-              { name: 'Microsoft 365', logo: 'https://images.ctfassets.net/fzn2n1nzq965/4kU5Zxz6vLjFqPu3Y6JTjW/f5e21d5a5e8e4b4c5e6c4b5b5e8e4b4c/office365.png' },
-              { name: 'Google Workspace', logo: 'https://images.ctfassets.net/fzn2n1nzq965/7K5v2c5v5v5v5v5v5v5v5v/5v5v5v5v5v5v5v5v5v5v5v5v/google-workspace.png' },
-              { name: 'Confluence', logo: 'https://images.ctfassets.net/fzn2n1nzq965/5yM7wccKm2mA0W6WO4q0qG/1e5e5e5e5e5e5e5e5e5e5e5e/confluence.png' },
-              { name: 'Jira', logo: 'https://images.ctfassets.net/fzn2n1nzq965/1yM7wccKm2mA0W6WO4q0qG/2e5e5e5e5e5e5e5e5e5e5e5e/jira.png' },
-              { name: 'Notion', logo: 'https://images.ctfassets.net/fzn2n1nzq965/6yM7wccKm2mA0W6WO4q0qG/3e5e5e5e5e5e5e5e5e5e5e5e/notion.png' },
-              { name: 'Salesforce', logo: 'https://www.glean.com/static/connector-icons/salesforce.svg' },
-              { name: 'GitHub', logo: 'https://www.glean.com/static/connector-icons/github.svg' },
-              { name: 'GitLab', logo: 'https://www.glean.com/static/connector-icons/gitlab.svg' },
-              { name: 'Figma', logo: 'https://www.glean.com/static/connector-icons/figma.svg' },
-              { name: 'Dropbox', logo: 'https://www.glean.com/static/connector-icons/dropbox.svg' },
-              { name: 'Box', logo: 'https://www.glean.com/static/connector-icons/box.svg' },
-              { name: 'SharePoint', logo: 'https://www.glean.com/static/connector-icons/sharepoint.svg' },
-              { name: 'OneDrive', logo: 'https://www.glean.com/static/connector-icons/onedrive.svg' },
-              { name: 'Google Drive', logo: 'https://www.glean.com/static/connector-icons/google-drive.svg' },
-              { name: 'Zendesk', logo: 'https://www.glean.com/static/connector-icons/zendesk.svg' },
-              { name: 'HubSpot', logo: 'https://www.glean.com/static/connector-icons/hubspot.svg' },
-              { name: 'Asana', logo: 'https://www.glean.com/static/connector-icons/asana.svg' },
-              { name: 'Monday', logo: 'https://www.glean.com/static/connector-icons/monday.svg' },
-              { name: 'Trello', logo: 'https://www.glean.com/static/connector-icons/trello.svg' },
-              { name: 'Linear', logo: 'https://www.glean.com/static/connector-icons/linear.svg' },
-              { name: 'Intercom', logo: 'https://www.glean.com/static/connector-icons/intercom.svg' },
-              { name: 'Airtable', logo: 'https://www.glean.com/static/connector-icons/airtable.svg' },
-              { name: 'Miro', logo: 'https://www.glean.com/static/connector-icons/miro.svg' }
+              { name: 'Gmail', logo: '/logos/gmail.svg' },
+              { name: 'GitHub', logo: '/logos/github.svg' },
+              { name: 'Jira', logo: '/logos/jira.svg' },
+              { name: 'Confluence', logo: '/logos/confluence.svg' },
+              { name: 'Microsoft Teams', logo: '/logos/microsoft-teams-logo.svg' },
+              { name: 'Dropbox', logo: '/logos/dropbox-logo.svg' },
+              { name: 'ServiceNow', logo: '/logos/servicenow-logo.svg' },
+              { name: 'GitLab', logo: '/logos/gitlab.svg' },
+              { name: 'Slack', logo: '/logos/slack.svg' },
+              { name: 'Salesforce', logo: '/logos/salesforce cloud.svg' },
+              { name: 'Box', logo: '/logos/box.svg' },
+              { name: 'SharePoint', logo: '/logos/sharepoint.svg' },
+              { name: 'OneDrive', logo: '/logos/onedrive.svg' },
+              { name: 'Google Drive', logo: '/logos/gdrive.svg' },
+              { name: 'Zendesk', logo: '/logos/zendesk.svg' },
+              { name: 'Outlook', logo: '/logos/outlook.svg' }
             ].map((app, index) => (
               <div key={index} className="flex flex-col items-center justify-center p-4">
                 <div className="w-16 h-16 mb-3 flex items-center justify-center bg-white rounded-lg shadow-sm">
@@ -292,15 +283,6 @@ const Glean = () => {
                     src={app.logo} 
                     alt={`${app.name} logo`}
                     className="max-w-12 max-h-12 object-contain"
-                    onError={(e) => {
-                      // Fallback to a simple text display if logo fails to load
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const parent = target.parentElement;
-                      if (parent) {
-                        parent.innerHTML = `<div class="text-xs font-medium text-gray-600 text-center">${app.name}</div>`;
-                      }
-                    }}
                   />
                 </div>
                 <p className="text-xs font-medium text-gray-700 text-center">{app.name}</p>
