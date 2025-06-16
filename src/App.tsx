@@ -21,7 +21,9 @@ import LinkedInCampaign from '@/pages/LinkedInCampaign';
 import LinkedInGlean from '@/pages/LinkedInGlean';
 
 function App() {
-  const { showAnnouncement, dismissAnnouncement } = useAnnouncement();
+  const { showAnnouncement, dismissAnnouncement, loading } = useAnnouncement();
+
+  console.log('App component - announcement state:', { showAnnouncement, loading });
 
   return (
     <BrowserRouter>
@@ -43,10 +45,12 @@ function App() {
         <Route path="*" element={<><Navbar /><NotFound /><Footer /></>} />
       </Routes>
       
-      <AnnouncementOverlay 
-        isOpen={showAnnouncement}
-        onClose={dismissAnnouncement}
-      />
+      {!loading && (
+        <AnnouncementOverlay 
+          isOpen={showAnnouncement}
+          onClose={dismissAnnouncement}
+        />
+      )}
       
       <Toaster />
     </BrowserRouter>
