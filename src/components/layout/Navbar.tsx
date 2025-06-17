@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -72,7 +73,7 @@ const Navbar = () => {
               <Sparkles className="w-3 h-3 text-journey-purple animate-pulse absolute -top-0.5 -right-4" />
             </Link>
             <Link to="/products/coming-soon" className="text-gray-700 hover:text-journey-purple transition-colors relative">
-              Coming Soon
+              Brand3y
               <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full absolute -top-2 -right-8">New</span>
             </Link>
             <Link to="/products/services" className="text-gray-700 hover:text-journey-purple transition-colors">
@@ -158,7 +159,7 @@ const Navbar = () => {
               className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md relative"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Coming Soon
+              Brand3y
               <span className="bg-green-500 text-white text-xs px-1 py-0.5 rounded-full absolute top-1.5 left-20">New</span>
             </Link>
             <Link 
