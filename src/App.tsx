@@ -8,6 +8,7 @@ import { useAnnouncement } from '@/hooks/useAnnouncement';
 import Index from '@/pages/Index';
 import Blueprint from '@/pages/products/Blueprint';
 import Glean from '@/pages/products/Glean';
+import Brand3y from '@/pages/products/Brand3y';
 import Services from '@/pages/products/Services';
 import Blog from '@/pages/Blog';
 import Resources from '@/pages/Resources';
@@ -31,6 +32,7 @@ function App() {
         <Route path="/" element={<><Navbar /><Index /><Footer /></>} />
         <Route path="/products/blueprint" element={<><Navbar /><Blueprint /><Footer /></>} />
         <Route path="/products/glean" element={<><Navbar /><Glean /><Footer /></>} />
+        <Route path="/products/coming-soon" element={<><Navbar /><Brand3y /><Footer /></>} />
         <Route path="/products/services" element={<><Navbar /><Services /><Footer /></>} />
         <Route path="/blog" element={<><Navbar /><Blog /><Footer /></>} />
         <Route path="/blog/:slug" element={<><Navbar /><BlogPost /><Footer /></>} />
