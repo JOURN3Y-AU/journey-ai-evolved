@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Brand3yHeroSection from '@/components/brand3y/Brand3yHeroSection';
 import Brand3yProblemSection from '@/components/brand3y/Brand3yProblemSection';
 import Brand3yVisionSection from '@/components/brand3y/Brand3yVisionSection';
-import Brand3yTransformationSection from '@/components/brand3y/Brand3yTransformationSection';
+import Brand3yIntegrationsSection from '@/components/brand3y/Brand3yIntegrationsSection';
 import Brand3yComingSoonSection from '@/components/brand3y/Brand3yComingSoonSection';
 import Brand3ySocialProofSection from '@/components/brand3y/Brand3ySocialProofSection';
 import Brand3yFAQSection from '@/components/brand3y/Brand3yFAQSection';
@@ -21,7 +21,7 @@ const Brand3y = () => {
       <Brand3yHeroSection />
       <Brand3yProblemSection />
       <Brand3yVisionSection />
-      <Brand3yTransformationSection />
+      <Brand3yIntegrationsSection />
       <Brand3yComingSoonSection onFormSubmitSuccess={handleFormSubmitSuccess} />
       <Brand3ySocialProofSection />
       <Brand3yFAQSection />

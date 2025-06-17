@@ -1,6 +1,6 @@
 
 import useScrollReveal from '@/hooks/useScrollReveal';
-import { Zap, BarChart3, Brain, TrendingUp, FileText } from 'lucide-react';
+import { Zap, Target, TrendingUp, Brain, BarChart3, Clock } from 'lucide-react';
 
 const Brand3yVisionSection = () => {
   const sectionRef = useScrollReveal();
@@ -9,32 +9,37 @@ const Brand3yVisionSection = () => {
     {
       icon: Zap,
       title: "Real-time competitive intelligence at your fingertips",
-      description: "Monitor competitor activities across all platforms instantly"
+      description: "Monitor competitor moves as they happen"
     },
     {
       icon: BarChart3,
       title: "Comprehensive brand health monitoring across all channels",
-      description: "Track your brand's performance on Facebook, Instagram, Google, YouTube, Twitter, TikTok and more"
+      description: "Track performance across every platform from one dashboard"
     },
     {
       icon: Brain,
       title: "Instant answers to executive questions",
-      description: "AI-powered insights ready when leadership needs them most"
+      description: "AI-powered insights ready when leadership needs them"
+    },
+    {
+      icon: Target,
+      title: "AI-powered insights that spot opportunities before competitors",
+      description: "Predictive analytics that keep you ahead of the curve"
+    },
+    {
+      icon: Clock,
+      title: "Professional brand health reports ready in minutes, not weeks",
+      description: "Automated reporting that saves hours of manual work"
     },
     {
       icon: TrendingUp,
-      title: "AI-powered insights that spot opportunities before competitors",
-      description: "Stay ahead with predictive analysis and trend detection"
-    },
-    {
-      icon: FileText,
-      title: "Professional brand health reports ready in minutes, not weeks",
-      description: "Generate comprehensive reports with just a few clicks"
+      title: "Strategic recommendations based on market data",
+      description: "Actionable insights that drive real business results"
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div ref={sectionRef} className="reveal transition-all duration-500 ease-out text-center mb-16">
           <h2 className="text-4xl font-bold mb-6 text-gray-900">
@@ -45,26 +50,24 @@ const Brand3yVisionSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <div key={index} className={`reveal reveal-delay-${(index + 1) * 100} transition-all duration-500 ease-out`}>
-              <div className="bg-white rounded-lg p-8 shadow-lg border border-orange-100 h-full">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
-                    <feature.icon className="w-6 h-6 text-orange-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-3 text-gray-900">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
+              <div className="bg-green-50 rounded-lg p-6 border border-green-100 h-full">
+                <feature.icon className="w-8 h-8 text-green-600 mb-4" />
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="bg-gradient-to-r from-green-100 to-emerald-100 rounded-lg p-8 border border-green-200 max-w-4xl mx-auto mt-12 text-center">
+          <p className="text-xl text-gray-800 leading-relaxed">
+            Stop being the marketer who says <span className="font-semibold text-green-600">"I'll look into that"</span>. 
+            Start being the one who says <span className="font-semibold">"Here's exactly what's happening"</span> 
+            with confidence and data to back it up.
+          </p>
         </div>
       </div>
     </section>

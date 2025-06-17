@@ -26,7 +26,7 @@ const Brand3yThankYouDialog = ({ open, onOpenChange }: Brand3yThankYouDialogProp
           </div>
         </DialogHeader>
         <div className="text-center py-6">
-          <CheckCircle className="w-16 h-16 text-orange-500 mx-auto mb-4" />
+          <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-4 text-gray-900">Welcome to the future!</h2>
           <p className="text-gray-600 mb-6">
             You're now on the Brand3y waitlist. We'll notify you as soon as we're ready to transform 
@@ -37,7 +37,7 @@ const Brand3yThankYouDialog = ({ open, onOpenChange }: Brand3yThankYouDialogProp
           </p>
           <Button 
             onClick={() => onOpenChange(false)}
-            className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white"
+            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
           >
             Continue Exploring
           </Button>

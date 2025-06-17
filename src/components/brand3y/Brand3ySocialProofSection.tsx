@@ -1,4 +1,3 @@
-
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { Building2, Users, TrendingUp } from 'lucide-react';
 
@@ -41,8 +40,8 @@ const Brand3ySocialProofSection = () => {
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
           {metrics.map((metric, index) => (
             <div key={index} className={`reveal reveal-delay-${(index + 1) * 100} transition-all duration-500 ease-out`}>
-              <div className="bg-white rounded-lg p-8 shadow-lg border border-orange-100 text-center">
-                <metric.icon className="w-12 h-12 text-orange-600 mx-auto mb-4" />
+              <div className="bg-white rounded-lg p-8 shadow-lg border border-green-100 text-center">
+                <metric.icon className="w-12 h-12 text-green-600 mx-auto mb-4" />
                 <div className="text-3xl font-bold text-gray-900 mb-2">{metric.number}</div>
                 <div className="text-lg font-semibold text-gray-800 mb-2">{metric.label}</div>
                 <div className="text-gray-600">{metric.description}</div>
@@ -51,7 +50,7 @@ const Brand3ySocialProofSection = () => {
           ))}
         </div>
 
-        <div className="bg-white rounded-lg p-8 shadow-lg border border-orange-100 max-w-4xl mx-auto">
+        <div className="bg-white rounded-lg p-8 shadow-lg border border-green-100 max-w-4xl mx-auto">
           <blockquote className="text-center">
             <p className="text-xl italic text-gray-800 mb-6">
               "Finally, a tool that gives me the competitive intelligence I need without the weeks of manual research. 

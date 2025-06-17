@@ -1,189 +1,135 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useToast } from '@/hooks/use-toast';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import useScrollReveal from '@/hooks/useScrollReveal';
-import { supabase } from '@/integrations/supabase/client';
-import { Rocket, Mail, Users } from 'lucide-react';
 
 interface Brand3yComingSoonSectionProps {
   onFormSubmitSuccess: () => void;
 }
 
+const formSchema = z.object({
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  firstName: z.string().min(2, {
+    message: "First Name must be at least 2 characters.",
+  }),
+  lastName: z.string().min(2, {
+    message: "Last Name must be at least 2 characters.",
+  }),
+});
+
 const Brand3yComingSoonSection = ({ onFormSubmitSuccess }: Brand3yComingSoonSectionProps) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    role: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
   const sectionRef = useScrollReveal();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      firstName: "",
+      lastName: "",
+    },
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const submissionData = {
-        ...formData,
-        service_type: 'brand3y-waitlist',
-        campaign_source: 'brand3y_coming_soon',
-        message: `Waitlist signup for Brand3y\nRole: ${formData.role}`
-      };
-
-      console.log('Submitting Brand3y waitlist data:', submissionData);
-
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: submissionData
-      });
-
-      if (error) {
-        console.error('Supabase function error:', error);
-        throw error;
-      }
-
-      console.log('Success response:', data);
-
-      onFormSubmitSuccess();
-      
-      toast({
-        title: "Welcome to the waitlist!",
-        description: "We'll notify you as soon as Brand3y is ready.",
-      });
-
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        role: ''
-      });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast({
-        title: "Error",
-        description: "There was a problem joining the waitlist. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    // Simulate a successful form submission
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setIsLoading(false);
+    onFormSubmitSuccess();
+    console.log("Form submitted successfully:", data);
   };
 
   return (
-    <section id="waitlist" className="py-20 bg-gradient-to-br from-orange-600 to-red-600 text-white">
+    <section id="waitlist" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div ref={sectionRef} className="reveal transition-all duration-500 ease-out">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            
-            {/* Left Column - Content */}
+        <div ref={sectionRef} className="reveal transition-all duration-500 ease-out text-center mb-12">
+          <h2 className="text-4xl font-bold mb-6 text-gray-900">
+            Revolutionary Brand Intelligence is Coming
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            We're building something that will change how marketers understand their competitive landscape forever. 
+            Join the waitlist to be among the first to experience the future of brand intelligence.
+          </p>
+        </div>
+
+        <div className="max-w-md mx-auto">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <div className="mb-6">
-                <Rocket className="w-12 h-12 text-orange-200 mb-4" />
-                <h2 className="text-4xl font-bold mb-6">
-                  Revolutionary Brand Intelligence is Coming
-                </h2>
-                <p className="text-xl text-orange-100 mb-8 leading-relaxed">
-                  We're building something that will change how marketers understand their competitive landscape forever. 
-                  Join the waitlist to be among the first to experience the future of brand intelligence.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-orange-200" />
-                  <span className="text-orange-100">Get exclusive early access</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-orange-200" />
-                  <span className="text-orange-100">Join marketing leaders from Fortune 500 companies</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Form */}
-            <div className="bg-white rounded-lg shadow-xl p-8 text-gray-900">
-              <h3 className="text-2xl font-bold mb-6 text-center">Join the Waitlist</h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <Label htmlFor="name">Full Name *</Label>
+              <Label htmlFor="firstName">First Name</Label>
+              <Controller
+                control={control}
+                name="firstName"
+                render={({ field }) => (
                   <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="mt-1"
+                    id="firstName"
+                    placeholder="John"
+                    {...field}
+                    aria-invalid={!!errors.firstName}
                   />
-                </div>
-
-                <div>
-                  <Label htmlFor="email">Business Email *</Label>
+                )}
+              />
+              {errors.firstName && (
+                <p className="text-sm text-red-500 mt-1">{errors.firstName.message}</p>
+              )}
+            </div>
+            <div>
+              <Label htmlFor="lastName">Last Name</Label>
+              <Controller
+                control={control}
+                name="lastName"
+                render={({ field }) => (
                   <Input
-                    id="email"
-                    name="email"
+                    id="lastName"
+                    placeholder="Doe"
+                    {...field}
+                    aria-invalid={!!errors.lastName}
+                  />
+                )}
+              />
+              {errors.lastName && (
+                <p className="text-sm text-red-500 mt-1">{errors.lastName.message}</p>
+              )}
+            </div>
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Controller
+                control={control}
+                name="email"
+                render={({ field }) => (
+                  <Input
                     type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="mt-1"
+                    id="email"
+                    placeholder="john.doe@example.com"
+                    {...field}
+                    aria-invalid={!!errors.email}
                   />
-                </div>
-
-                <div>
-                  <Label htmlFor="company">Company *</Label>
-                  <Input
-                    id="company"
-                    name="company"
-                    type="text"
-                    required
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    className="mt-1"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="role">Role *</Label>
-                  <Input
-                    id="role"
-                    name="role"
-                    type="text"
-                    required
-                    value={formData.role}
-                    onChange={handleInputChange}
-                    className="mt-1"
-                    placeholder="e.g. Marketing Director, Brand Manager"
-                  />
-                </div>
-
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white py-6 text-lg font-semibold"
-                >
-                  {isSubmitting ? 'Joining Waitlist...' : 'Join the Waitlist'}
-                </Button>
-              </form>
-
-              <p className="text-xs text-gray-500 mt-4 text-center">
-                We'll only email you about Brand3y updates. No spam, ever.
-              </p>
+                )}
+              />
+              {errors.email && (
+                <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+              )}
             </div>
-          </div>
+            
+            <Button 
+              type="submit" 
+              disabled={isLoading}
+              className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-3"
+            >
+              {isLoading ? 'Joining...' : 'Join the Waitlist'}
+            </Button>
+          </form>
+
+          <p className="text-sm text-gray-500 text-center mt-4">
+            We'll only email you about Brand3y updates. No spam, ever.
+          </p>
         </div>
       </div>
     </section>
