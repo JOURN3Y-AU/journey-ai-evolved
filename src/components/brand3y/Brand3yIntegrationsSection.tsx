@@ -23,9 +23,8 @@ const Brand3yIntegrationsSection = () => {
             Connect to Where Your Brand's Data Lives
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Brand3y seamlessly integrates with all major marketing and social media platforms, 
-            giving you a unified view of your brand's performance across every channel where your audience engages.
-          </p>
+            What if you could see everything happening with your brand across every platform—from social media to advertising to customer conversations—in one unified view? We're building that platform. Track your performance, analyze competitor moves, and understand customer sentiment without jumping between a dozen different tools
+             </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-12">
