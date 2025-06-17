@@ -31,12 +31,6 @@ const Brand3yVisionSection = () => {
   return (
     <section className="py-24 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="container mx-auto px-4">
-        <div ref={sectionRef} className="reveal transition-all duration-500 ease-out text-center mb-16">
-          <h2 className="text-4xl font-bold mb-8 text-gray-900">
-            Imagine Being the Marketer Who Always Knows
-          </h2>
-        </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {benefits.map((benefit, index) => (
             <div key={index} className={`reveal reveal-delay-${(index + 1) * 100} transition-all duration-500 ease-out`}>
