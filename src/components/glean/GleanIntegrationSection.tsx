@@ -13,7 +13,7 @@ const GleanIntegrationSection = () => {
     { name: 'ServiceNow', logo: '/logos/servicenow-logo.svg' },
     { name: 'GitLab', logo: '/logos/gitlab.svg' },
     { name: 'Slack', logo: '/logos/slack.svg' },
-    { name: 'Salesforce', logo: '/logos/salesforce%20cloud.svg' },
+    { name: 'Salesforce', logo: '/logos/salesforce-cloud.svg' },
     { name: 'Box', logo: '/logos/box.svg' },
     { name: 'SharePoint', logo: '/logos/sharepoint.svg' },
     { name: 'OneDrive', logo: '/logos/onedrive.svg' },
