@@ -129,7 +129,7 @@ const Brand3yComingSoonSection = ({ onFormSubmitSuccess }: Brand3yComingSoonSect
           </form>
 
           <p className="text-sm text-gray-500 text-center mt-6">
-            We'll only email you about Brand3y updates. No spam, ever.
+            We'll only email you with updates on our Brand product. No spam, ever.
           </p>
         </div>
       </div>
