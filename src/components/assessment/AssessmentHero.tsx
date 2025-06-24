@@ -22,14 +22,14 @@ const AssessmentHero = ({ onStartAssessment }: AssessmentHeroProps) => {
             </div>
 
             <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-8">
-              How{' '}
-              <span className="text-blue-600">AI-Ready</span>{' '}
-              Is Your Business?
+              Find out where{' '}
+              <span className="text-blue-600">AI could help</span>{' '}
+              your business
             </h1>
             
             <p className="text-xl text-gray-700 mb-10 leading-relaxed max-w-3xl mx-auto">
-              Take our 2-minute assessment and discover where your company stands compared to industry leaders. 
-              Get personalized insights on your biggest opportunities for AI-powered growth.
+              Take our 2-minute assessment and discover where your company could put AI to work. 
+              Get personalised insights on your biggest opportunities for AI-powered growth.
             </p>
 
             <div className="bg-white rounded-lg p-8 shadow-lg border border-blue-100 mb-10 max-w-2xl mx-auto">
