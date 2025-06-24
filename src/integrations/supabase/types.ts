@@ -9,6 +9,128 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      assessment_responses: {
+        Row: {
+          ai_assessment_result: string | null
+          ai_generation_status: string | null
+          company_name: string
+          created_at: string
+          email: string
+          email_sent: boolean | null
+          first_name: string
+          id: string
+          last_name: string
+          notification_sent: boolean | null
+          phone_number: string | null
+          q1_business_challenge: string
+          q2_time_waste: string
+          q3_revenue: string
+          q4_timeline: string
+          q5_investment_priority: string
+          q6_leadership_readiness: string
+          session_id: string
+          updated_at: string
+        }
+        Insert: {
+          ai_assessment_result?: string | null
+          ai_generation_status?: string | null
+          company_name: string
+          created_at?: string
+          email: string
+          email_sent?: boolean | null
+          first_name: string
+          id?: string
+          last_name: string
+          notification_sent?: boolean | null
+          phone_number?: string | null
+          q1_business_challenge: string
+          q2_time_waste: string
+          q3_revenue: string
+          q4_timeline: string
+          q5_investment_priority: string
+          q6_leadership_readiness: string
+          session_id: string
+          updated_at?: string
+        }
+        Update: {
+          ai_assessment_result?: string | null
+          ai_generation_status?: string | null
+          company_name?: string
+          created_at?: string
+          email?: string
+          email_sent?: boolean | null
+          first_name?: string
+          id?: string
+          last_name?: string
+          notification_sent?: boolean | null
+          phone_number?: string | null
+          q1_business_challenge?: string
+          q2_time_waste?: string
+          q3_revenue?: string
+          q4_timeline?: string
+          q5_investment_priority?: string
+          q6_leadership_readiness?: string
+          session_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_responses_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assessment_sessions: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          id: string
+          ip_address: unknown | null
+          session_token: string
+          started_at: string
+          updated_at: string
+          user_agent: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          session_token?: string
+          started_at?: string
+          updated_at?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          session_token?: string
+          started_at?: string
+          updated_at?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+        }
+        Relationships: []
+      }
       blog_categories: {
         Row: {
           created_at: string
@@ -202,7 +324,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_campaign_lead_from_assessment: {
+        Args: { assessment_response_id: string }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
