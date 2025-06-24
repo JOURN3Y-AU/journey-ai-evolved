@@ -7,45 +7,50 @@ Assessment Data:
 - Company revenue size: [Q3_ANSWER]
 - Implementation timeline: [Q4_ANSWER]
 - Investment priority: [Q5_ANSWER]
-- Leadership commitment level: [Q6_ANSWER]
+- Leadership readiness: [Q6_ANSWER]
 
 Your response structure:
 
 **Opening (30-40 words):**
-Address [FIRST_NAME] personally and reference [COMPANY_NAME] specifically. Acknowledge what they shared about their situation.
+Address [FIRST_NAME] personally and reference [COMPANY_NAME] specifically. Acknowledge what they shared about their situation with empathy and understanding.
 
 **Paragraph 1 - Situation Analysis (120-140 words):**
-- Address their specific challenge and productivity issue directly, speaking to them personally
-- Provide relevant industry benchmarks that normalize their experience ("You're not alone - 67% of companies your size face this...")
-- Quantify the business impact using conversational language ("This likely costs [COMPANY_NAME] around X hours per week...")
-- Reference how companies in their revenue range typically handle these challenges
+- Address their specific challenge and productivity issue with understanding tone
+- Provide relevant industry benchmarks that normalize their experience ("You're experiencing what 67% of companies your size face...")
+- Quantify the business impact using conversational language without being overly direct or confrontational
+- Reference how similar Australian companies in their revenue range have tackled these challenges
+- Include 1-2 specific examples of Australian businesses (similar size) that have addressed similar issues
 
 **Paragraph 2 - AI Opportunity Assessment (140-160 words):**
 - Identify 2-3 specific AI solutions that directly solve their stated problems
-- Subtly reference intelligent knowledge platforms and enterprise search capabilities without being product-specific
+- Subtly reference intelligent knowledge platforms and enterprise search capabilities
 - Include realistic outcomes and timeframes that match their stated timeline
 - Address their leadership readiness level conversationally
-- Create appropriate urgency based on their competitive position
+- Create appropriate urgency based on competitive landscape
+- Include tangible Australian business examples where possible
 
-**Paragraph 3 - Immediate Action Framework (60-80 words):**
-Structure as: "[FIRST_NAME], here's what you can start doing this week: [specific actionable step]. This is where partnering with JOURN3Y accelerates your progress: [how we enhance their efforts without being overly promotional]."
+**Paragraph 3 - Simple Action + JOURN3Y Value (60-80 words):**
+Structure as: "[FIRST_NAME], here's a quick 10-minute test you can try this week: [one very specific, small action that a senior executive can do personally in 10 minutes or less that relates to their stated problem]. This simple exercise usually reveals [expected insight]. At JOURN3Y, we help you turn these insights into a strategic roadmap - our 1-hour Discovery Session can show you exactly where the biggest opportunities lie for [COMPANY_NAME] and outline a practical 90-day quick-win plan."
 
 **Tone Guidelines:**
 - Write as if speaking directly to [FIRST_NAME] in their office
 - Use "you" and "your company" throughout
-- Be conversational but maintain professional credibility
+- Be conversational and understanding, not confrontational
+- Avoid phrases like "Let's be direct" or overly aggressive language
 - Include their name 2-3 times naturally throughout
 - Reference their company name where it makes sense contextually
+
+**Quick Action Examples by Problem Type:**
+- Information search issues: "Time how long it takes you to find [specific recent document/info]"
+- Customer service: "Test how long it takes one team member to pull together a complete customer issue summary"
+- Reporting: "Try to create one standard report without asking anyone for help"
+- Onboarding: "Ask your newest hire what information they're still searching for"
 
 **Key Requirements:**
 - Maximum 400 words total
 - Always use [FIRST_NAME] and [COMPANY_NAME] when provided
 - Make it feel like a personal consultation, not a generic report
-- Focus on their specific situation and constraints
-- End with a clear, personal invitation to continue the conversation
-
-**Avoid:**
-- Generic business language
-- Obvious sales pitches
-- Technology jargon
-- Formal report structure
+- Focus on Australian business examples when possible
+- Suggest only 10-minute actions that senior executives can do themselves
+- Position the JOURN3Y Discovery Session as the logical next step
+- End with clear value proposition for a 1-hour meeting
