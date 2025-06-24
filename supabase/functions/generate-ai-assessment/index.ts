@@ -1,6 +1,7 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.4'
+import { Resend } from "npm:resend@2.0.0";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -23,7 +24,7 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Check if RESEND_API_KEY is available
+    // Initialize Resend client
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
     console.log('RESEND_API_KEY available:', !!resendApiKey);
     if (resendApiKey) {
@@ -31,6 +32,8 @@ serve(async (req) => {
     } else {
       console.error('RESEND_API_KEY is missing from environment variables');
     }
+
+    const resend = new Resend(resendApiKey);
 
     // Get the prompt template from the public directory
     let promptTemplate = `You are an AI business consultant analyzing a company's readiness for AI transformation. Based on the assessment responses below, provide a personalized, professional analysis that positions the business for AI success.
@@ -167,83 +170,76 @@ Keep the tone professional, insightful, and consultative. Limit response to 250 
       console.log('Campaign lead created successfully:', leadData);
     }
 
-    // Send confirmation emails
+    // Send confirmation emails directly using Resend
     console.log('Starting email sending process...');
     let emailsSentSuccessfully = false;
     
     try {
-      console.log('Invoking send-contact-email function for user...');
-      const { data: userEmailData, error: userEmailError } = await supabase.functions.invoke(
-        'send-contact-email',
-        {
-          body: {
-            to: contactInfo.email,
-            subject: `Your AI Readiness Assessment Results - ${contactInfo.company_name}`,
-            html: `
-              <h2>Thank you for completing the AI Readiness Assessment!</h2>
-              <p>Hi ${contactInfo.first_name},</p>
-              <p>Your personalized AI readiness assessment has been completed. Here are your results:</p>
-              <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                ${aiAssessment.replace(/\n/g, '<br>')}
-              </div>
-              <p>Ready to take the next step? Book a complimentary strategy call with our AI transformation experts:</p>
-              <p><a href="https://calendly.com/journ3y" style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px;">Book Strategy Call</a></p>
-              <p>Best regards,<br>The JOURN3Y Team</p>
-            `
-          }
-        }
-      );
+      // Send email to user
+      console.log('Sending email to user...');
+      const userEmailResponse = await resend.emails.send({
+        from: "JOURN3Y <hello@journ3y.com.au>",
+        to: contactInfo.email,
+        subject: `Your AI Readiness Assessment Results - ${contactInfo.company_name}`,
+        html: `
+          <h2>Thank you for completing the AI Readiness Assessment!</h2>
+          <p>Hi ${contactInfo.first_name},</p>
+          <p>Your personalized AI readiness assessment has been completed. Here are your results:</p>
+          <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            ${aiAssessment.replace(/\n/g, '<br>')}
+          </div>
+          <p>Ready to take the next step? Book a complimentary strategy call with our AI transformation experts:</p>
+          <p><a href="https://calendly.com/journ3y" style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px;">Book Strategy Call</a></p>
+          <p>Best regards,<br>The JOURN3Y Team</p>
+        `
+      });
 
-      console.log('User email function response:', { data: userEmailData, error: userEmailError });
+      console.log('User email response:', userEmailResponse);
 
-      if (!userEmailError) {
+      if (!userEmailResponse.error) {
         console.log('User email sent successfully');
       } else {
-        console.error('User email failed:', userEmailError);
+        console.error('User email failed:', userEmailResponse.error);
       }
 
       // Send admin notification
-      console.log('Invoking send-contact-email function for admin...');
-      const { data: adminEmailData, error: adminEmailError } = await supabase.functions.invoke(
-        'send-contact-email',
-        {
-          body: {
-            to: 'hello@journ3y.com.au',
-            subject: `New AI Assessment Completed - ${contactInfo.company_name}`,
-            html: `
-              <h2>New AI Assessment Completed</h2>
-              <p><strong>Contact:</strong> ${contactInfo.first_name} ${contactInfo.last_name}</p>
-              <p><strong>Company:</strong> ${contactInfo.company_name}</p>
-              <p><strong>Email:</strong> ${contactInfo.email}</p>
-              <p><strong>Phone:</strong> ${contactInfo.phone_number || 'Not provided'}</p>
-              <h3>Assessment Responses:</h3>
-              <ul>
-                <li><strong>Business Challenge:</strong> ${answers.q1_business_challenge}</li>
-                <li><strong>Time Waste:</strong> ${answers.q2_time_waste}</li>
-                <li><strong>Revenue:</strong> ${answers.q3_revenue}</li>
-                <li><strong>Timeline:</strong> ${answers.q4_timeline}</li>
-                <li><strong>Investment Priority:</strong> ${answers.q5_investment_priority}</li>
-                <li><strong>Leadership Readiness:</strong> ${answers.q6_leadership_readiness}</li>
-              </ul>
-              <h3>Generated Assessment:</h3>
-              <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px;">
-                ${aiAssessment.replace(/\n/g, '<br>')}
-              </div>
-            `
-          }
-        }
-      );
+      console.log('Sending admin notification email...');
+      const adminEmailResponse = await resend.emails.send({
+        from: "JOURN3Y <hello@journ3y.com.au>",
+        to: 'hello@journ3y.com.au',
+        subject: `New AI Assessment Completed - ${contactInfo.company_name}`,
+        html: `
+          <h2>New AI Assessment Completed</h2>
+          <p><strong>Contact:</strong> ${contactInfo.first_name} ${contactInfo.last_name}</p>
+          <p><strong>Company:</strong> ${contactInfo.company_name}</p>
+          <p><strong>Email:</strong> ${contactInfo.email}</p>
+          <p><strong>Phone:</strong> ${contactInfo.phone_number || 'Not provided'}</p>
+          <h3>Assessment Responses:</h3>
+          <ul>
+            <li><strong>Business Challenge:</strong> ${answers.q1_business_challenge}</li>
+            <li><strong>Time Waste:</strong> ${answers.q2_time_waste}</li>
+            <li><strong>Revenue:</strong> ${answers.q3_revenue}</li>
+            <li><strong>Timeline:</strong> ${answers.q4_timeline}</li>
+            <li><strong>Investment Priority:</strong> ${answers.q5_investment_priority}</li>
+            <li><strong>Leadership Readiness:</strong> ${answers.q6_leadership_readiness}</li>
+          </ul>
+          <h3>Generated Assessment:</h3>
+          <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px;">
+            ${aiAssessment.replace(/\n/g, '<br>')}
+          </div>
+        `
+      });
 
-      console.log('Admin email function response:', { data: adminEmailData, error: adminEmailError });
+      console.log('Admin email response:', adminEmailResponse);
 
-      if (!adminEmailError) {
+      if (!adminEmailResponse.error) {
         console.log('Admin email sent successfully');
       } else {
-        console.error('Admin email failed:', adminEmailError);
+        console.error('Admin email failed:', adminEmailResponse.error);
       }
 
       // Check if at least one email was sent successfully
-      emailsSentSuccessfully = !userEmailError || !adminEmailError;
+      emailsSentSuccessfully = !userEmailResponse.error || !adminEmailResponse.error;
 
     } catch (emailError) {
       console.error('Error in email sending process:', emailError);
