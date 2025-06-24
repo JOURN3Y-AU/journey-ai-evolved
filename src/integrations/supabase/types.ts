@@ -13,6 +13,8 @@ export type Database = {
         Row: {
           ai_assessment_result: string | null
           ai_generation_status: string | null
+          ai_prompt_used: string | null
+          ai_raw_response: string | null
           company_name: string
           created_at: string
           email: string
@@ -34,6 +36,8 @@ export type Database = {
         Insert: {
           ai_assessment_result?: string | null
           ai_generation_status?: string | null
+          ai_prompt_used?: string | null
+          ai_raw_response?: string | null
           company_name: string
           created_at?: string
           email: string
@@ -55,6 +59,8 @@ export type Database = {
         Update: {
           ai_assessment_result?: string | null
           ai_generation_status?: string | null
+          ai_prompt_used?: string | null
+          ai_raw_response?: string | null
           company_name?: string
           created_at?: string
           email?: string
