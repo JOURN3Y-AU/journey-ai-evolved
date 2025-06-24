@@ -10,6 +10,7 @@ import Blueprint from '@/pages/products/Blueprint';
 import Glean from '@/pages/products/Glean';
 import Brand3y from '@/pages/products/Brand3y';
 import Services from '@/pages/products/Services';
+import AIAssessment from '@/pages/products/AIAssessment';
 import Blog from '@/pages/Blog';
 import Resources from '@/pages/Resources';
 import Contact from '@/pages/Contact';
