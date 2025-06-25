@@ -86,6 +86,27 @@ const LongAssessmentForm = ({ onComplete }: LongAssessmentFormProps) => {
 
   const CurrentSectionComponent = sections[currentSection].component;
 
+  const getSectionProps = () => {
+    const baseProps = {
+      answers,
+      onComplete: handleSectionComplete,
+    };
+
+    // Add specific props based on section
+    switch (currentSection) {
+      case 0: // Role Selection - only needs answers
+        return { answers, onComplete: handleSectionComplete };
+      case 1: // Organization - needs contactInfo
+        return { ...baseProps, contactInfo };
+      case 5: // Role-Specific - needs selectedRole
+        return { ...baseProps, selectedRole: answers.selected_role };
+      case 6: // Contact - needs contactInfo
+        return { contactInfo, onComplete: handleSectionComplete };
+      default:
+        return baseProps;
+    }
+  };
+
   return (
     <section className="pt-32 pb-20 bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen">
       <div className="container mx-auto px-4">
@@ -111,12 +132,7 @@ const LongAssessmentForm = ({ onComplete }: LongAssessmentFormProps) => {
 
           {/* Main Form Card */}
           <Card className="p-8 shadow-lg">
-            <CurrentSectionComponent
-              answers={answers}
-              contactInfo={contactInfo}
-              onComplete={handleSectionComplete}
-              selectedRole={answers.selected_role}
-            />
+            <CurrentSectionComponent {...getSectionProps()} />
             
             {/* Navigation */}
             <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-200">
