@@ -58,8 +58,8 @@ Email: ${contactInfo.email}
 Phone: ${contactInfo.phone_number || 'Not provided'}
 
 I'm interested in discussing how AI can help my business based on the assessment results I just received.`,
-          subject: 'Strategy Call Request - AI Assessment Completion',
-          to_email: 'info@journ3y.com.au'
+          service: 'general',
+          campaign_source: 'ai-assessment'
         }
       });
 
