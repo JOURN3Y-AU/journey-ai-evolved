@@ -33,7 +33,7 @@ const LongAssessmentForm = ({ onComplete }: LongAssessmentFormProps) => {
   ];
 
   const totalSections = sections.length;
-  const progressPercentage = ((currentSection + 1) / totalSsections) * 100;
+  const progressPercentage = ((currentSection + 1) / totalSections) * 100;
 
   const handleSectionComplete = (sectionAnswers: any) => {
     if (currentSection === totalSections - 1) {
