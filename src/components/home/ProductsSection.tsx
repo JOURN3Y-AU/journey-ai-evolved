@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { FileText, Search, Users } from 'lucide-react';
+import { FileText, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import useScrollReveal from '@/hooks/useScrollReveal';
@@ -63,7 +63,7 @@ const ProductsSection = () => {
           <ProductCard 
             title="Glean"
             description="AI-powered work platform that connects all your company's knowledge"
-            icon={<Search className="w-20 h-20 text-white" strokeWidth={1.5} />}
+            icon={<img src="/Glean-logo.png" alt="Glean Logo" className="w-20 h-20 object-contain" />}
             gradient="bg-gradient-to-br from-journey-blue/90 to-journey-dark-blue/90"
             link="/products/glean"
             buttonColor="journey-blue"
