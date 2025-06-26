@@ -5,6 +5,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import AnnouncementOverlay from '@/components/AnnouncementOverlay';
 import { useAnnouncement } from '@/hooks/useAnnouncement';
+import useScrollToTop from '@/hooks/useScrollToTop';
 import Index from '@/pages/Index';
 import Blueprint from '@/pages/products/Blueprint';
 import Glean from '@/pages/products/Glean';
@@ -23,13 +24,16 @@ import Team from '@/pages/Team';
 import LinkedInCampaign from '@/pages/LinkedInCampaign';
 import LinkedInGlean from '@/pages/LinkedInGlean';
 
-function App() {
+function AppContent() {
   const { showAnnouncement, dismissAnnouncement, loading } = useAnnouncement();
+  
+  // Apply scroll to top on all route changes
+  useScrollToTop();
 
   console.log('App component - announcement state:', { showAnnouncement, loading });
 
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/" element={<><Navbar /><Index /><Footer /></>} />
         <Route path="/products/blueprint" element={<><Navbar /><Blueprint /><Footer /></>} />
@@ -59,6 +63,14 @@ function App() {
       )}
       
       <Toaster />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }
