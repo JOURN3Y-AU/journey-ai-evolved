@@ -577,7 +577,16 @@ const AssessmentResultsV2 = ({
               <div className="prose max-w-none">
                 {writtenAssessment.split('\n').map((paragraph, index) => (
                   <p key={index} className="mb-4 text-gray-700 leading-relaxed">
-                    {paragraph}
+                    {paragraph.split(/(\*\*.*?\*\*)/).map((part, partIndex) => {
+                      if (part.startsWith('**') && part.endsWith('**')) {
+                        return (
+                          <strong key={partIndex} className="font-bold text-gray-900">
+                            {part.slice(2, -2)}
+                          </strong>
+                        );
+                      }
+                      return part;
+                    })}
                   </p>
                 ))}
               </div>
