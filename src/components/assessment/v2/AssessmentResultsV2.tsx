@@ -5,6 +5,8 @@ import { DashboardDataV2, ContactInfoV2, AssessmentDataV2 } from '@/types/assess
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 interface AssessmentResultsV2Props {
   dashboardData: DashboardDataV2 | null;
@@ -76,46 +78,249 @@ const AssessmentResultsV2 = ({
     return 'bg-red-100';
   };
 
-  const handleDownloadReport = () => {
+  const handleDownloadReport = async () => {
     if (!dashboardData || !writtenAssessment || !contactInfo) return;
     
-    // Create downloadable content
-    const reportContent = `
-AI READINESS ASSESSMENT REPORT
-${contactInfo.first_name} ${contactInfo.last_name}
-Generated: ${new Date().toLocaleDateString()}
+    try {
+      toast({
+        title: "Generating PDF Report",
+        description: "Creating your personalized AI readiness report...",
+        variant: "default",
+      });
 
-OVERALL SCORE: ${dashboardData.overall_score}/100
-READINESS LEVEL: ${dashboardData.readiness_level}
+      // Create a new PDF document
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const margin = 20;
+      const contentWidth = pageWidth - (margin * 2);
+      let yPosition = margin;
 
-DIMENSION SCORES:
-${Object.entries(dashboardData.dimension_scores).map(([key, dimension]) => 
-  `${key.replace(/_/g, ' ').toUpperCase()}: ${dimension.score}/100`
-).join('\n')}
+      // Set up fonts and colors
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(20);
+      pdf.setTextColor(37, 99, 235); // Blue color
+      
+      // Title
+      pdf.text('AI READINESS ASSESSMENT REPORT', margin, yPosition);
+      yPosition += 15;
+      
+      // Contact info and date
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(12);
+      pdf.setTextColor(0, 0, 0);
+      pdf.text(`${contactInfo.first_name} ${contactInfo.last_name}`, margin, yPosition);
+      yPosition += 6;
+      pdf.text(`Generated: ${new Date().toLocaleDateString()}`, margin, yPosition);
+      yPosition += 6;
+      pdf.text(`Company: ${assessmentData?.company_name || 'N/A'}`, margin, yPosition);
+      yPosition += 15;
 
-KEY STRENGTHS:
-${dashboardData.key_strengths.map(strength => `• ${strength}`).join('\n')}
+      // Overall Score Section
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(16);
+      pdf.setTextColor(37, 99, 235);
+      pdf.text('OVERALL AI READINESS SCORE', margin, yPosition);
+      yPosition += 10;
+      
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(24);
+      if (dashboardData.overall_score >= 80) {
+        pdf.setTextColor(34, 197, 94); // Green
+      } else if (dashboardData.overall_score >= 60) {
+        pdf.setTextColor(234, 179, 8); // Yellow
+      } else {
+        pdf.setTextColor(239, 68, 68); // Red
+      }
+      pdf.text(`${dashboardData.overall_score}/100`, margin, yPosition);
+      
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(14);
+      pdf.setTextColor(0, 0, 0);
+      pdf.text(`Readiness Level: ${dashboardData.readiness_level}`, margin + 50, yPosition);
+      yPosition += 20;
 
-PRIORITY OPPORTUNITIES:
-${dashboardData.priority_opportunities.map(opportunity => `• ${opportunity}`).join('\n')}
+      // Capture the radar chart
+      const chartElement = document.querySelector('.recharts-wrapper');
+      if (chartElement) {
+        try {
+          const canvas = await html2canvas(chartElement as HTMLElement, {
+            backgroundColor: '#ffffff',
+            scale: 2,
+            width: 400,
+            height: 300
+          });
+          
+          const chartImgData = canvas.toDataURL('image/png');
+          const chartWidth = 80;
+          const chartHeight = 60;
+          
+          // Add chart title
+          pdf.setFont('helvetica', 'bold');
+          pdf.setFontSize(14);
+          pdf.setTextColor(37, 99, 235);
+          pdf.text('AI READINESS DIMENSIONS', margin, yPosition);
+          yPosition += 10;
+          
+          // Add the chart image
+          pdf.addImage(chartImgData, 'PNG', margin, yPosition, chartWidth, chartHeight);
+          yPosition += chartHeight + 15;
+        } catch (error) {
+          console.warn('Could not capture chart:', error);
+          yPosition += 10;
+        }
+      }
 
-RECOMMENDED NEXT STEPS:
-${dashboardData.recommended_next_steps.map((step, index) => `${index + 1}. ${step}`).join('\n')}
+      // Check if we need a new page
+      if (yPosition > pageHeight - 60) {
+        pdf.addPage();
+        yPosition = margin;
+      }
 
-PERSONALIZED ASSESSMENT:
-${writtenAssessment}
-    `.trim();
+      // Dimension Scores
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(14);
+      pdf.setTextColor(37, 99, 235);
+      pdf.text('DIMENSION SCORES', margin, yPosition);
+      yPosition += 10;
+      
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      pdf.setTextColor(0, 0, 0);
+      
+      Object.entries(dashboardData.dimension_scores).forEach(([key, dimension]) => {
+        const dimensionName = key.replace(/_/g, ' ').toUpperCase();
+        pdf.text(`${dimensionName}: ${dimension.score}/100 (Industry Avg: ${dimension.industry_average})`, margin, yPosition);
+        yPosition += 5;
+      });
+      yPosition += 10;
 
-    // Create and download file
-    const blob = new Blob([reportContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `AI-Readiness-Report-${contactInfo.first_name}-${contactInfo.last_name}.txt`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+      // Key Strengths
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(14);
+      pdf.setTextColor(34, 197, 94); // Green
+      pdf.text('KEY STRENGTHS', margin, yPosition);
+      yPosition += 8;
+      
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      pdf.setTextColor(0, 0, 0);
+      
+      dashboardData.key_strengths.forEach((strength) => {
+        const lines = pdf.splitTextToSize(`• ${strength}`, contentWidth);
+        pdf.text(lines, margin, yPosition);
+        yPosition += lines.length * 5;
+      });
+      yPosition += 10;
+
+      // Priority Opportunities
+      if (yPosition > pageHeight - 40) {
+        pdf.addPage();
+        yPosition = margin;
+      }
+      
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(14);
+      pdf.setTextColor(37, 99, 235); // Blue
+      pdf.text('PRIORITY OPPORTUNITIES', margin, yPosition);
+      yPosition += 8;
+      
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      pdf.setTextColor(0, 0, 0);
+      
+      dashboardData.priority_opportunities.forEach((opportunity) => {
+        const lines = pdf.splitTextToSize(`• ${opportunity}`, contentWidth);
+        pdf.text(lines, margin, yPosition);
+        yPosition += lines.length * 5;
+      });
+      yPosition += 10;
+
+      // Recommended Next Steps
+      if (yPosition > pageHeight - 40) {
+        pdf.addPage();
+        yPosition = margin;
+      }
+      
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(14);
+      pdf.setTextColor(37, 99, 235);
+      pdf.text('RECOMMENDED NEXT STEPS', margin, yPosition);
+      yPosition += 8;
+      
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      pdf.setTextColor(0, 0, 0);
+      
+      dashboardData.recommended_next_steps.forEach((step, index) => {
+        const lines = pdf.splitTextToSize(`${index + 1}. ${step}`, contentWidth);
+        pdf.text(lines, margin, yPosition);
+        yPosition += lines.length * 5 + 2;
+      });
+      yPosition += 10;
+
+      // Personalized Assessment
+      if (yPosition > pageHeight - 40) {
+        pdf.addPage();
+        yPosition = margin;
+      }
+      
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(14);
+      pdf.setTextColor(37, 99, 235);
+      pdf.text('PERSONALIZED ASSESSMENT', margin, yPosition);
+      yPosition += 10;
+      
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      pdf.setTextColor(0, 0, 0);
+      
+      // Split the written assessment into paragraphs and handle page breaks
+      const paragraphs = writtenAssessment.split('\n').filter(p => p.trim());
+      
+      paragraphs.forEach((paragraph) => {
+        if (paragraph.trim()) {
+          const lines = pdf.splitTextToSize(paragraph.trim(), contentWidth);
+          
+          // Check if we need a new page
+          if (yPosition + (lines.length * 5) > pageHeight - margin) {
+            pdf.addPage();
+            yPosition = margin;
+          }
+          
+          pdf.text(lines, margin, yPosition);
+          yPosition += (lines.length * 5) + 5;
+        }
+      });
+
+      // Add footer with company info
+      const totalPages = pdf.internal.pages.length - 1;
+      for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFont('helvetica', 'italic');
+        pdf.setFontSize(8);
+        pdf.setTextColor(128, 128, 128);
+        pdf.text('Generated by JOURN3Y AI Readiness Assessment', margin, pageHeight - 10);
+        pdf.text(`Page ${i} of ${totalPages}`, pageWidth - margin - 20, pageHeight - 10);
+      }
+
+      // Save the PDF
+      pdf.save(`AI-Readiness-Report-${contactInfo.first_name}-${contactInfo.last_name}.pdf`);
+      
+      toast({
+        title: "PDF Generated Successfully",
+        description: "Your AI readiness report has been downloaded.",
+        variant: "default",
+      });
+      
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      toast({
+        title: "Error Generating PDF",
+        description: "Failed to create PDF. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleScheduleSession = async () => {
