@@ -165,7 +165,7 @@ const AssessmentResultsV2 = ({
           const aspectRatio = originalWidth / originalHeight;
           
           // Set target width and calculate height to maintain aspect ratio
-          const targetWidth = 120;
+          const targetWidth = 160;
           const targetHeight = targetWidth / aspectRatio;
           
           // Add chart title
