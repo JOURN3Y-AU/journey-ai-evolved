@@ -160,8 +160,8 @@ const AssessmentResultsV2 = ({
           });
           
           const chartImgData = canvas.toDataURL('image/png', 1.0);
-          const chartWidth = 120;
-          const chartHeight = 90;
+          const chartWidth = 140;
+          const chartHeight = 140; // Make it square to maintain aspect ratio
           
           // Add chart title
           pdf.setFont('helvetica', 'bold');
@@ -170,8 +170,9 @@ const AssessmentResultsV2 = ({
           pdf.text('AI READINESS DIMENSIONS', margin, yPosition);
           yPosition += 15;
           
-          // Add the chart image
-          pdf.addImage(chartImgData, 'PNG', margin, yPosition, chartWidth, chartHeight);
+          // Add the chart image - centered
+          const chartX = (pageWidth - chartWidth) / 2;
+          pdf.addImage(chartImgData, 'PNG', chartX, yPosition, chartWidth, chartHeight);
           yPosition += chartHeight + 20;
         } catch (error) {
           console.warn('Could not capture chart, adding dimension scores instead:', error);
