@@ -235,11 +235,12 @@ const AIAssessmentLongV2 = () => {
     result = result.replace(/\[COMPANY_SIZE\]/g, answers.company_size);
     result = result.replace(/\[INDUSTRY\]/g, answers.industry);
     
-    // Replace all assessment answers
+    // Replace all assessment answers - FIX: Escape the question key to prevent partial matches
     Object.entries(answers.responses).forEach(([key, value]) => {
       const placeholder = `[${key.toUpperCase()}]`;
-      const valueStr = Array.isArray(value) ? value.join(', ') : value;
-      result = result.replace(new RegExp(placeholder, 'g'), valueStr);
+      const valueStr = Array.isArray(value) ? value.join(', ') : String(value);
+      // Use a more specific replacement to avoid circular replacements
+      result = result.split(placeholder).join(valueStr);
     });
     
     return result;
