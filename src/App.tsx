@@ -42,7 +42,7 @@ function AppContent() {
         <Route path="/products/brand3y" element={<><Navbar /><Brand3y /><Footer /></>} />
         <Route path="/products/services" element={<><Navbar /><Services /><Footer /></>} />
         <Route path="/products/ai-assessment" element={<><Navbar /><AIAssessment /><Footer /></>} />
-        <Route path="/products/ai-assessment-long" element={<><Navbar /><AIAssessmentLongV2 /><Footer /></>} />
+        <Route path="/products/ai-assessment-full" element={<><Navbar /><AIAssessmentLongV2 /><Footer /></>} />
         <Route path="/blog" element={<><Navbar /><Blog /><Footer /></>} />
         <Route path="/blog/:slug" element={<><Navbar /><BlogPost /><Footer /></>} />
         <Route path="/resources" element={<><Navbar /><Resources /><Footer /></>} />
