@@ -11,6 +11,19 @@ interface ContactSectionV2Props {
   onComplete: (data: any) => void;
 }
 
+const getRoleDisplayName = (roleCode: string) => {
+  const roleMap: { [key: string]: string } = {
+    'CEO': 'Executive Leadership',
+    'CFO': 'Finance',
+    'CMO': 'Marketing',
+    'CHRO': 'Human Resources',
+    'CPO': 'Product',
+    'CTO': 'Technology',
+    'Other': 'Other Executive/Leadership Role'
+  };
+  return roleMap[roleCode] || roleCode;
+};
+
 const ContactSectionV2 = ({ data, assessmentData, onComplete }: ContactSectionV2Props) => {
   const [formData, setFormData] = useState({
     first_name: data.first_name || '',
@@ -51,7 +64,7 @@ const ContactSectionV2 = ({ data, assessmentData, onComplete }: ContactSectionV2
             <span className="font-medium text-gray-700">Company:</span> {assessmentData.company_name}
           </div>
           <div>
-            <span className="font-medium text-gray-700">Role:</span> {assessmentData.selected_role}
+            <span className="font-medium text-gray-700">Role:</span> {getRoleDisplayName(assessmentData.selected_role)}
           </div>
           <div>
             <span className="font-medium text-gray-700">Industry:</span> {assessmentData.industry}

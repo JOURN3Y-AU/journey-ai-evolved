@@ -10,6 +10,19 @@ interface RoleSpecificSectionV2Props {
   onComplete: (data: any) => void;
 }
 
+const getRoleDisplayName = (roleCode: string) => {
+  const roleMap: { [key: string]: string } = {
+    'CEO': 'Executive Leadership',
+    'CFO': 'Finance',
+    'CMO': 'Marketing',
+    'CHRO': 'Human Resources',
+    'CPO': 'Product',
+    'CTO': 'Technology',
+    'Other': 'Other Executive/Leadership Role'
+  };
+  return roleMap[roleCode] || roleCode;
+};
+
 const RoleSpecificSectionV2 = ({ data, selectedRole, onComplete }: RoleSpecificSectionV2Props) => {
   const [formData, setFormData] = useState({
     q14_role_specific_1: data.q14_role_specific_1 || '',
@@ -210,7 +223,7 @@ const RoleSpecificSectionV2 = ({ data, selectedRole, onComplete }: RoleSpecificS
           Role-Specific Deep Dive
         </h2>
         <p className="text-gray-600">
-          These final questions are tailored specifically to your role as a {selectedRole} to provide the most relevant insights.
+          These final questions are tailored specifically to your role in {getRoleDisplayName(selectedRole || 'CEO')} to provide the most relevant insights.
         </p>
       </div>
 
