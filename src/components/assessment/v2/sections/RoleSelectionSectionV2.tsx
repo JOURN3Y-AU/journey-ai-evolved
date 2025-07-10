@@ -20,12 +20,12 @@ const RoleSelectionSectionV2 = ({ data, onComplete }: RoleSelectionSectionV2Prop
   });
 
   const roles = [
-    { value: 'CEO', label: 'Chief Executive Officer', description: 'Strategic leadership and transformation' },
-    { value: 'CFO', label: 'Chief Financial Officer', description: 'Financial planning and ROI optimization' },
-    { value: 'CMO', label: 'Chief Marketing Officer', description: 'Customer experience and growth' },
-    { value: 'CHRO', label: 'Chief Human Resources Officer', description: 'People and organizational change' },
-    { value: 'CPO', label: 'Chief Product Officer', description: 'Product innovation and development' },
-    { value: 'CTO', label: 'Chief Technology Officer', description: 'Technical infrastructure and implementation' },
+    { value: 'CEO', label: 'Executive Leadership', description: 'Strategic leadership and transformation' },
+    { value: 'CFO', label: 'Finance', description: 'Financial planning and ROI optimization' },
+    { value: 'CMO', label: 'Marketing', description: 'Customer experience and growth' },
+    { value: 'CHRO', label: 'Human Resources', description: 'People and organizational change' },
+    { value: 'CPO', label: 'Product', description: 'Product innovation and development' },
+    { value: 'CTO', label: 'Technology', description: 'Technical infrastructure and implementation' },
     { value: 'Other', label: 'Other Executive/Leadership Role', description: 'Senior leadership or specialized role' },
   ];
 
