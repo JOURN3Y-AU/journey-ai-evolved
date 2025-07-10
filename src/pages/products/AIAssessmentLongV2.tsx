@@ -225,13 +225,26 @@ const AIAssessmentLongV2 = () => {
     }
   };
 
+  const getRoleDisplayName = (roleCode: string) => {
+    const roleMap: { [key: string]: string } = {
+      'CEO': 'Executive Leadership',
+      'CFO': 'Finance',
+      'CMO': 'Marketing',
+      'CHRO': 'Human Resources',
+      'CPO': 'Product',
+      'CTO': 'Technology',
+      'Other': 'Other Executive/Leadership Role'
+    };
+    return roleMap[roleCode] || roleCode;
+  };
+
   const replacePlaceholders = (template: string, answers: AssessmentDataV2, contact: ContactInfoV2): string => {
     let result = template;
     
     // Replace contact info
     result = result.replace(/\[FIRST_NAME\]/g, contact.first_name);
     result = result.replace(/\[COMPANY_NAME\]/g, answers.company_name);
-    result = result.replace(/\[SELECTED_ROLE\]/g, answers.selected_role);
+    result = result.replace(/\[SELECTED_ROLE\]/g, getRoleDisplayName(answers.selected_role));
     result = result.replace(/\[COMPANY_SIZE\]/g, answers.company_size);
     result = result.replace(/\[INDUSTRY\]/g, answers.industry);
     
