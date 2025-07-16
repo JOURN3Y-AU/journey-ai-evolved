@@ -4,6 +4,7 @@ export interface MetaTagsConfig {
   title?: string;
   description?: string;
   keywords?: string;
+  canonical?: string;
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
@@ -59,6 +60,19 @@ export const useMetaTags = (config: MetaTagsConfig = {}) => {
     updateMetaTag('meta[name="description"]', metaConfig.description);
     updateMetaTag('meta[name="keywords"]', metaConfig.keywords);
     
+    // Update canonical link
+    if (metaConfig.canonical) {
+      let canonicalTag = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      if (canonicalTag) {
+        canonicalTag.href = metaConfig.canonical;
+      } else {
+        canonicalTag = document.createElement('link');
+        canonicalTag.rel = 'canonical';
+        canonicalTag.href = metaConfig.canonical;
+        document.head.appendChild(canonicalTag);
+      }
+    }
+    
     // Open Graph tags
     updateMetaTag('meta[property="og:title"]', metaConfig.ogTitle);
     updateMetaTag('meta[property="og:description"]', metaConfig.ogDescription);
@@ -80,6 +94,7 @@ export const META_CONFIGS = {
     title: "JOURN3Y - AI Consulting & Glean Implementation Experts",
     description: "Leading AI consulting firm specializing in Glean enterprise search implementation, AI strategy development, and business transformation. Expert Glean consultants delivering AI readiness assessments and strategic AI solutions.",
     keywords: "AI consulting, Glean implementation, Glean consultant, enterprise search, AI strategy, business transformation, AI readiness assessment, Glean experts, AI transformation services",
+    canonical: "https://journ3y.com.au/",
     ogTitle: "JOURN3Y - AI Consulting & Glean Implementation Experts",
     ogDescription: "Leading AI consulting firm specializing in Glean enterprise search implementation, AI strategy development, and business transformation.",
     ogUrl: "https://journ3y.com.au"
@@ -89,6 +104,7 @@ export const META_CONFIGS = {
     title: "AI & Glean Insights Blog | JOURN3Y AI Consulting",
     description: "Expert insights on AI consulting, Glean implementation best practices, enterprise search optimization, and AI transformation strategies from leading AI consultants and Glean specialists.",
     keywords: "AI blog, Glean insights, AI consulting tips, enterprise search best practices, Glean implementation guide, AI transformation insights, Glean consultant advice",
+    canonical: "https://journ3y.com.au/blog",
     ogTitle: "AI & Glean Insights Blog | JOURN3Y AI Consulting",
     ogDescription: "Expert insights on AI consulting, Glean implementation, and enterprise search optimization from leading AI consultants.",
     ogUrl: "https://journ3y.com.au/blog"
@@ -98,6 +114,7 @@ export const META_CONFIGS = {
     title: "Contact JOURN3Y - AI Consulting & Glean Implementation Services",
     description: "Get in touch with JOURN3Y's expert AI consultants and Glean implementation specialists. Schedule a consultation for AI strategy, Glean deployment, or enterprise search optimization.",
     keywords: "contact AI consultant, Glean implementation consultation, AI strategy consultation, enterprise search consultant, Glean expert contact, AI transformation consultation",
+    canonical: "https://journ3y.com.au/contact",
     ogTitle: "Contact JOURN3Y - AI Consulting & Glean Implementation Services",
     ogDescription: "Get in touch with expert AI consultants and Glean implementation specialists for your enterprise AI transformation.",
     ogUrl: "https://journ3y.com.au/contact"
@@ -107,6 +124,7 @@ export const META_CONFIGS = {
     title: "Meet Our AI & Glean Experts | JOURN3Y Consulting Team",
     description: "Meet JOURN3Y's team of expert AI consultants and certified Glean implementation specialists. Our experienced team delivers world-class AI strategy and Glean enterprise search solutions.",
     keywords: "AI consulting team, Glean experts, AI consultants, Glean implementation specialists, AI strategy experts, enterprise search consultants, Glean certified consultants",
+    canonical: "https://journ3y.com.au/team",
     ogTitle: "Meet Our AI & Glean Experts | JOURN3Y Consulting Team",
     ogDescription: "Meet our team of expert AI consultants and certified Glean implementation specialists delivering world-class AI solutions.",
     ogUrl: "https://journ3y.com.au/team"
@@ -116,6 +134,7 @@ export const META_CONFIGS = {
     title: "Glean Implementation Services | Expert Glean Consultants | JOURN3Y",
     description: "Professional Glean implementation and optimization services from certified Glean consultants. Transform your enterprise search with expert Glean deployment, configuration, and ongoing support.",
     keywords: "Glean implementation, Glean consultant, Glean services, enterprise search, Glean deployment, Glean optimization, Glean configuration, Glean support, Glean experts",
+    canonical: "https://journ3y.com.au/products/glean",
     ogTitle: "Glean Implementation Services | Expert Glean Consultants | JOURN3Y",
     ogDescription: "Professional Glean implementation and optimization services from certified Glean consultants. Transform your enterprise search capabilities.",
     ogUrl: "https://journ3y.com.au/products/glean"
@@ -125,6 +144,7 @@ export const META_CONFIGS = {
     title: "AI Readiness Assessment | Free AI Strategy Evaluation | JOURN3Y",
     description: "Take our comprehensive AI readiness assessment to evaluate your organization's AI maturity. Get expert insights from AI consultants and personalized recommendations for AI transformation including Glean implementation.",
     keywords: "AI readiness assessment, AI maturity assessment, AI strategy evaluation, AI consulting assessment, free AI assessment, AI transformation readiness, Glean readiness assessment",
+    canonical: "https://journ3y.com.au/products/ai-assessment",
     ogTitle: "AI Readiness Assessment | Free AI Strategy Evaluation | JOURN3Y",
     ogDescription: "Comprehensive AI readiness assessment with expert insights and personalized recommendations for AI transformation.",
     ogUrl: "https://journ3y.com.au/products/ai-assessment"
@@ -134,6 +154,7 @@ export const META_CONFIGS = {
     title: "AI Consulting Services | Glean Implementation | JOURN3Y",
     description: "Comprehensive AI consulting services including Glean implementation, AI strategy development, enterprise search optimization, and AI transformation consulting from certified experts.",
     keywords: "AI consulting services, Glean implementation services, AI strategy consulting, enterprise search consulting, AI transformation services, Glean consultant services",
+    canonical: "https://journ3y.com.au/products/services",
     ogTitle: "AI Consulting Services | Glean Implementation | JOURN3Y",
     ogDescription: "Comprehensive AI consulting services including Glean implementation, AI strategy development, and enterprise search optimization.",
     ogUrl: "https://journ3y.com.au/products/services"
@@ -143,6 +164,7 @@ export const META_CONFIGS = {
     title: "AI Strategy Blueprint | Enterprise AI Consulting | JOURN3Y",
     description: "Comprehensive AI strategy development and roadmap creation from expert AI consultants. Get a personalized AI transformation blueprint including Glean implementation planning.",
     keywords: "AI strategy, AI blueprint, AI transformation roadmap, AI consulting, strategic AI planning, enterprise AI strategy, AI implementation planning, Glean strategy",
+    canonical: "https://journ3y.com.au/products/blueprint",
     ogTitle: "AI Strategy Blueprint | Enterprise AI Consulting | JOURN3Y",
     ogDescription: "Comprehensive AI strategy development and roadmap creation from expert AI consultants and Glean specialists.",
     ogUrl: "https://journ3y.com.au/products/blueprint"
@@ -152,6 +174,7 @@ export const META_CONFIGS = {
     title: "AI Accelerators & Solutions | Glean & Databricks | JOURN3Y",
     description: "Rapid AI implementation with our accelerator solutions including Glean enterprise search deployment, Databricks optimization, and custom AI acceleration frameworks.",
     keywords: "AI accelerators, Glean accelerator, Databricks consulting, rapid AI deployment, AI implementation solutions, enterprise AI accelerators, Glean deployment accelerator",
+    canonical: "https://journ3y.com.au/products/accelerators",
     ogTitle: "AI Accelerators & Solutions | Glean & Databricks | JOURN3Y",
     ogDescription: "Rapid AI implementation with accelerator solutions including Glean deployment and Databricks optimization.",
     ogUrl: "https://journ3y.com.au/products/accelerators"
@@ -161,6 +184,7 @@ export const META_CONFIGS = {
     title: "Brand3y AI Platform | Next-Gen AI Solutions | JOURN3Y",
     description: "Discover Brand3y, our cutting-edge AI platform for enterprise transformation. Advanced AI capabilities integrated with Glean enterprise search for comprehensive business intelligence.",
     keywords: "Brand3y, AI platform, enterprise AI, AI transformation platform, advanced AI solutions, AI business intelligence, Glean integration, enterprise AI platform",
+    canonical: "https://journ3y.com.au/products/brand3y",
     ogTitle: "Brand3y AI Platform | Next-Gen AI Solutions | JOURN3Y",
     ogDescription: "Cutting-edge AI platform for enterprise transformation with advanced AI capabilities and Glean integration.",
     ogUrl: "https://journ3y.com.au/products/brand3y"
