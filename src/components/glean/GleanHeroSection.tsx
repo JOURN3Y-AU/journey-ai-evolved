@@ -29,7 +29,6 @@ const GleanHeroSection = () => {
             
             <h1 className="text-5xl font-bold leading-tight mb-6">
               Transform your Business with Glean's Enterprise AI Platform
-              <span className="block text-blue-600">As JOURN3Y's Authorized Glean Partner</span>
             </h1>
             
             <p className="text-xl text-gray-700 mb-8">
