@@ -522,6 +522,45 @@ export type Database = {
         }
         Relationships: []
       }
+      pages: {
+        Row: {
+          change_frequency: string
+          created_at: string
+          id: string
+          is_published: boolean
+          meta_description: string | null
+          path: string
+          priority: number
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          change_frequency?: string
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          meta_description?: string | null
+          path: string
+          priority?: number
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          change_frequency?: string
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          meta_description?: string | null
+          path?: string
+          priority?: number
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       site_settings: {
         Row: {
           created_at: string | null

@@ -17,51 +17,49 @@ Deno.serve(async (req) => {
     const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!
     const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
+    // Fetch all published pages from database
+    const { data: pages, error: pagesError } = await supabase
+      .from('pages')
+      .select('path, priority, change_frequency, updated_at')
+      .eq('is_published', true)
+      .order('priority', { ascending: false })
+
+    if (pagesError) {
+      console.error('Error fetching pages:', pagesError)
+      throw pagesError
+    }
+
     // Fetch all published blog posts
-    const { data: blogPosts, error } = await supabase
+    const { data: blogPosts, error: blogError } = await supabase
       .from('blog_posts')
       .select('slug, updated_at')
       .order('updated_at', { ascending: false })
 
-    if (error) {
-      console.error('Error fetching blog posts:', error)
-      throw error
+    if (blogError) {
+      console.error('Error fetching blog posts:', blogError)
+      throw blogError
     }
 
     // Base domain
     const domain = 'https://www.journ3y.com.au'
     
-    // Static pages with their priorities and change frequencies
-    const staticPages = [
-      { url: '', priority: '1.0', changefreq: 'weekly' },
-      { url: '/contact', priority: '0.8', changefreq: 'monthly' },
-      { url: '/team', priority: '0.7', changefreq: 'monthly' },
-      { url: '/resources', priority: '0.8', changefreq: 'weekly' },
-      { url: '/blog', priority: '0.9', changefreq: 'weekly' },
-      { url: '/privacy', priority: '0.3', changefreq: 'yearly' },
-      { url: '/products/ai-assessment', priority: '0.9', changefreq: 'monthly' },
-      { url: '/products/ai-assessment-long', priority: '0.8', changefreq: 'monthly' },
-      { url: '/products/ai-assessment-v2', priority: '0.9', changefreq: 'monthly' },
-      { url: '/products/brand3y', priority: '0.8', changefreq: 'monthly' },
-      { url: '/products/glean', priority: '0.8', changefreq: 'monthly' },
-      { url: '/products/accelerators', priority: '0.7', changefreq: 'monthly' },
-      { url: '/products/blueprint', priority: '0.7', changefreq: 'monthly' },
-      { url: '/products/services', priority: '0.8', changefreq: 'monthly' },
-    ]
-
     // Generate XML sitemap
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 `
 
-    // Add static pages
-    for (const page of staticPages) {
-      sitemap += `  <url>
-    <loc>${domain}${page.url}</loc>
-    <changefreq>${page.changefreq}</changefreq>
+    // Add pages from database
+    if (pages && pages.length > 0) {
+      for (const page of pages) {
+        const lastmod = new Date(page.updated_at).toISOString().split('T')[0]
+        sitemap += `  <url>
+    <loc>${domain}${page.path}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${page.change_frequency}</changefreq>
     <priority>${page.priority}</priority>
   </url>
 `
+      }
     }
 
     // Add blog posts

@@ -145,6 +145,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             <Users className="mr-2 h-4 w-4" />
             Manage Team
           </Button>
+          <Button onClick={() => navigate('/admin/pages')} variant="outline" className="flex items-center">
+            <FileText className="mr-2 h-4 w-4" />
+            Manage Pages
+          </Button>
           <Button onClick={() => navigate('/admin/documents')} variant="outline" className="flex items-center">
             <FileText className="mr-2 h-4 w-4" />
             Documents
