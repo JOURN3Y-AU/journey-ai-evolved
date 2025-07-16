@@ -28,12 +28,12 @@ const GleanHeroSection = () => {
             </div>
             
             <h1 className="text-5xl font-bold leading-tight mb-6">
-              Transform Your Business with
-              <span className="block text-blue-600">Glean's Enterprise AI</span>
+              Transform Your Business with Glean's Enterprise AI 
+              <span className="block text-blue-600">As JOURN3Y's Authorized Glean Partner</span>
             </h1>
             
             <p className="text-xl text-gray-700 mb-8">
-              Unlock the power of AI across your organization with Glean's unified work AI platform. Find, create, and automate anything with enterprise-grade security.
+              Unlock the power of AI across your organisation with JOURN3Y, an Authorised Glean Implementation Partner. Our experts will deliver Glean's safe, secure, agent-ready Enterprise AI platform and have you at first prompt on YOUR data in 4 weeks.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">

@@ -18,9 +18,9 @@ const GleanPlatformSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div ref={section2Ref} className="reveal transition-all duration-500 ease-out">
-            <h2 className="text-3xl font-bold mb-6">Your Enterprise AI Platform</h2>
+            <h2 className="text-3xl font-bold mb-6">Your Enterprise AI Platform, Delivered by JOURN3Y - an Authorised Glean Partner</h2>
             <p className="text-gray-700 mb-6">
-              Glean connects all your company's information and makes it instantly accessible with powerful AI capabilities that understand context and deliver precisely what you need.
+              As an Authorized Glean Partner, JOURN3Y brings certified expertise to connect all your company's information and make it instantly accessible. Our partnership ensures you get proven implementation strategies and ongoing support for maximum ROI.
             </p>
             
             <div className="space-y-6">

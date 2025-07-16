@@ -3,6 +3,7 @@ import { useState } from 'react';
 import GleanHeroSection from '@/components/glean/GleanHeroSection';
 import GleanCoreFeaturesSection from '@/components/glean/GleanCoreFeaturesSection';
 import GleanPlatformSection from '@/components/glean/GleanPlatformSection';
+import GleanPartnerBenefitsSection from '@/components/glean/GleanPartnerBenefitsSection';
 import GleanIntegrationSection from '@/components/glean/GleanIntegrationSection';
 import GleanSuccessMetricsSection from '@/components/glean/GleanSuccessMetricsSection';
 import GleanDemoSection from '@/components/glean/GleanDemoSection';
@@ -23,6 +24,7 @@ const Glean = () => {
       <GleanHeroSection />
       <GleanCoreFeaturesSection />
       <GleanPlatformSection />
+      <GleanPartnerBenefitsSection />
       <GleanIntegrationSection />
       <GleanSuccessMetricsSection />
       <GleanDemoSection onFormSubmitSuccess={handleFormSubmitSuccess} />

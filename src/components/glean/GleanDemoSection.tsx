@@ -78,12 +78,20 @@ const GleanDemoSection = ({ onFormSubmitSuccess }: GleanDemoSectionProps) => {
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div ref={section4Ref} className="reveal transition-all duration-500 ease-out">
-            <h2 className="text-3xl font-bold mb-6">See Glean in Action</h2>
+            <h2 className="text-3xl font-bold mb-6">See Glean in Action with JOURN3Y</h2>
             <p className="text-gray-700 mb-6">
-              Schedule a personalized demo to see how Glean can transform knowledge work at your organization.
+              Schedule a personalized demo with JOURN3Y's Authorized Glean specialists to see how our proven implementation approach can transform knowledge work at your organization.
             </p>
             
             <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <CheckCircle className="w-5 h-5 text-green-600" />
+                <span>Authorized partner implementation expertise</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <CheckCircle className="w-5 h-5 text-green-600" />
+                <span>Certified Glean implementation methodology</span>
+              </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-5 h-5 text-green-600" />
                 <span>30-minute personalized demo</span>
