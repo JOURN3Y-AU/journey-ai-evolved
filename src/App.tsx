@@ -24,7 +24,6 @@ import Team from '@/pages/Team';
 import LinkedInCampaign from '@/pages/LinkedInCampaign';
 import LinkedInGlean from '@/pages/LinkedInGlean';
 import DocumentProxy from '@/pages/DocumentProxy';
-import SitemapXML from '@/pages/SitemapXML';
 
 function AppContent() {
   const { showAnnouncement, dismissAnnouncement, loading } = useAnnouncement();
@@ -52,7 +51,6 @@ function AppContent() {
         <Route path="/team" element={<><Navbar /><Team /><Footer /></>} />
         <Route path="/admin/*" element={<Admin />} />
         <Route path="/documents/:filename" element={<DocumentProxy />} />
-        <Route path="/sitemap.xml" element={<SitemapXML />} />
         {/* LinkedIn Campaign Landing Page - No nav/footer for conversion optimization */}
         <Route path="/linkedin-campaign" element={<LinkedInCampaign />} />
         <Route path="/linkedin-glean" element={<LinkedInGlean />} />
