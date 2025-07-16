@@ -5,8 +5,11 @@ import CategoryFilter from '@/components/blog/CategoryFilter';
 import BlogGrid from '@/components/blog/BlogGrid';
 import NewsletterSignup from '@/components/blog/NewsletterSignup';
 import useBlogPosts from '@/hooks/useBlogPosts';
+import { useMetaTags, META_CONFIGS } from '@/hooks/useMetaTags';
 
 const Blog = () => {
+  useMetaTags(META_CONFIGS.blog);
+
   const {
     blogPosts,
     loading,

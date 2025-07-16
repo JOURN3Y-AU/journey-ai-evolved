@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { supabase } from "@/integrations/supabase/client";
+import { useMetaTags, META_CONFIGS } from '@/hooks/useMetaTags';
 import { 
   Select,
   SelectContent,
@@ -36,6 +37,8 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const Contact = () => {
+  useMetaTags(META_CONFIGS.contact);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   

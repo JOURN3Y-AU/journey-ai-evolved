@@ -7,8 +7,11 @@ import GleanIntegrationSection from '@/components/glean/GleanIntegrationSection'
 import GleanSuccessMetricsSection from '@/components/glean/GleanSuccessMetricsSection';
 import GleanDemoSection from '@/components/glean/GleanDemoSection';
 import GleanThankYouDialog from '@/components/glean/GleanThankYouDialog';
+import { useMetaTags, META_CONFIGS } from '@/hooks/useMetaTags';
 
 const Glean = () => {
+  useMetaTags(META_CONFIGS.gleanProduct);
+
   const [showThankYou, setShowThankYou] = useState(false);
 
   const handleFormSubmitSuccess = () => {

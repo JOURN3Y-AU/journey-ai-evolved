@@ -6,6 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, Calendar, Tag, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Database } from '@/integrations/supabase/types';
+import { useMetaTags } from '@/hooks/useMetaTags';
 
 // Define types for our blog post data
 interface BlogPost {
@@ -24,6 +25,24 @@ const BlogPost = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
+
+  // Set dynamic meta tags based on the blog post
+  useMetaTags(post ? {
+    title: `${post.title} | JOURN3Y AI Consulting & Glean Experts Blog`,
+    description: `${post.content.replace(/<[^>]*>/g, '').substring(0, 155)}... Expert insights on AI consulting and Glean implementation from JOURN3Y.`,
+    keywords: `${post.category}, AI consulting, Glean implementation, ${post.title.toLowerCase().split(' ').join(', ')}, enterprise search, AI strategy`,
+    ogTitle: `${post.title} | JOURN3Y AI Consulting Blog`,
+    ogDescription: `${post.content.replace(/<[^>]*>/g, '').substring(0, 155)}...`,
+    ogImage: post.image_url,
+    ogUrl: `https://journ3y.com.au/blog/${post.slug}`,
+    twitterTitle: `${post.title} | JOURN3Y AI Consulting`,
+    twitterDescription: `${post.content.replace(/<[^>]*>/g, '').substring(0, 140)}...`,
+    twitterImage: post.image_url
+  } : {
+    title: "Blog Post | JOURN3Y AI Consulting & Glean Experts",
+    description: "Expert insights on AI consulting, Glean implementation, and enterprise search optimization from JOURN3Y's team of specialists.",
+    ogUrl: `https://journ3y.com.au/blog/${slug}`
+  });
 
   useEffect(() => {
     async function fetchBlogPost() {

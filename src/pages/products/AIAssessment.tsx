@@ -6,6 +6,7 @@ import AssessmentForm from '@/components/assessment/AssessmentForm';
 import AssessmentResults from '@/components/assessment/AssessmentResults';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { useMetaTags, META_CONFIGS } from '@/hooks/useMetaTags';
 
 export type AssessmentAnswers = {
   q1_business_challenge: string;
@@ -25,6 +26,8 @@ export type ContactInfo = {
 };
 
 const AIAssessment = () => {
+  useMetaTags(META_CONFIGS.aiAssessment);
+
   const [currentStep, setCurrentStep] = useState<'hero' | 'questions' | 'contact' | 'results'>('hero');
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [assessmentAnswers, setAssessmentAnswers] = useState<AssessmentAnswers | null>(null);

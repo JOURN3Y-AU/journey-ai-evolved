@@ -6,6 +6,7 @@ import LongAssessmentForm from '@/components/assessment/long/LongAssessmentForm'
 import LongAssessmentResults from '@/components/assessment/long/LongAssessmentResults';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { useMetaTags, META_CONFIGS } from '@/hooks/useMetaTags';
 
 export type LongAssessmentAnswers = {
   selected_role: string;
@@ -90,6 +91,8 @@ export type DashboardData = {
 };
 
 const AIAssessmentLong = () => {
+  useMetaTags(META_CONFIGS.aiAssessment);
+
   const [currentStep, setCurrentStep] = useState<'hero' | 'assessment' | 'results'>('hero');
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [assessmentAnswers, setAssessmentAnswers] = useState<LongAssessmentAnswers | null>(null);

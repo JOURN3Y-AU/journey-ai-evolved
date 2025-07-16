@@ -4,8 +4,11 @@ import { useTeamMembers } from '@/hooks/useTeamMembers';
 import { TeamMember } from '@/types/teamMember';
 import { useEffect, useState } from 'react';
 import { useSiteSettings } from '@/hooks/useSiteSettings';
+import { useMetaTags, META_CONFIGS } from '@/hooks/useMetaTags';
 
 export default function Team() {
+  useMetaTags(META_CONFIGS.team);
+
   const { teamMembers, loading, error } = useTeamMembers();
   const { showTeamPage, loading: loadingSettings } = useSiteSettings();
   const [retryCount, setRetryCount] = useState(0);

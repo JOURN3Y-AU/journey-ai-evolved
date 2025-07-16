@@ -2,8 +2,11 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import useScrollReveal from '@/hooks/useScrollReveal';
+import { useMetaTags, META_CONFIGS } from '@/hooks/useMetaTags';
 
 const Services = () => {
+  useMetaTags(META_CONFIGS.services);
+
   const section1Ref = useScrollReveal();
   const section2Ref = useScrollReveal();
   const section3Ref = useScrollReveal();

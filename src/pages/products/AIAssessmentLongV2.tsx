@@ -6,8 +6,11 @@ import AssessmentResultsV2 from '@/components/assessment/v2/AssessmentResultsV2'
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { AssessmentDataV2, ContactInfoV2, DashboardDataV2 } from '@/types/assessmentV2';
+import { useMetaTags, META_CONFIGS } from '@/hooks/useMetaTags';
 
 const AIAssessmentLongV2 = () => {
+  useMetaTags(META_CONFIGS.aiAssessment);
+
   const [currentStep, setCurrentStep] = useState<'hero' | 'assessment' | 'results'>('hero');
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [assessmentId, setAssessmentId] = useState<string | null>(null);
