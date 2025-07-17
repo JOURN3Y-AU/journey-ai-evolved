@@ -22,7 +22,7 @@ const LinkedInGlean = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  // Capture UTM parameters on page load
+  // Capture UTM parameters on page load and set canonical URL
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const params: Record<string, string> = {};
@@ -33,6 +33,33 @@ const LinkedInGlean = () => {
     });
     
     setUtmParams(params);
+
+    // Set canonical URL to point to main Glean product page
+    let canonicalTag = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (canonicalTag) {
+      canonicalTag.href = 'https://journ3y.com.au/products/glean';
+    } else {
+      canonicalTag = document.createElement('link');
+      canonicalTag.rel = 'canonical';
+      canonicalTag.href = 'https://journ3y.com.au/products/glean';
+      document.head.appendChild(canonicalTag);
+    }
+
+    // Set page title and meta description to prevent duplicate content issues
+    document.title = 'Glean Implementation Services | Expert Glean Consultants | JOURN3Y';
+    
+    const metaDescription = document.querySelector('meta[name="description"]') as HTMLMetaElement;
+    if (metaDescription) {
+      metaDescription.content = 'Professional Glean implementation services. Transform your enterprise search with expert Glean deployment from certified consultants.';
+    }
+
+    // Cleanup canonical tag when component unmounts
+    return () => {
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical && canonical.getAttribute('href') === 'https://journ3y.com.au/products/glean') {
+        canonical.remove();
+      }
+    };
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
