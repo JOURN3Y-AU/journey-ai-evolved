@@ -79,18 +79,33 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
       benefits: [
         {
           icon: <Building2 className="w-6 h-6 text-primary" />,
-          title: 'Project Documentation',
-          description: 'Automate progress reports, generate safety documentation, and maintain comprehensive project records.'
+          title: 'Quoting and Pricing',
+          description: 'Generate accurate project estimates, automate quote creation, and streamline pricing workflows with intelligent cost analysis.'
         },
         {
-          icon: <Zap className="w-6 h-6 text-secondary" />,
-          title: 'Estimating & Bidding',
-          description: 'Accurate cost estimation, automated bid preparation, and competitive analysis for winning proposals.'
+          icon: <Users className="w-6 h-6 text-secondary" />,
+          title: 'Clients and Project Management',
+          description: 'Centralize client communications, track project milestones, and maintain comprehensive project records in one place.'
         },
         {
-          icon: <CheckCircle className="w-6 h-6 text-accent" />,
-          title: 'Safety & Compliance',
-          description: 'Monitor safety protocols, generate compliance reports, and ensure regulatory adherence across projects.'
+          icon: <Zap className="w-6 h-6 text-accent" />,
+          title: 'Sales, Payments and Contracts',
+          description: 'Automate contract generation, streamline payment processing, and manage the entire sales pipeline efficiently.'
+        },
+        {
+          icon: <CheckCircle className="w-6 h-6 text-primary" />,
+          title: 'Project Delivery',
+          description: 'Coordinate project execution, track deliverables, and ensure timely completion with automated progress monitoring.'
+        },
+        {
+          icon: <Building2 className="w-6 h-6 text-secondary" />,
+          title: 'Reporting',
+          description: 'Generate comprehensive project reports, track performance metrics, and provide stakeholders with real-time insights.'
+        },
+        {
+          icon: <Users className="w-6 h-6 text-accent" />,
+          title: 'Safety and Compliance',
+          description: 'Monitor safety protocols, generate compliance documentation, and ensure regulatory adherence across all projects.'
         }
       ]
     },
@@ -182,7 +197,7 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {data.benefits.map((benefit, index) => (
                   <Card key={index} className="border-border hover:shadow-md transition-shadow">
                     <CardContent className="p-6 space-y-4">
