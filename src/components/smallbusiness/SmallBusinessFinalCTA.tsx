@@ -91,20 +91,6 @@ const SmallBusinessFinalCTA = ({ utmParams }: SmallBusinessFinalCTAProps) => {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </Button>
-            
-            <Button 
-              variant="outline" 
-              size="lg" 
-              asChild
-              className="text-lg px-8"
-            >
-              <Link 
-                to={`/contact?service=small-business&inquiry=consultation&utm_source=${utmParams?.utm_source || 'page'}`}
-                onClick={() => handleCTAClick('schedule_consultation')}
-              >
-                Schedule Consultation
-              </Link>
-            </Button>
           </div>
 
           <p className="text-sm text-muted-foreground">
