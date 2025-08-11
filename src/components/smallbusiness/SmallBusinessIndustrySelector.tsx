@@ -12,6 +12,25 @@ interface SmallBusinessIndustrySelectorProps {
 const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelectorProps) => {
   const [activeTab, setActiveTab] = useState('recruitment');
 
+  // Preload images for faster switching
+  useEffect(() => {
+    const imageUrls = [
+      '/small-business/recruitment-hero.jpg',
+      '/small-business/realestate-hero.jpg', 
+      '/small-business/construction-hero.jpg'
+    ];
+    
+    // Preload both jpg and webp versions
+    imageUrls.forEach(url => {
+      const img = new Image();
+      img.src = url;
+      
+      // Also preload webp version
+      const webpImg = new Image();
+      webpImg.src = url.replace('.jpg', '.webp');
+    });
+  }, []);
+
   // Set default tab based on URL parameter
   useEffect(() => {
     if (utmParams?.industry) {
@@ -223,11 +242,18 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
                   </div>
                 </div>
                 <div className="lg:order-last">
-                  <img 
-                    src={data.image} 
-                    alt={`${key} AI solutions`}
-                    className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
-                  />
+                  <picture>
+                    <source srcSet={`${data.image.replace('.jpg', '.webp')}`} type="image/webp" />
+                    <img 
+                      src={data.image} 
+                      alt={`${key} AI solutions`}
+                      className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
+                      loading={key === activeTab ? "eager" : "lazy"}
+                      decoding="async"
+                      width="600"
+                      height="400"
+                    />
+                  </picture>
                 </div>
               </div>
 
