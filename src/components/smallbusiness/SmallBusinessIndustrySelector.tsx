@@ -56,19 +56,34 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
       image: '/small-business/realestate-hero.jpg',
       benefits: [
         {
-          icon: <Building2 className="w-6 h-6 text-primary" />,
-          title: 'Property Listing Optimization',
-          description: 'Generate compelling property descriptions, optimize listings for search, and automate market analysis.'
+          icon: <Heart className="w-6 h-6 text-primary" />,
+          title: 'Keep my hot leads from going cold',
+          description: 'So prospects don\'t list with competitors while I\'m stuck doing paperwork.'
         },
         {
-          icon: <Users className="w-6 h-6 text-secondary" />,
-          title: 'Client Communication',
-          description: 'Streamline client interactions, automate follow-ups, and provide personalized property recommendations.'
+          icon: <PhoneOff className="w-6 h-6 text-secondary" />,
+          title: 'Stop vendors calling for updates',
+          description: 'Keep them informed on market activity and buyer feedback automatically.'
         },
         {
           icon: <Zap className="w-6 h-6 text-accent" />,
-          title: 'Market Intelligence',
-          description: 'Access real-time market data, generate comparative market analyses, and identify investment opportunities.'
+          title: 'Get my listings live faster',
+          description: 'Upload once, appear everywhere without spending hours on portals and paperwork.'
+        },
+        {
+          icon: <Users className="w-6 h-6 text-primary" />,
+          title: 'Keep tenants happy without the phone calls',
+          description: 'Handle maintenance requests and payment issues before they become dramas.'
+        },
+        {
+          icon: <TrendingUp className="w-6 h-6 text-secondary" />,
+          title: 'Get my agents back to prospecting',
+          description: 'Stop them drowning in contract prep and settlement coordination.'
+        },
+        {
+          icon: <CheckCircle className="w-6 h-6 text-accent" />,
+          title: 'Never miss a compliance deadline',
+          description: 'Keep trust accounts balanced and documents filed before the regulator comes knocking.'
         }
       ]
     },
