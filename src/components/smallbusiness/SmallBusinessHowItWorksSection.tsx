@@ -41,11 +41,9 @@ const SmallBusinessHowItWorksSection = () => {
       title: 'Data Integration',
       summary: 'Seamless connection with your existing business systems',
       details: [
-        'CRM system integration for client data synchronisation',
         'Document management system connectivity',
         'Email platform integration for communication workflows',
-        'Calendar and scheduling system connections',
-        'Custom API integrations for specialised business tools'
+        'Calendar and scheduling system connections'
       ]
     },
     {
