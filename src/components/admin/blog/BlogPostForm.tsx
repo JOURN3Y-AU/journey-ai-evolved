@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -43,9 +44,15 @@ export default function BlogPostForm({
   onImageRemove,
   onHashtagsChange
 }: BlogPostFormProps) {
+  const [hashtagsInput, setHashtagsInput] = useState(blogPost.hashtags.join(', '));
+
   const handleHashtagsInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    const hashtags = value.split(',').map(tag => tag.trim()).filter(tag => tag);
+    setHashtagsInput(value);
+  };
+
+  const handleHashtagsBlur = () => {
+    const hashtags = hashtagsInput.split(',').map(tag => tag.trim()).filter(tag => tag);
     onHashtagsChange(hashtags);
   };
   return (
@@ -111,8 +118,9 @@ export default function BlogPostForm({
             <Input
               id="hashtags"
               name="hashtags"
-              value={blogPost.hashtags.join(', ')}
+              value={hashtagsInput}
               onChange={handleHashtagsInputChange}
+              onBlur={handleHashtagsBlur}
               placeholder="ai, technology, glean, productivity (comma separated)"
             />
             <p className="text-xs text-muted-foreground">
