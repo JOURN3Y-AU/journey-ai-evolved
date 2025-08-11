@@ -116,18 +116,33 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
       benefits: [
         {
           icon: <Users className="w-6 h-6 text-primary" />,
-          title: 'Candidate Screening',
-          description: 'Intelligent resume analysis, automated candidate matching, and streamlined interview scheduling.'
+          title: 'Keep my best candidates warm',
+          description: 'Stop candidates being snapped up by competitors while I\'m dealing with admin.'
         },
         {
-          icon: <Building2 className="w-6 h-6 text-secondary" />,
-          title: 'Job Description Creation',
-          description: 'Generate compelling job descriptions, optimize for search, and attract top talent effectively.'
+          icon: <Zap className="w-6 h-6 text-secondary" />,
+          title: 'Get placements moving faster',
+          description: 'Stop losing deals because compliance paperwork takes too long to sort out.'
         },
         {
-          icon: <Zap className="w-6 h-6 text-accent" />,
-          title: 'Client Relationship Management',
-          description: 'Automate client communication, track placement metrics, and enhance long-term partnerships.'
+          icon: <Building2 className="w-6 h-6 text-accent" />,
+          title: 'Stop clients calling me for updates',
+          description: 'Keep them informed automatically so I can focus on finding their next hire.'
+        },
+        {
+          icon: <CheckCircle className="w-6 h-6 text-primary" />,
+          title: 'Find the needles in the haystack',
+          description: 'Get through 200 CVs quickly to find the 3 that actually matter.'
+        },
+        {
+          icon: <Users className="w-6 h-6 text-secondary" />,
+          title: 'Get my consultants back to selling',
+          description: 'Stop them drowning in interview coordination and status updates.'
+        },
+        {
+          icon: <Building2 className="w-6 h-6 text-accent" />,
+          title: 'Get paid on time',
+          description: 'Chase up contractor timesheets and overdue invoices without it eating my whole Friday.'
         }
       ]
     }
