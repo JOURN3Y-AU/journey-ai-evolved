@@ -110,8 +110,14 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
       ]
     },
     recruitment: {
-      title: 'Transform Recruitment with AI-Powered Solutions',
-      description: 'Revolutionise your hiring process with intelligent candidate matching, automated screening, and enhanced client relationships.',
+      title: "We've built AI that tackles the stuff that actually matters to your recruitment business",
+      description: (
+        <div className="space-y-2">
+          <div><strong>Get your time back</strong> - Stop drowning in admin and get back to placing candidates</div>
+          <div><strong>Automate the paperwork</strong> - Contracts, compliance, candidate management & more</div>
+          <div><strong>Keep placements flowing</strong> - No more confusion between candidates, clients, and your team</div>
+        </div>
+      ),
       image: '/small-business/recruitment-hero.jpg',
       benefits: [
         {
