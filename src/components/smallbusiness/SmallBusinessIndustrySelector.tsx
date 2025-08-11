@@ -10,7 +10,7 @@ interface SmallBusinessIndustrySelectorProps {
 }
 
 const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelectorProps) => {
-  const [activeTab, setActiveTab] = useState('realestate');
+  const [activeTab, setActiveTab] = useState('recruitment');
 
   // Set default tab based on URL parameter
   useEffect(() => {
@@ -126,14 +126,14 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
 
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-8">
+            <TabsTrigger value="recruitment" className="text-sm md:text-base">
+              Recruitment
+            </TabsTrigger>
             <TabsTrigger value="realestate" className="text-sm md:text-base">
               Real Estate
             </TabsTrigger>
             <TabsTrigger value="construction" className="text-sm md:text-base">
               Construction
-            </TabsTrigger>
-            <TabsTrigger value="recruitment" className="text-sm md:text-base">
-              Recruitment
             </TabsTrigger>
           </TabsList>
 
