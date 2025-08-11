@@ -67,8 +67,14 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
       ]
     },
     construction: {
-      title: 'Streamline Construction Projects with AI',
-      description: 'Enhance project management, improve safety compliance, and optimize resource allocation with intelligent construction solutions.',
+      title: "We've built AI that tackles the stuff that actually matters to your construction business",
+      description: (
+        <div className="space-y-2">
+          <div><strong>Get your time back</strong> - Stop drowning in admin</div>
+          <div><strong>Automate the paperwork</strong> - Quotes, invoices, compliance, meetings & more</div>
+          <div><strong>Keep projects on track</strong> - No more confusion or miscommunication</div>
+        </div>
+      ),
       image: '/small-business/construction-hero.jpg',
       benefits: [
         {
