@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -31,7 +31,9 @@ const formSchema = z.object({
   company: z.string().optional(),
   phone: z.string().optional(),
   message: z.string().min(10, { message: 'Message must be at least 10 characters' }),
-  service: z.enum(['general', 'blueprint', 'glean', 'databricks', 'ai-resources']),
+  service: z.enum(['general', 'blueprint', 'glean', 'databricks', 'ai-resources', 'small-business'], {
+    required_error: 'Please select a service',
+  }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -58,13 +60,41 @@ const Contact = () => {
     },
   });
 
+  // Pre-populate form based on URL parameters
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const service = urlParams.get('service');
+    const industry = urlParams.get('industry');
+    
+    if (service && ['general', 'blueprint', 'glean', 'databricks', 'ai-resources', 'small-business'].includes(service)) {
+      form.setValue('service', service as any);
+    }
+    
+    if (industry) {
+      const currentMessage = form.getValues('message') || '';
+      const industryMessage = `Interested in ${industry} industry solutions. ${currentMessage}`;
+      form.setValue('message', industryMessage.trim());
+    }
+  }, [form]);
+
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     
     try {
+      // Capture UTM parameters and additional data for campaign tracking
+      const urlParams = new URLSearchParams(window.location.search);
+      const campaignData = {
+        campaign_source: 'small-business-page',
+        utm_source: urlParams.get('utm_source'),
+        utm_medium: urlParams.get('utm_medium'),
+        utm_campaign: urlParams.get('utm_campaign'),
+        selected_industry: urlParams.get('industry'),
+        page_section: urlParams.get('inquiry') || 'contact_form'
+      };
+      
       // Call the Supabase Edge Function
       const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: data,
+        body: { ...data, campaignData },
       });
       
       if (error) throw new Error(error.message);
@@ -203,6 +233,7 @@ const Contact = () => {
                                 <SelectItem value="blueprint">Blueprint - AI Strategy</SelectItem>
                                 <SelectItem value="glean">Accelerators - Glean</SelectItem>
                                 <SelectItem value="databricks">Accelerators - Databricks</SelectItem>
+                                <SelectItem value="small-business">Small Business AI Solutions</SelectItem>
                                 <SelectItem value="ai-resources">Services - AI Resources</SelectItem>
                               </SelectContent>
                             </Select>

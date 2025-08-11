@@ -10,6 +10,7 @@ import useScrollToTop from '@/hooks/useScrollToTop';
 import Index from '@/pages/Index';
 import Blueprint from '@/pages/products/Blueprint';
 import Glean from '@/pages/products/Glean';
+import SmallBusiness from '@/pages/products/SmallBusiness';
 import Brand3y from '@/pages/products/Brand3y';
 import Services from '@/pages/products/Services';
 import AIAssessment from '@/pages/products/AIAssessment';
@@ -41,6 +42,7 @@ function AppContent() {
         <Route path="/" element={<><Navbar /><Index /><Footer /></>} />
         <Route path="/products/blueprint" element={<><Navbar /><Blueprint /><Footer /></>} />
         <Route path="/products/glean" element={<><Navbar /><Glean /><Footer /></>} />
+        <Route path="/products/small-business" element={<><Navbar /><SmallBusiness /><Footer /></>} />
         <Route path="/products/brand3y" element={<><Navbar /><Brand3y /><Footer /></>} />
         <Route path="/products/services" element={<><Navbar /><Services /><Footer /></>} />
         <Route path="/products/ai-assessment" element={<><Navbar /><AIAssessment /><Footer /></>} />
