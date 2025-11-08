@@ -104,38 +104,38 @@ const NorthernBeachesLanding = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-16 md:py-24 px-4 overflow-hidden">
+      <section className="relative py-12 md:py-24 px-4 overflow-hidden">
         {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 animate-gradient-shift" />
         
-        {/* Floating orbs for depth */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{
+        {/* Floating orbs for depth - smaller on mobile */}
+        <div className="absolute top-20 left-10 w-40 h-40 md:w-72 md:h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-48 h-48 md:w-96 md:h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{
         animationDelay: '2s'
       }} />
         
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 animate-fade-in opacity-0" style={{
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="space-y-4 md:space-y-6 animate-fade-in opacity-0" style={{
             animationDelay: '0.2s'
           }}>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">Find 5-10 Hours Per Week for{' '}
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">Find 5-10 Hours Per Week for{' '}
                 <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Your Business</span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-muted-foreground">See how Northern Beaches businesses are using AI to cut admin time in half - without hiring more staff</p>
+              <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground">See how Northern Beaches businesses are using AI to cut admin time in half - without hiring more staff</p>
               
-              <div className="pt-4">
-                <Button size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 hover:scale-105 transition-all shadow-lg hover:shadow-xl group" asChild onClick={() => handleCTAClick('hero')}>
+              <div className="pt-2 md:pt-4">
+                <Button size="lg" className="text-base md:text-lg px-6 py-5 md:px-8 md:py-6 w-full md:w-auto bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 hover:scale-105 transition-all shadow-lg hover:shadow-xl group" asChild onClick={() => handleCTAClick('hero')}>
                   <a href="https://calendly.com/kevin-morrell-journ3y/30min" target="_blank" rel="noopener noreferrer">
                     Book Your Free 30-Minute Discovery Call
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </Button>
               </div>
             </div>
             
-            <div className="relative animate-fade-in opacity-0" style={{
+            <div className="relative animate-fade-in opacity-0 mt-6 md:mt-0" style={{
             animationDelay: '0.4s'
           }}>
               <div className="rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300 hover:scale-[1.02] transform transition-transform">
@@ -150,36 +150,36 @@ const NorthernBeachesLanding = () => {
       </section>
 
       {/* Value Proposition Section */}
-      <section className="py-16 md:py-24 px-4">
+      <section className="py-12 md:py-24 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="p-8 hover:shadow-lg transition-shadow border-2">
-              <div className="space-y-4">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Mail className="w-8 h-8 text-primary" />
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            <Card className="p-6 md:p-8 hover:shadow-lg transition-shadow border-2">
+              <div className="space-y-3 md:space-y-4">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Mail className="w-6 h-6 md:w-8 md:h-8 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground">Stop Repetitive Writing</h3>
-                <p className="text-muted-foreground">Auto-generate marketing material, clients emails and follow-ups in seconds</p>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground">Stop Repetitive Writing</h3>
+                <p className="text-sm md:text-base text-muted-foreground">Auto-generate marketing material, clients emails and follow-ups in seconds</p>
               </div>
             </Card>
 
-            <Card className="p-8 hover:shadow-lg transition-shadow border-2">
-              <div className="space-y-4">
-                <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center">
-                  <FileText className="w-8 h-8 text-secondary" />
+            <Card className="p-6 md:p-8 hover:shadow-lg transition-shadow border-2">
+              <div className="space-y-3 md:space-y-4">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-secondary/10 flex items-center justify-center">
+                  <FileText className="w-6 h-6 md:w-8 md:h-8 text-secondary" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground">Instant Reports & Quotes</h3>
-                <p className="text-muted-foreground">Stop spending hours building quotes from scratch. Get instant insights into your business and clients</p>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground">Instant Reports & Quotes</h3>
+                <p className="text-sm md:text-base text-muted-foreground">Stop spending hours building quotes from scratch. Get instant insights into your business and clients</p>
               </div>
             </Card>
 
-            <Card className="p-8 hover:shadow-lg transition-shadow border-2">
-              <div className="space-y-4">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
-                  <Clock className="w-8 h-8 text-accent" />
+            <Card className="p-6 md:p-8 hover:shadow-lg transition-shadow border-2">
+              <div className="space-y-3 md:space-y-4">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-accent/10 flex items-center justify-center">
+                  <Clock className="w-6 h-6 md:w-8 md:h-8 text-accent" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground">Get Your weekends Back</h3>
-                <p className="text-muted-foreground">Make the most of your work dy so you can do more of what you want on the weekend</p>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground">Get Your weekends Back</h3>
+                <p className="text-sm md:text-base text-muted-foreground">Make the most of your work dy so you can do more of what you want on the weekend</p>
               </div>
             </Card>
           </div>
@@ -197,85 +197,85 @@ const NorthernBeachesLanding = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 md:py-24 px-4">
+      <section className="py-12 md:py-24 px-4">
         <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-3 md:mb-4">
               How It Works
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-lg md:text-xl text-muted-foreground">
               Get started in three simple steps
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4">
-              <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto text-3xl font-bold text-primary">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            <div className="text-center space-y-3 md:space-y-4">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto text-2xl md:text-3xl font-bold text-primary">
                 1
               </div>
-              <h3 className="text-xl font-semibold text-foreground">Book a 30-minute discovery call</h3>
-              <p className="text-muted-foreground">Quick chat to understand your business needs</p>
+              <h3 className="text-lg md:text-xl font-semibold text-foreground">Book a 30-minute discovery call</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Quick chat to understand your business needs</p>
             </div>
 
-            <div className="text-center space-y-4">
-              <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center mx-auto text-3xl font-bold text-secondary">
+            <div className="text-center space-y-3 md:space-y-4">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-secondary/20 flex items-center justify-center mx-auto text-2xl md:text-3xl font-bold text-secondary">
                 2
               </div>
-              <h3 className="text-xl font-semibold text-foreground">We show you where AI can save time</h3>
-              <p className="text-muted-foreground">Identify specific opportunities in your workflow</p>
+              <h3 className="text-lg md:text-xl font-semibold text-foreground">We show you where AI can save time</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Identify specific opportunities in your workflow</p>
             </div>
 
-            <div className="text-center space-y-4">
-              <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mx-auto text-3xl font-bold text-accent">
+            <div className="text-center space-y-3 md:space-y-4">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-accent/20 flex items-center justify-center mx-auto text-2xl md:text-3xl font-bold text-accent">
                 3
               </div>
-              <h3 className="text-xl font-semibold text-foreground">Start saving hours within 2 weeks</h3>
-              <p className="text-muted-foreground">Quick setup, immediate results</p>
+              <h3 className="text-lg md:text-xl font-semibold text-foreground">Start saving hours within 2 weeks</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Quick setup, immediate results</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section with Form */}
-      <section className="py-16 md:py-24 px-4 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10">
+      <section className="py-12 md:py-24 px-4 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4 md:mb-6">
               Ready to Get Your Time Back?
             </h2>
             
-            <Button size="lg" className="text-xl px-12 py-8 bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 transition-opacity shadow-xl mb-8" asChild onClick={() => handleCTAClick('main_cta')}>
+            <Button size="lg" className="text-base md:text-xl px-8 py-6 md:px-12 md:py-8 w-full sm:w-auto bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 transition-opacity shadow-xl mb-6 md:mb-8" asChild onClick={() => handleCTAClick('main_cta')}>
               <a href="https://calendly.com/kevin-morrell-journ3y/30min" target="_blank" rel="noopener noreferrer">
                 Book Your Free Discovery Call
-                <ArrowRight className="ml-2 w-6 h-6" />
+                <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
               </a>
             </Button>
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <Card className="p-8 shadow-lg">
-              <div className="text-center mb-6">
-                <p className="text-lg text-muted-foreground">Prefer to chat first?</p>
+            <Card className="p-6 md:p-8 shadow-lg">
+              <div className="text-center mb-4 md:mb-6">
+                <p className="text-base md:text-lg text-muted-foreground">Prefer to chat first?</p>
               </div>
               
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
                 <div>
-                  <Input type="text" name="name" placeholder="Your Name *" value={formData.name} onChange={handleInputChange} required className="text-lg py-6" />
+                  <Input type="text" name="name" placeholder="Your Name *" value={formData.name} onChange={handleInputChange} required className="text-base md:text-lg py-5 md:py-6" />
                 </div>
                 
                 <div>
-                  <Input type="email" name="email" placeholder="Your Email *" value={formData.email} onChange={handleInputChange} required className="text-lg py-6" />
+                  <Input type="email" name="email" placeholder="Your Email *" value={formData.email} onChange={handleInputChange} required className="text-base md:text-lg py-5 md:py-6" />
                 </div>
                 
                 <div>
-                  <Input type="tel" name="phone" placeholder="Your Phone *" value={formData.phone} onChange={handleInputChange} required className="text-lg py-6" />
+                  <Input type="tel" name="phone" placeholder="Your Phone *" value={formData.phone} onChange={handleInputChange} required className="text-base md:text-lg py-5 md:py-6" />
                 </div>
                 
                 <div>
-                  <Textarea name="message" placeholder="Any questions or details? (optional)" value={formData.message} onChange={handleInputChange} className="min-h-[100px] text-lg" />
+                  <Textarea name="message" placeholder="Any questions or details? (optional)" value={formData.message} onChange={handleInputChange} className="min-h-[100px] text-base md:text-lg" />
                 </div>
                 
-                <Button type="submit" disabled={isSubmitting} className="w-full text-lg py-6 bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 transition-opacity">
+                <Button type="submit" disabled={isSubmitting} className="w-full text-base md:text-lg py-5 md:py-6 bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 transition-opacity">
                   {isSubmitting ? 'Sending...' : 'Send My Details'}
                 </Button>
               </form>
