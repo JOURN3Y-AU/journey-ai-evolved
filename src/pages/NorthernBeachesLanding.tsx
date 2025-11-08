@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -16,6 +16,17 @@ const NorthernBeachesLanding = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     // Set page title and meta description
@@ -94,13 +105,26 @@ const NorthernBeachesLanding = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-16 md:py-24 px-4 bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 overflow-hidden">
-        <div className="container mx-auto max-w-6xl">
+      <section 
+        ref={heroRef}
+        className="relative py-16 md:py-24 px-4 overflow-hidden"
+        style={{
+          transform: `translateY(${scrollY * 0.3}px)`,
+        }}
+      >
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 animate-gradient-shift" />
+        
+        {/* Floating orbs for depth */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        
+        <div className="container mx-auto max-w-6xl relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+            <div className="space-y-6 animate-fade-in opacity-0" style={{ animationDelay: '0.2s' }}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                 Find 5-10 Hours Per Week for Your{' '}
-                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">
                   Real Estate Business
                 </span>
               </h1>
@@ -112,7 +136,7 @@ const NorthernBeachesLanding = () => {
               <div className="pt-4">
                 <Button 
                   size="lg" 
-                  className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 transition-opacity shadow-lg"
+                  className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 hover:scale-105 transition-all shadow-lg hover:shadow-xl group"
                   asChild
                   onClick={() => handleCTAClick('hero')}
                 >
@@ -122,20 +146,29 @@ const NorthernBeachesLanding = () => {
                     rel="noopener noreferrer"
                   >
                     Book Your Free 15-Minute Discovery Call
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </Button>
               </div>
             </div>
             
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl">
+            <div 
+              className="relative animate-fade-in opacity-0" 
+              style={{ 
+                animationDelay: '0.4s',
+                transform: `translateY(${scrollY * -0.1}px)`,
+              }}
+            >
+              <div className="rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300 hover:scale-[1.02] transform transition-transform">
                 <img 
                   src="/northern-beaches-hero.jpg" 
                   alt="Professional business owner working productively in modern coastal office"
                   className="w-full h-auto object-cover"
                 />
               </div>
+              
+              {/* Decorative gradient ring */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl -z-10 blur-xl opacity-50" />
             </div>
           </div>
         </div>
