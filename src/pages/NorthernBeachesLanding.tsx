@@ -91,6 +91,13 @@ const NorthernBeachesLanding = () => {
     // window.fbq('track', 'InitiateCheckout');
   };
   return <div className="min-h-screen bg-background">
+      {/* Logo Header */}
+      <header className="py-6 px-4 bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+        <div className="container mx-auto max-w-6xl">
+          <img src="/JOURN3Y-logo.svg" alt="JOURN3Y" className="h-12 w-auto" />
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 px-4 overflow-hidden">
         {/* Animated gradient background */}
