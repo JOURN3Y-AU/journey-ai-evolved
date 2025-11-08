@@ -25,6 +25,7 @@ import Admin from '@/pages/Admin';
 import Team from '@/pages/Team';
 import LinkedInCampaign from '@/pages/LinkedInCampaign';
 import LinkedInGlean from '@/pages/LinkedInGlean';
+import NorthernBeachesLanding from '@/pages/NorthernBeachesLanding';
 import DocumentProxy from '@/pages/DocumentProxy';
 
 
@@ -59,6 +60,10 @@ function AppContent() {
         {/* LinkedIn Campaign Landing Page - No nav/footer for conversion optimization */}
         <Route path="/linkedin-campaign" element={<LinkedInCampaign />} />
         <Route path="/linkedin-glean" element={<LinkedInGlean />} />
+        
+        {/* Northern Beaches Landing Page - No nav/footer for conversion optimization */}
+        <Route path="/northern-beaches" element={<NorthernBeachesLanding />} />
+        
         <Route path="*" element={<><Navbar /><NotFound /><Footer /></>} />
       </Routes>
       
