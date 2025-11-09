@@ -104,32 +104,32 @@ const NorthernBeachesLanding = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-12 md:py-24 px-4 overflow-hidden">
+      <section className="relative py-8 md:py-24 px-4 sm:px-6 overflow-hidden">
         {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 animate-gradient-shift" />
         
         {/* Floating orbs for depth - smaller on mobile */}
-        <div className="absolute top-20 left-10 w-40 h-40 md:w-72 md:h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-48 h-48 md:w-96 md:h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{
+        <div className="absolute top-20 -left-20 w-32 h-32 md:w-72 md:h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 -right-20 w-40 h-40 md:w-96 md:h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{
         animationDelay: '2s'
       }} />
         
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="space-y-4 md:space-y-6 animate-fade-in opacity-0" style={{
+          <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+            <div className="space-y-3 md:space-y-6 animate-fade-in opacity-0" style={{
             animationDelay: '0.2s'
           }}>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">Find 5-10 Hours Per Week for{' '}
+              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight break-words">Find 5-10 Hours Per Week for{' '}
                 <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Your Business</span>
               </h1>
               
-              <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground">See how Northern Beaches businesses are using AI to cut admin time in half - without hiring more staff</p>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground">See how Northern Beaches businesses are using AI to cut admin time in half - without hiring more staff</p>
               
               <div className="pt-2 md:pt-4">
-                <Button size="lg" className="text-base md:text-lg px-6 py-5 md:px-8 md:py-6 w-full md:w-auto bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 hover:scale-105 transition-all shadow-lg hover:shadow-xl group" asChild onClick={() => handleCTAClick('hero')}>
+                <Button size="lg" className="text-sm sm:text-base md:text-lg px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 w-full md:w-auto bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 hover:scale-105 transition-all shadow-lg hover:shadow-xl group" asChild onClick={() => handleCTAClick('hero')}>
                   <a href="https://calendly.com/kevin-morrell-journ3y/30min" target="_blank" rel="noopener noreferrer">
-                    Book Your Free 30-Minute Discovery Call
-                    <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                    <span className="break-words">Book Your Free 30-Minute Discovery Call</span>
+                    <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                   </a>
                 </Button>
               </div>
