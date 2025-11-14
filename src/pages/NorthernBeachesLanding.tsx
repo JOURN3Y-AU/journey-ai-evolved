@@ -46,8 +46,8 @@ const NorthernBeachesLanding = () => {
       } = await supabase.functions.invoke('send-contact-email', {
         body: {
           ...formData,
-          subject: 'Northern Beaches Landing - New Lead',
-          source: 'Northern Beaches Landing Page'
+          service: 'general',
+          campaign_source: 'Northern Beaches Landing Page'
         }
       });
       if (error) throw error;
