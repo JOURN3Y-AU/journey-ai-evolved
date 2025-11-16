@@ -174,7 +174,7 @@ const Contact = () => {
             {/* Contact Form */}
             <div ref={formRef} className="reveal transition-all duration-500 ease-out">
               <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8">
-                <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
+                <h2 className="text-2xl font-semibold mb-6">Share your details here      </h2>
                 
                 {isSuccess ? <div className="text-center py-8">
                     <div className="mb-4 text-journey-purple">
