@@ -17,12 +17,6 @@ const formSchema = z.object({
   }),
   email: z.string().email({
     message: 'Please enter a valid email address'
-  }),
-  message: z.string().min(10, {
-    message: 'Message must be at least 10 characters'
-  }),
-  service: z.enum(['general', 'blueprint', 'glean', 'databricks', 'ai-resources', 'small-business'], {
-    required_error: 'Please select a service'
   })
 });
 type FormValues = z.infer<typeof formSchema>;
@@ -77,26 +71,10 @@ const Contact = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      email: '',
-      message: '',
-      service: 'small-business'
+      email: ''
     }
   });
 
-  // Pre-populate form based on URL parameters
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const service = urlParams.get('service');
-    const industry = urlParams.get('industry');
-    if (service && ['general', 'blueprint', 'glean', 'databricks', 'ai-resources', 'small-business'].includes(service)) {
-      form.setValue('service', service as any);
-    }
-    if (industry) {
-      const currentMessage = form.getValues('message') || '';
-      const industryMessage = `Interested in ${industry} industry solutions. ${currentMessage}`;
-      form.setValue('message', industryMessage.trim());
-    }
-  }, [form]);
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
@@ -117,6 +95,8 @@ const Contact = () => {
       } = await supabase.functions.invoke('send-contact-email', {
         body: {
           ...data,
+          message: 'Request for information pack',
+          service: 'small-business',
           campaignData
         }
       });
@@ -126,7 +106,7 @@ const Contact = () => {
       if (typeof (window as any).fbq !== 'undefined') {
         (window as any).fbq('track', 'Lead', {
           content_name: 'Contact Form Submitted',
-          content_category: data.service,
+          content_category: 'small-business',
           value: 1.00,
           currency: 'AUD'
         });
@@ -209,41 +189,8 @@ const Contact = () => {
                             <FormMessage />
                           </FormItem>} />
                       
-                      <FormField control={form.control} name="service" render={({
-                    field
-                  }) => <FormItem>
-                            <FormLabel>I'm Interested In</FormLabel>
-                            <Select value={field.value} onValueChange={value => {
-                      trackFormInteraction();
-                      field.onChange(value);
-                    }}>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select a service" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="general">General Inquiry</SelectItem>
-                                <SelectItem value="blueprint">Blueprint - AI Strategy</SelectItem>
-                                <SelectItem value="glean">Accelerators - Glean</SelectItem>
-                                <SelectItem value="databricks">Accelerators - Databricks</SelectItem>
-                                <SelectItem value="small-business">Small Business AI Solutions</SelectItem>
-                                <SelectItem value="ai-resources">Services - AI Resources</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>} />
-                      
-                      <FormField control={form.control} name="message" render={({
-                    field
-                  }) => <FormItem>
-                            <FormLabel>Your Message*</FormLabel>
-                            <FormControl>
-                              <Textarea placeholder="How can we help you?" className="min-h-32" {...field} onFocus={trackFormInteraction} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>} />
-                      
                       <Button type="submit" className="w-full bg-gradient-to-r from-journey-purple to-journey-blue text-white" disabled={isSubmitting}>
-                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                        {isSubmitting ? 'Sending...' : 'Request my free information pack'}
                       </Button>
                     </form>
                   </Form>}
