@@ -162,7 +162,7 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div ref={headerRef} className="max-w-3xl reveal transition-all duration-700 ease-out">
             <h1 className="text-5xl font-bold mb-6">Time is your most precious resource... let AI give it back        </h1>
-            <p className="text-xl text-gray-700 mb-8">Send us your three       </p>
+            <p className="text-xl text-gray-700 mb-8">Share your details below and we'll send you a complimentary information pack                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </p>
           </div>
         </div>
       </section>
